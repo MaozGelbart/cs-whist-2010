@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="TestClient.DialogBid"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="200" d:DesignWidth="200" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="99,78,0,0" Name="lst_suits" VerticalAlignment="Top" Width="89" ItemsSource="{Binding}"  DisplayMemberPath="Name" />
+        <dataInput:Label Height="23" HorizontalAlignment="Left" Margin="27,78,0,0" Name="label1" VerticalAlignment="Top" Width="57" Content="Suit:" />
+        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" DisplayMemberPath="Name" Margin="99,115,0,0" Name="lst_amounts" VerticalAlignment="Top" Width="89" />
+        <dataInput:Label Content="Amount:" Height="23" HorizontalAlignment="Left" Margin="27,115,0,0" Name="label2" VerticalAlignment="Top" Width="57" />
+        <dataInput:Label Height="26" HorizontalAlignment="Left" Margin="30,20,0,0" Name="label3" VerticalAlignment="Top" Width="123" Content="Make a bid" />
+    </Grid>
+</UserControl>
