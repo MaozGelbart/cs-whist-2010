@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <StartPageUrl>WhistClientTestPage.aspx</StartPageUrl>
+          <StartAction>SpecificPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>True</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
+          <ProjectOutputReferences>
+            <Ref Project="{418E37AF-6439-4ADE-924E-C7A4B2E902EF}" Folder="ClientBin">TestClient.xap</Ref>
+            <Ref Project="{90A3F180-7E35-47A0-AF4F-44A094618E3F}" Folder="ClientBin">
+            </Ref>
+          </ProjectOutputReferences>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
