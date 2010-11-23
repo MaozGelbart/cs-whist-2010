@@ -1,5 +1,0 @@
-C:\projects\Whist01\Server\API\bin\Debug\API.dll
-C:\projects\Whist01\Server\API\bin\Debug\API.pdb
-C:\projects\Whist01\Server\API\obj\Debug\ResolveAssemblyReference.cache
-C:\projects\Whist01\Server\API\obj\Debug\API.dll
-C:\projects\Whist01\Server\API\obj\Debug\API.pdb
