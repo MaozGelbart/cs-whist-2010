@@ -1,0 +1,7 @@
+C:\projects\Whist01\Server\Core\obj\Debug\ResolveAssemblyReference.cache
+C:\projects\Whist01\Server\Core\bin\Debug\Core.dll
+C:\projects\Whist01\Server\Core\bin\Debug\Core.pdb
+C:\projects\Whist01\Server\Core\bin\Debug\API.dll
+C:\projects\Whist01\Server\Core\bin\Debug\API.pdb
+C:\projects\Whist01\Server\Core\obj\Debug\Core.dll
+C:\projects\Whist01\Server\Core\obj\Debug\Core.pdb

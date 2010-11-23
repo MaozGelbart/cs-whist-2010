@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Server.API" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Server.API" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:11112/PlayerService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:11112/PlayerService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import schemaLocation="http://localhost:11112/PlayerService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Card" type="tns:Card" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCard" nillable="true" type="tns:ArrayOfCard" />
+  <xs:complexType name="Card">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="_x003C_Suit_x003E_k__BackingField" type="tns:Suit" />
+      <xs:element name="_x003C_Value_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Card" nillable="true" type="tns:Card" />
+  <xs:simpleType name="Suit">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Clubs">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Diamonds">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Hearts">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Spades">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Suit" nillable="true" type="tns:Suit" />
+  <xs:complexType name="Bid">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="_x003C_Amount_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Suit_x003E_k__BackingField" nillable="true" type="tns:Suit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Bid" nillable="true" type="tns:Bid" />
+  <xs:complexType name="ArrayOfPlayerPlugin">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlayerPlugin" nillable="true" type="tns:PlayerPlugin" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlayerPlugin" nillable="true" type="tns:ArrayOfPlayerPlugin" />
+  <xs:complexType name="PlayerPlugin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlayerPlugin" nillable="true" type="tns:PlayerPlugin" />
+  <xs:complexType name="RoundStatus">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="_x003C_Biddings_x003E_k__BackingField" nillable="true" type="q1:ArrayOfNullableOfBidruputMNc" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="_x003C_CurrentPlay_x003E_k__BackingField" nillable="true" type="q2:ArrayOfNullableOfCardruputMNc" />
+      <xs:element name="_x003C_LeadingPlayer_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_PlayerTurn_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_State_x003E_k__BackingField" type="tns:RoundState" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="_x003C_TricksTaken_x003E_k__BackingField" nillable="true" type="q3:ArrayOfint" />
+      <xs:element name="_x003C_Trump_x003E_k__BackingField" nillable="true" type="tns:Suit" />
+      <xs:element name="_x003C_TurnNumber_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RoundStatus" nillable="true" type="tns:RoundStatus" />
+  <xs:simpleType name="RoundState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Bidding">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Contract">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Playing">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Results">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RoundState" nillable="true" type="tns:RoundState" />
+  <xs:complexType name="GameStatus">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="_x003C_PlayerNames_x003E_k__BackingField" nillable="true" type="q4:ArrayOfstring" />
+      <xs:element name="_x003C_RoundNumber_x003E_k__BackingField" type="xs:int" />
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="_x003C_Scores_x003E_k__BackingField" nillable="true" type="q5:ArrayOfint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GameStatus" nillable="true" type="tns:GameStatus" />
+  <xs:complexType name="ArrayOfArrayOfCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfCard" nillable="true" type="tns:ArrayOfCard" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfArrayOfCard" nillable="true" type="tns:ArrayOfArrayOfCard" />
+</xs:schema>
