@@ -1,5 +1,0 @@
-C:\projects\Whist01\PlayerPlugIns\PlugIn.dll
-C:\projects\Whist01\PlayerPlugIns\PlugIn.pdb
-C:\projects\Whist01\Server\PlugIn\obj\Debug\ResolveAssemblyReference.cache
-C:\projects\Whist01\Server\PlugIn\obj\Debug\PlugIn.dll
-C:\projects\Whist01\Server\PlugIn\obj\Debug\PlugIn.pdb
