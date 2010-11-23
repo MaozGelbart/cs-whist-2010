@@ -10,13 +10,14 @@ namespace Brain
 {
     public class PlayerFactory
     {
+        const string PLUGINS_DLLS_FOLDER_PATH = "C:\\projects\\Whist01\\playerPlugIns";
         private static Dictionary<string, PlugInInfo> playerPlugIns = new Dictionary<string, PlugInInfo>();
         private static Dictionary<string, string> playerPlugInsDescription = new Dictionary<string, string>();
         private static bool isInit = false;
         public static void RegisterAllPlugIns()
         {
             isInit = true;
-            string[] files = Directory.GetFiles("C:\\projects\\Whist01\\playerPlugIns", "*.dll");
+            string[] files = Directory.GetFiles(PLUGINS_DLLS_FOLDER_PATH, "*.dll");
             foreach(string file in files)
             {
                 Assembly assm = System.Reflection.Assembly.LoadFile(file);
