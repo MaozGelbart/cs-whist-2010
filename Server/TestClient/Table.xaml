@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="TestClient.Table"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="625" d:DesignWidth="1140" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input" xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data">
+
+    <Grid Height="625" Width="1140">
+    <Grid.Resources>
+            <Style x:Key="horizontalListBoxStyle" TargetType="ListBox">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding path}"></Image>
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Grid.Resources>
+    <ListBox Name="lst_MyCards" ItemsSource="{Binding}" Style="{StaticResource horizontalListBoxStyle}" Margin="0,0,0,15" Height="139" VerticalAlignment="Bottom" SelectionMode="Single" />
+        <dataInput:Label Margin="12,86,0,210" Name="lbl_Name1" HorizontalAlignment="Left" Width="80" />
+        <dataInput:Label Margin="545,0,-118,0" Name="lbl_Name2" Height="19" VerticalAlignment="Top" />
+        <dataInput:Label Margin="0,86,12,219" Name="lbl_Name3" HorizontalAlignment="Right" Width="80" />
+        <Image Height="119" HorizontalAlignment="Left" Margin="402,211,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="102" />
+        <Image Height="108" Margin="545,86,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left" Width="88" />
+        <Image Height="119" Margin="0,211,362,0" Name="image3" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Right" Width="96" />
+        <Image Height="125" Margin="545,0,507,160" Name="image0" Stretch="Fill" VerticalAlignment="Bottom" />
+        <dataInput:Label HorizontalAlignment="Left" Margin="12,266,0,320" Name="label4" Width="61" Content="Takes:" />
+        <dataInput:Label Height="19" Margin="545,29,-81,0" Name="label5" VerticalAlignment="Top" Content="Takes:" />
+        <dataInput:Label Margin="0,266,31,320" Name="label6" HorizontalAlignment="Right" Width="61" Content="Takes:" />
+        <dataInput:Label Height="31" HorizontalAlignment="Left" Margin="12,0,0,219" Name="lbl_Name0" VerticalAlignment="Bottom" Width="106" />
+        <dataInput:Label Height="24" HorizontalAlignment="Left" Margin="12,0,0,185" Name="label8" VerticalAlignment="Bottom" Width="100" Content="Takes:" />
+        <dataInput:Label Height="19" Margin="594,29,-124,0" Name="lbl_takes2" VerticalAlignment="Top" />
+        <dataInput:Label Margin="51,243,0,295" Name="lbl_takes1" HorizontalAlignment="Left" Width="41" />
+        <dataInput:Label Margin="0,120,12,176" Name="lbl_takes3" HorizontalAlignment="Right" Width="41" />
+        <dataInput:Label Height="28" HorizontalAlignment="Left" Margin="54,0,0,181" Name="lbl_takes0" VerticalAlignment="Bottom" Width="59" />
+        <dataInput:Label Height="19" HorizontalAlignment="Left" Margin="12,29,0,0" Name="lbl_strong_shape" VerticalAlignment="Top" Width="80" />
+        <dataInput:Label HorizontalAlignment="Left" Margin="12,252,0,346" Name="label1" Width="33" Content="Bid:" />
+        <dataInput:Label Content="Bid:" Margin="545,12,-61,0" Name="label2" Height="19" VerticalAlignment="Top" />
+        <dataInput:Label Content="Bid:" Margin="0,252,65,346" Name="label3" HorizontalAlignment="Right" Width="27" />
+        <dataInput:Label Content="Bid:" Height="21" Margin="13,0,0,203" Name="label7" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="27" />
+        <dataInput:Label HorizontalAlignment="Left" Margin="51,243,0,330" Name="lbl_bid1" Width="67" />
+        <dataInput:Label Height="20" Margin="594,11,-150,0" Name="lbl_bid2" VerticalAlignment="Top" />
+        <dataInput:Label HorizontalAlignment="Right" Margin="0,102,-14,200" Name="lbl_bid3" Width="67" />
+        <dataInput:Label Height="18" HorizontalAlignment="Left" Margin="51,0,0,203" Name="lbl_bid0" VerticalAlignment="Bottom" Width="67" />
+        <dataInput:Label Height="50" HorizontalAlignment="Left" Margin="12,11,0,0" Name="lbl_state" VerticalAlignment="Top" Width="100" />
+        <Button Content="Go" Height="36" HorizontalAlignment="Left" Margin="1022,429,0,0" Name="btn_ThrowCard" VerticalAlignment="Top" Width="104" IsEnabled="False" Click="btn_ThrowCard_Click" />
+        <dataInput:Label HorizontalAlignment="Left" Margin="12,296,0,309" Name="label9" Width="33" Content="Score:" />
+        <dataInput:Label Content="Score:" HorizontalAlignment="Left" Margin="545,41,0,554" Name="label10" Width="33" />
+        <dataInput:Label Content="Score:" HorizontalAlignment="Left" Margin="1048,286,0,295" Name="label11" Width="33" />
+        <dataInput:Label Content="Score:" HorizontalAlignment="Left" Margin="12,435,0,160" Name="label12" Width="33" />
+        <dataInput:Label Height="29" HorizontalAlignment="Left" Margin="51,301,0,0" Name="lbl_score1" VerticalAlignment="Top" Width="100" />
+        <dataInput:Label Height="29" HorizontalAlignment="Left" Margin="594,51,0,0" Name="lbl_score2" VerticalAlignment="Top" Width="100" />
+        <dataInput:Label Height="29" HorizontalAlignment="Left" Margin="1087,301,0,0" Name="lbl_score3" VerticalAlignment="Top" Width="100" />
+        <dataInput:Label Height="29" HorizontalAlignment="Left" Margin="54,446,0,0" Name="lbl_score0" VerticalAlignment="Top" Width="100" />
+    </Grid>
+</UserControl>

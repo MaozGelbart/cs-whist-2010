@@ -1,0 +1,13 @@
+C:\projects\Whist01\Server\WindowsClient\bin\Debug\WindowsClient.exe
+C:\projects\Whist01\Server\WindowsClient\bin\Debug\WindowsClient.pdb
+C:\projects\Whist01\Server\WindowsClient\bin\Debug\API.dll
+C:\projects\Whist01\Server\WindowsClient\bin\Debug\Core.dll
+C:\projects\Whist01\Server\WindowsClient\bin\Debug\API.pdb
+C:\projects\Whist01\Server\WindowsClient\bin\Debug\Core.pdb
+C:\projects\Whist01\Server\WindowsClient\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\projects\Whist01\Server\WindowsClient\obj\x86\Debug\WindowsClient.Form1.resources
+C:\projects\Whist01\Server\WindowsClient\obj\x86\Debug\WindowsClient.Properties.Resources.resources
+C:\projects\Whist01\Server\WindowsClient\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\projects\Whist01\Server\WindowsClient\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\projects\Whist01\Server\WindowsClient\obj\x86\Debug\WindowsClient.exe
+C:\projects\Whist01\Server\WindowsClient\obj\x86\Debug\WindowsClient.pdb

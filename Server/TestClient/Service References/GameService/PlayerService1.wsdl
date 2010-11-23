@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="Silverlight" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="Silverlight" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="Silverlight/Imports">
+      <xsd:import schemaLocation="http://localhost:11112/PlayerService.svc?xsd=xsd0" namespace="Silverlight" />
+      <xsd:import schemaLocation="http://localhost:11112/PlayerService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:11112/PlayerService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:11112/PlayerService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Server.API" />
+      <xsd:import schemaLocation="http://localhost:11112/PlayerService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPlayerService_Register_InputMessage">
+    <wsdl:part name="parameters" element="tns:Register" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_Register_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_StartGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartGame" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_StartGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_StartGameView_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartGameView" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_StartGameView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartGameViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RequestUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RequestUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_SwitchCards_InputMessage">
+    <wsdl:part name="parameters" element="tns:SwitchCards" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_SwitchCards_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SwitchCardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_MakeBid_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeBid" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_MakeBid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeBidResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_MakeContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeContract" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_MakeContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_PlayCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlayCard" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_PlayCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlayCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_GetPlayerPlugIns_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerPlugIns" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_GetPlayerPlugIns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerPlugInsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_FinishGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinishGame" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_FinishGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FinishGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RecieveRoundStatusUpdate_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RecieveRoundStatusUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RecieveGameStatusUpdate_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RecieveGameStatusUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RecieveCards_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RecieveCards" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RecieveExchangedCards_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RecieveExchangedCards" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RequestExchangeCards_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RequestExchangeCards" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RequestBid_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RequestBid" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_ReqeustContract_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReqeustContract" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RequestPlay_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RequestPlay" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RecieveStatusCards_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RecieveStatusCards" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RecieveErrorMessage_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RecieveErrorMessage" />
+  </wsdl:message>
+  <wsdl:portType name="IPlayerService">
+    <wsdl:operation name="Register">
+      <wsdl:input wsaw:Action="Silverlight/IPlayerService/Register" message="tns:IPlayerService_Register_InputMessage" />
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RegisterResponse" message="tns:IPlayerService_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <wsdl:input wsaw:Action="Silverlight/IPlayerService/StartGame" message="tns:IPlayerService_StartGame_InputMessage" />
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/StartGameResponse" message="tns:IPlayerService_StartGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartGameView">
+      <wsdl:input wsaw:Action="Silverlight/IPlayerService/StartGameView" message="tns:IPlayerService_StartGameView_InputMessage" />
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/StartGameViewResponse" message="tns:IPlayerService_StartGameView_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestUpdate">
+      <wsdl:input wsaw:Action="Silverlight/IPlayerService/RequestUpdate" message="tns:IPlayerService_RequestUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RequestUpdateResponse" message="tns:IPlayerService_RequestUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SwitchCards">
+      <wsdl:input wsaw:Action="Silverlight/IPlayerService/SwitchCards" message="tns:IPlayerService_SwitchCards_InputMessage" />
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/SwitchCardsResponse" message="tns:IPlayerService_SwitchCards_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeBid">
+      <wsdl:input wsaw:Action="Silverlight/IPlayerService/MakeBid" message="tns:IPlayerService_MakeBid_InputMessage" />
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/MakeBidResponse" message="tns:IPlayerService_MakeBid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeContract">
+      <wsdl:input wsaw:Action="Silverlight/IPlayerService/MakeContract" message="tns:IPlayerService_MakeContract_InputMessage" />
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/MakeContractResponse" message="tns:IPlayerService_MakeContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayCard">
+      <wsdl:input wsaw:Action="Silverlight/IPlayerService/PlayCard" message="tns:IPlayerService_PlayCard_InputMessage" />
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/PlayCardResponse" message="tns:IPlayerService_PlayCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerPlugIns">
+      <wsdl:input wsaw:Action="Silverlight/IPlayerService/GetPlayerPlugIns" message="tns:IPlayerService_GetPlayerPlugIns_InputMessage" />
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/GetPlayerPlugInsResponse" message="tns:IPlayerService_GetPlayerPlugIns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinishGame">
+      <wsdl:input wsaw:Action="Silverlight/IPlayerService/FinishGame" message="tns:IPlayerService_FinishGame_InputMessage" />
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/FinishGameResponse" message="tns:IPlayerService_FinishGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecieveRoundStatusUpdate">
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RecieveRoundStatusUpdate" message="tns:IPlayerService_RecieveRoundStatusUpdate_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecieveGameStatusUpdate">
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RecieveGameStatusUpdate" message="tns:IPlayerService_RecieveGameStatusUpdate_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecieveCards">
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RecieveCards" message="tns:IPlayerService_RecieveCards_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecieveExchangedCards">
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RecieveExchangedCards" message="tns:IPlayerService_RecieveExchangedCards_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestExchangeCards">
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RequestExchangeCards" message="tns:IPlayerService_RequestExchangeCards_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestBid">
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RequestBid" message="tns:IPlayerService_RequestBid_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReqeustContract">
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/ReqeustContract" message="tns:IPlayerService_ReqeustContract_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestPlay">
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RequestPlay" message="tns:IPlayerService_RequestPlay_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecieveStatusCards">
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RecieveStatusCards" message="tns:IPlayerService_RecieveStatusCards_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecieveErrorMessage">
+      <wsdl:output wsaw:Action="Silverlight/IPlayerService/RecieveErrorMessage" message="tns:IPlayerService_RecieveErrorMessage_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

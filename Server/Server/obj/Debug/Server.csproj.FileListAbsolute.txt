@@ -1,0 +1,10 @@
+C:\projects\Whist01\Server\Server\bin\Server.dll
+C:\projects\Whist01\Server\Server\bin\Server.pdb
+C:\projects\Whist01\Server\Server\obj\Debug\ResolveAssemblyReference.cache
+C:\projects\Whist01\Server\Server\obj\Debug\Server.dll
+C:\projects\Whist01\Server\Server\obj\Debug\Server.pdb
+C:\projects\Whist01\Server\Server\bin\System.ServiceModel.PollingDuplex.dll
+C:\projects\Whist01\Server\Server\bin\API.dll
+C:\projects\Whist01\Server\Server\bin\API.pdb
+C:\projects\Whist01\Server\Server\bin\Core.dll
+C:\projects\Whist01\Server\Server\bin\Core.pdb
