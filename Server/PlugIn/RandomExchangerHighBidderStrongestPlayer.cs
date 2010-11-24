@@ -12,6 +12,7 @@ namespace PlugIn
             :base(new HighBidder(), new PlugIn.CardExchangers.RandomCardExchanger(), new PlugIn.Gamers.StrongerCardGamer())
         {
         }
+
         public override string Name
         {
             get { return "The phantom"; }

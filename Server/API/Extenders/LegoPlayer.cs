@@ -22,6 +22,35 @@ namespace Server.API
             this.Gamer = gamer;
         }
 
+        #region Protected Methods
+
+        protected void ReplaceBidder(BidderBase bidder)
+        {
+            Bidder = bidder;
+            ReplacePart(bidder);
+        }
+
+        protected void ReplaceCardExchanger(CardExchangerBase cardExchanger)
+        {
+            this.CardExchanger = cardExchanger;
+            ReplacePart(cardExchanger);
+        }
+
+        protected void ReplaceGamer(GamerBase gamer)
+        {
+            this.Gamer = gamer;
+            this.ReplacePart(gamer);
+        }
+
+        private void ReplacePart(PlayerPartExtender part)
+        {
+            part.Cards = this.Cards;
+            part.CurrentGameStatus = this.CurrentGameStatus;
+            part.CurrentRoundStatus = this.CurrentRoundStatus;
+        }
+
+        #endregion
+
         #region Overrides
 
         protected override List<Card> Cards
@@ -73,7 +102,7 @@ namespace Server.API
 
         #region ICardExchanger Members
 
-        public Card[] RequestExhangeCards()
+        public virtual Card[] RequestExhangeCards()
         {
             var cards = CardExchanger.RequestExhangeCards();
             this.PassCards(cards[0], cards[1], cards[2]);
@@ -84,12 +113,12 @@ namespace Server.API
 
         #region IBidder Members
 
-        public Bid? RequestBid()
+        public virtual Bid? RequestBid()
         {
             return Bidder.RequestBid();
         }
 
-        public int RequestDeclare()
+        public virtual int RequestDeclare()
         {
             return Bidder.RequestDeclare();
         }
@@ -98,7 +127,7 @@ namespace Server.API
 
         #region IPlayerGamer Members
 
-        public Card RequestPlay()
+        public virtual Card RequestPlay()
         {
             Card c = Gamer.RequestPlay();
             ThrowCard(c);
