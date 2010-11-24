@@ -28,12 +28,16 @@ namespace TestClient
         }
 
         PollingDuplexHttpBinding binding = new PollingDuplexHttpBinding();
-        const string SERVICE_ADDRESS = "http://localhost:11112/PlayerService.svc";
-        EndpointAddress add = new EndpointAddress(SERVICE_ADDRESS);
+        Uri SERVICE_ADDRESS;
+        string serviceAddress;
+        EndpointAddress add;
         public PlayerServiceClient client;
 
         public App()
         {
+            SERVICE_ADDRESS = System.Windows.Browser.HtmlPage.Document.DocumentUri;
+            serviceAddress = "http://" + SERVICE_ADDRESS.Host + ":" + SERVICE_ADDRESS.Port + "/PlayerService.svc";
+            add = new EndpointAddress(serviceAddress);
             this.Startup += this.Application_Startup;
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
