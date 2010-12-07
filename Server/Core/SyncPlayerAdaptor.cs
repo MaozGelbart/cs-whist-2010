@@ -94,7 +94,11 @@ namespace Brain
             get { return this.imp.Name; }
         }
 
-        #endregion
+        public void RecieveErrorMessage(string msg)
+        {
+            // nothing to do
+        }
 
+        #endregion
     }
 }

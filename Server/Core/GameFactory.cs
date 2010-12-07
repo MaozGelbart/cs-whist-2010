@@ -40,7 +40,7 @@ namespace Brain
             }
         }
 
-        public static void AddPlayer(IAsyncPlayer player)
+        public static bool AddPlayer(IAsyncPlayer player)
         {
             Game game = (from g in Games
                          where !g.IsStarted()
@@ -48,10 +48,13 @@ namespace Brain
             if (game == null)
             {
                 Console.WriteLine("No opened games, player refused");
+                player.RecieveErrorMessage("No opened games, player refused");
+                return false;
             }
             else
             {
                 game.AddPlayer(player);
+                return true;
             }
         }
 

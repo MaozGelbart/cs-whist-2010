@@ -36,7 +36,7 @@ namespace TestClient
         public App()
         {
             SERVICE_ADDRESS = System.Windows.Browser.HtmlPage.Document.DocumentUri;
-            serviceAddress = "http://" + SERVICE_ADDRESS.Host + ":" + SERVICE_ADDRESS.Port + "/PlayerService.svc";
+            serviceAddress = "http://" + SERVICE_ADDRESS.Host + ":" + SERVICE_ADDRESS.Port + "/Wist/PlayerService.svc";
             add = new EndpointAddress(serviceAddress);
             this.Startup += this.Application_Startup;
             this.Exit += this.Application_Exit;
