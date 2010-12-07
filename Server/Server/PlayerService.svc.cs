@@ -35,12 +35,18 @@ namespace WCFServer
                     OperationContext.Current.SessionId,
                     OperationContext.Current.GetCallbackChannel<IPlayerClient>());
                 PlayerService.Adaptors.Add(adaptor.SessionID, adaptor);
-                Brain.GameFactory.AddPlayer(adaptor);
+                if (!Brain.GameFactory.AddPlayer(adaptor))
+                    PlayerService.Adaptors.Remove(adaptor.SessionID);
             }
         }
 
         public void StartGame(string name, int numberOfAIPlayers, string[] player_AI, int num_of_rounds, int milliseconds_between_turns)
         {
+            if (!Adaptors.ContainsKey(OperationContext.Current.SessionId))
+            {
+                GameFactory.Games.Clear();
+                Adaptors.Remove(OperationContext.Current.SessionId);
+            }
             PlayerSLAdaptor adaptor = new PlayerSLAdaptor(name,
                 OperationContext.Current.SessionId,
                 OperationContext.Current.GetCallbackChannel<IPlayerClient>());

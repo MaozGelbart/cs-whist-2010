@@ -126,6 +126,14 @@ namespace WCFServer.Clients
             get { return _name; }
         }
 
+        public void RecieveErrorMessage(string msg)
+        {
+            try
+            {
+                this.webClient.RecieveErrorMessage(msg);
+            }
+            catch { }
+        }
 
         #endregion
     }

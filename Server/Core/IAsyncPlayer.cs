@@ -39,6 +39,12 @@ namespace Server.API
         void RequestPlay();
 
         event EventHandler<RecievePlayEventArgs> OnGetPlayCompleted;
+
+        /// <summary>
+        /// Mainly uses for human players
+        /// </summary>
+        /// <param name="msg"></param>
+        void RecieveErrorMessage(string msg);
     }
 
     /// <summary>

@@ -122,6 +122,10 @@ namespace Brain
 
         void oPlayer_OnKillGameRequested(object sender, EventArgs e)
         {
+            foreach (Player p in this.Players)
+            {
+                p.oPlayer.RecieveErrorMessage("Someone killed the game");
+            }
             GameFactory.KillGame(this);
         }
 
@@ -677,7 +681,13 @@ namespace Brain
                 GameFactory.KillGame(this);
             }
             else
-                throw new Exception(msg);
+            {
+                foreach( Player p in this.Players)
+                {
+                    p.oPlayer.RecieveErrorMessage(msg);
+                }
+                GameFactory.KillGame(this);
+            }
         }
 
         #endregion
