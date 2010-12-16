@@ -14,5 +14,7 @@ namespace Server.API
         event EventHandler<EventArgs> OnKillGameRequested;
 
         void RecieveErrorMessage(string msg);
+
+        void RecieveGameOver();
     }
 }
