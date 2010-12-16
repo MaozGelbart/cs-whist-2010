@@ -14,6 +14,15 @@ namespace Server.API
     }
 
 
+    public enum PlayerSeat
+    {
+        Self = 0,
+        West = 1,
+        North = 2,
+        East = 3
+    }
+
+
  
     /// <summary>
     /// This object sent to players on every change in the game, during the game rounds
@@ -46,15 +55,21 @@ namespace Server.API
         /// </summary>
         public Bid?[] Biddings { get; set; }
 
+        public Bid? GetBid(PlayerSeat seat) { return Biddings[(int)seat]; }
+
         /// <summary>
         /// Array of 4 cards, the current cards on the board, starting from you
         /// </summary>
         public Card?[] CurrentPlay { get; set; }
 
+        public Card? GetCurrentPlay(PlayerSeat seat) { return CurrentPlay[(int)seat]; }
+
         /// <summary>
         /// Array of 4, Number of tricks for each player, starting from you
         /// </summary>
         public int[] TricksTaken { get; set; }
+
+        public int GetTricks(PlayerSeat seat) { return TricksTaken[(int)seat]; }
 
         /// <summary>
         /// The current round Trump. Null for suit-less
