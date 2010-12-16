@@ -89,9 +89,9 @@ namespace Server.API
             for (int i = 0; i < 3; i++)
             {
                 //different suit?
-                if (status.getCurrentPlaySuit() != status.GetCurrentPlay((PlayerSeat)i + 1).Value.Suit)
+                if (status.GetCurrentPlaySuit() != status.GetCurrentPlay((PlayerSeat)i + 1).Value.Suit)
                 {
-                    m_playerEmptySuits[i].Add(status.getCurrentPlaySuit());
+                    m_playerEmptySuits[i].Add(status.GetCurrentPlaySuit());
                 }
             }
 
