@@ -50,7 +50,7 @@ namespace WindowsClient
             plugIns[3] = (string)lst_Types4.SelectedValue;
             try
             {
-                GameFactory.CreateGame(null, plugIns, int.Parse((string)lst_Rounds.SelectedItem), 20);
+                GameFactory.CreateGame(new GameLogger(@"C:\MyFiles\University Files\ביואינפורמטיקה - שנה ג'\סמסטר א\אינטליגנציה משחקית\cs-whist-2010\Server\logfile.txt"), plugIns, int.Parse((string)lst_Rounds.SelectedItem), 20);
             }
             catch (Exception ex)
             {
