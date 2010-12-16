@@ -67,7 +67,7 @@ namespace Server.API
             return CurrentPlay[(int)seat]; 
         }
 
-        public Suit? getCurrentPlaySuit() 
+        public Suit? GetCurrentPlaySuit() 
         {
             if (GetCurrentPlay((PlayerSeat)LeadingPlayer).HasValue)
             {
