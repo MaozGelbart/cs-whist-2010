@@ -448,7 +448,7 @@ namespace Brain
             for (int i = 0; i < 4; i++)
             {
                 this.RoundStatus[i].State = RoundState.Playing;
-                this.RoundStatus[i].TurnNumber = -1;
+                this.RoundStatus[i].TurnNumber = 0;
             }
             UpdateStatusToPlayers(false);
             StartPlayRound();
@@ -469,6 +469,8 @@ namespace Brain
             for (int i = 0; i < 4; i++)
             {
                 this.RoundStatus[i].TurnNumber++;
+                this.RoundStatus[i].State = RoundState.Playing;
+
                 for (int j = 0; j < 4; j++)
                     this.RoundStatus[i].CurrentPlay[j] = null;
             }
@@ -482,6 +484,9 @@ namespace Brain
             {
                 this.RoundStatus[i].TricksTaken[(strongestCardPlayer - i + 4) % 4]++;
                 this.RoundStatus[i].LeadingPlayer = (strongestCardPlayer - i + 4) % 4;
+                
+                //update roundstatus state to be "results"
+                this.RoundStatus[i].State = RoundState.Results;
             }
             leadingPlayer = strongestCardPlayer;
             UpdateStatusToPlayers(true);

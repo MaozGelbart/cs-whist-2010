@@ -62,7 +62,22 @@ namespace Server.API
         /// </summary>
         public Card?[] CurrentPlay { get; set; }
 
-        public Card? GetCurrentPlay(PlayerSeat seat) { return CurrentPlay[(int)seat]; }
+        public Card? GetCurrentPlay(PlayerSeat seat) 
+        {
+            return CurrentPlay[(int)seat]; 
+        }
+
+        public Suit? getCurrentPlaySuit() 
+        {
+            if (GetCurrentPlay((PlayerSeat)LeadingPlayer).HasValue)
+            {
+                return CurrentPlay[(int)LeadingPlayer].Value.Suit;
+            }
+            else 
+            {
+                return null;
+            }
+        }
 
         /// <summary>
         /// Array of 4, Number of tricks for each player, starting from you
