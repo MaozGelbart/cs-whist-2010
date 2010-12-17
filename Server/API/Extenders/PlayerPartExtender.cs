@@ -86,7 +86,7 @@ namespace Server.API
         /// <summary>
         /// Returns the best bid for a specific 'strong' trump. 
         /// </summary>
-        protected double GetHighestBidForTrump(Suit suit, ICollection<Card> cards)
+        protected double GetHighestBidForTrump(Suit? suit, ICollection<Card> cards)
         {
             List<Card>[] cardsBySuit = ArrangeCardBySuits();
             double totalBid = 0;
