@@ -31,7 +31,7 @@ namespace Server.API
         public Suit Suit { get; set; }
 
         /// <summary>
-        /// From 1 to 13
+        /// From 2 to 14(Ace)
         /// </summary>
         public int Value { get; set; }
 
