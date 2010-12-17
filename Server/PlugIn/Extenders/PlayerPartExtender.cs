@@ -35,7 +35,7 @@ namespace Server.API
 
         #region Helpers Methods
 
-        protected List<Card>[] ArrangeCardBySuits()
+        protected List<Card>[] ArrangeCardBySuits(ICollection<Card> cards)
         {
             List<Card>[] retval = new List<Card>[4];
             for (int i = 0; i < 4; i++)
@@ -43,7 +43,7 @@ namespace Server.API
                 retval[i] = new List<Card>();
             }
 
-            foreach (Card c in Cards)
+            foreach (Card c in cards)
             {
                 retval[(int)c.Suit - 1].Add(c);
             }
@@ -86,7 +86,7 @@ namespace Server.API
         /// </summary>
         protected double GetHighestBidForTrump(Suit? suit, ICollection<Card> cards)
         {
-            List<Card>[] cardsBySuit = ArrangeCardBySuits();
+            List<Card>[] cardsBySuit = ArrangeCardBySuits(cards);
             double totalBid = 0;
 
             for (int i = 0; i < cardsBySuit.Length; i++)
@@ -96,11 +96,11 @@ namespace Server.API
                 // this is the list of the 'strong' trump
                 if ((i + 1) == (int)suit)
                 {
-                    totalBid += CalcBidForStrongTrump(cards);
+                    totalBid += CalcBidForStrongTrump(currList);
                 }
                 else
                 {
-                    totalBid += CalcBidForWeakTrump(cards);
+                    totalBid += CalcBidForWeakTrump(currList);
                 }
             }
 
@@ -132,8 +132,10 @@ namespace Server.API
         {
             double totalBid = 0;
 
-            if (ContainsValue(cards, 1))
+            //check if has A
+            if (ContainsValue(cards, 14))
             {
+                //check if has Q & 1 more trump
                 if (ContainsValue(cards, 12) && cards.Count >= 3)
                 {
                     totalBid += 2;
@@ -142,13 +144,16 @@ namespace Server.API
                 totalBid++;
             }
 
-            if (ContainsValue(cards, 12) && !ContainsValue(cards, 1) && cards.Count >= 3)
+            //check if has Q & no A & 2 more trumps
+            if (ContainsValue(cards, 12) && !ContainsValue(cards, 14) && cards.Count >= 3)
             {
                 totalBid++;
             }
 
+            //check if has K & no A & 1 more trump
             if (ContainsValue(cards, 13) && cards.Count >= 2)
             {
+                //check if has J & 2 more trumps
                 if (ContainsValue(cards, 11) && cards.Count >= 4)
                 {
                     totalBid += 2;
@@ -157,6 +162,7 @@ namespace Server.API
                 totalBid++;
             }
 
+            //check if has more than 4 
             if (cards.Count >= 4)
             {
                 totalBid++;
@@ -174,29 +180,34 @@ namespace Server.API
         {
             double totalBid = 0;
 
-            if (ContainsValue(cards, 1))
+            //check if has A
+            if (ContainsValue(cards, 14))
             {
                 totalBid++;
             }
 
+            //check if has K & 1 more from suit
             if (ContainsValue(cards, 13) && cards.Count >= 2)
             {
                 totalBid++;
             }
 
+            //check if has Q & 2 more from suit
             if (ContainsValue(cards, 12) && cards.Count >= 3)
             {
                 totalBid++;
             }
 
+            //no cards from suit
             if (cards.Count == 0)
             {
-                totalBid -= 1.5;
+                totalBid += 1.5;
             }
 
+            //1 card from suit
             if (cards.Count == 1)
             {
-                totalBid -= 1;
+                totalBid += 1;
             }
 
             return totalBid;
