@@ -31,5 +31,52 @@ namespace Server.API
             set;
         }
 
+        #region Helpers Methods
+
+        protected List<Card>[] ArrangeCardBySuits()
+        {
+            List<Card>[] retval = new List<Card>[4];
+            for (int i = 0; i < 4; i++)
+            {
+                retval[i] = new List<Card>();
+            }
+
+            foreach (Card c in Cards)
+            {
+                retval[(int)c.Suit - 1].Add(c);
+            }
+
+            return retval;
+        }
+
+        protected Card GetHighestCardInCollection(ICollection<Card> cards)
+        {
+            Card highest = cards.First();
+            foreach (Card c in cards)
+            {
+                if (highest.Value < c.Value)
+                {
+                    highest = c;
+                }
+            }
+            cards.Remove(highest);
+            return highest;
+        }
+
+        protected Card GetLowestCardInCollection(ICollection<Card> cards)
+        {
+            Card lowest = cards.First();
+            foreach (Card c in cards)
+            {
+                if (lowest.Value > c.Value)
+                {
+                    lowest = c;
+                }
+            }
+            cards.Remove(lowest);
+            return lowest;
+        }
+
+        #endregion
     }
 }

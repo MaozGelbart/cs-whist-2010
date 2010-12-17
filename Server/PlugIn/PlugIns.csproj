@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardExchangers\PlayForZeroCardExchanger.cs" />
     <Compile Include="CardExchangers\RandomCardExchanger.cs" />
     <Compile Include="DumbPlayer.cs" />
     <Compile Include="Bidders\HighBidder.cs" />
