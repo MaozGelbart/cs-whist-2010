@@ -176,9 +176,9 @@ namespace TestClient.GameService {
         
         private System.Collections.ObjectModel.ObservableCollection<System.Nullable<TestClient.GameService.Card>> CurrentPlayk__BackingFieldField;
         
-        private int LeadingPlayerk__BackingFieldField;
+        private TestClient.GameService.PlayerSeat LeadingPlayerk__BackingFieldField;
         
-        private int PlayerTurnk__BackingFieldField;
+        private TestClient.GameService.PlayerSeat PlayerTurnk__BackingFieldField;
         
         private TestClient.GameService.RoundState Statek__BackingFieldField;
         
@@ -215,7 +215,7 @@ namespace TestClient.GameService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(Name="<LeadingPlayer>k__BackingField", IsRequired=true)]
-        public int LeadingPlayerk__BackingField {
+        public TestClient.GameService.PlayerSeat LeadingPlayerk__BackingField {
             get {
                 return this.LeadingPlayerk__BackingFieldField;
             }
@@ -228,7 +228,7 @@ namespace TestClient.GameService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(Name="<PlayerTurn>k__BackingField", IsRequired=true)]
-        public int PlayerTurnk__BackingField {
+        public TestClient.GameService.PlayerSeat PlayerTurnk__BackingField {
             get {
                 return this.PlayerTurnk__BackingFieldField;
             }
@@ -300,6 +300,23 @@ namespace TestClient.GameService {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerSeat", Namespace="http://schemas.datacontract.org/2004/07/Server.API")]
+    public enum PlayerSeat : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Self = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        West = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        North = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        East = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -466,6 +483,9 @@ namespace TestClient.GameService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="Silverlight/IPlayerService/RecieveErrorMessage")]
         void RecieveErrorMessage(string msg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="Silverlight/IPlayerService/RecieveGameOver")]
+        void RecieveGameOver();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -644,6 +664,8 @@ namespace TestClient.GameService {
         public event System.EventHandler<RecieveStatusCardsReceivedEventArgs> RecieveStatusCardsReceived;
         
         public event System.EventHandler<RecieveErrorMessageReceivedEventArgs> RecieveErrorMessageReceived;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RecieveGameOverReceived;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -1176,9 +1198,16 @@ namespace TestClient.GameService {
             }
         }
         
+        private void OnRecieveGameOverReceived(object state) {
+            if ((this.RecieveGameOverReceived != null)) {
+                object[] results = ((object[])(state));
+                this.RecieveGameOverReceived(this, new System.ComponentModel.AsyncCompletedEventArgs(null, false, null));
+            }
+        }
+        
         private void VerifyCallbackEvents() {
             if (((this.useGeneratedCallback != true) 
-                        && ((((((((((this.RecieveRoundStatusUpdateReceived != null) 
+                        && (((((((((((this.RecieveRoundStatusUpdateReceived != null) 
                         || (this.RecieveGameStatusUpdateReceived != null)) 
                         || (this.RecieveCardsReceived != null)) 
                         || (this.RecieveExchangedCardsReceived != null)) 
@@ -1187,7 +1216,8 @@ namespace TestClient.GameService {
                         || (this.ReqeustContractReceived != null)) 
                         || (this.RequestPlayReceived != null)) 
                         || (this.RecieveStatusCardsReceived != null)) 
-                        || (this.RecieveErrorMessageReceived != null)))) {
+                        || (this.RecieveErrorMessageReceived != null)) 
+                        || (this.RecieveGameOverReceived != null)))) {
                 throw new System.InvalidOperationException("Callback events cannot be used when the callback InstanceContext is specified. Pl" +
                         "ease choose between specifying the callback InstanceContext or subscribing to th" +
                         "e callback events.");
@@ -1318,6 +1348,10 @@ namespace TestClient.GameService {
             public void RecieveErrorMessage(string msg) {
                 this.proxy.OnRecieveErrorMessageReceived(new object[] {
                             msg});
+            }
+            
+            public void RecieveGameOver() {
+                this.proxy.OnRecieveGameOverReceived(new object[0]);
             }
         }
         

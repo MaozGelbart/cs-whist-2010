@@ -149,21 +149,21 @@
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\GameService\configuration91.svcinfo" />
     <None Include="Service References\GameService\configuration.svcinfo" />
-    <None Include="Service References\GameService\PlayerService.wsdl" />
-    <None Include="Service References\GameService\PlayerService.xsd">
+    <None Include="Service References\GameService\PlayerService2.wsdl" />
+    <None Include="Service References\GameService\PlayerService21.wsdl" />
+    <None Include="Service References\GameService\PlayerService5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameService\PlayerService1.wsdl" />
-    <None Include="Service References\GameService\PlayerService1.xsd">
+    <None Include="Service References\GameService\PlayerService51.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameService\PlayerService2.xsd">
+    <None Include="Service References\GameService\PlayerService52.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameService\PlayerService3.xsd">
+    <None Include="Service References\GameService\PlayerService53.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameService\PlayerService4.xsd">
+    <None Include="Service References\GameService\PlayerService54.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GameService\Reference.svcmap">
@@ -233,7 +233,7 @@
     <Resource Include="Images\spades-j-75.png" />
     <Resource Include="Images\spades-k-75.png" />
     <Resource Include="Images\spades-q-75.png" />
-    <None Include="Service References\GameService\PlayerService.disco" />
+    <None Include="Service References\GameService\PlayerService1.disco" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

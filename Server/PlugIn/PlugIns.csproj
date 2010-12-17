@@ -45,6 +45,12 @@
     <Compile Include="CardExchangers\RandomCardExchanger.cs" />
     <Compile Include="DumbPlayer.cs" />
     <Compile Include="Bidders\HighBidder.cs" />
+    <Compile Include="Extenders\BidderBase.cs" />
+    <Compile Include="Extenders\CardExchangerBase.cs" />
+    <Compile Include="Extenders\GamerBase.cs" />
+    <Compile Include="Extenders\LegoPlayer.cs" />
+    <Compile Include="Extenders\PlayerBase.cs" />
+    <Compile Include="Extenders\PlayerPartExtender.cs" />
     <Compile Include="Gamers\StrongerCardGamer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomExchangerHighBidderStrongestPlayer.cs" />

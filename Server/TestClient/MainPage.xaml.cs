@@ -31,7 +31,13 @@ namespace TestClient
             MainApp.client.RecieveStatusCardsReceived += new EventHandler<RecieveStatusCardsReceivedEventArgs>(client_RecieveStatusCardsReceived);
             MainApp.client.GetPlayerPlugInsCompleted += new EventHandler<GetPlayerPlugInsCompletedEventArgs>(client_GetPlayerPlugInsCompleted);
             MainApp.client.RecieveErrorMessageReceived += new EventHandler<RecieveErrorMessageReceivedEventArgs>(client_RecieveErrorMessageReceived);
+            MainApp.client.RecieveGameOverReceived += new EventHandler<System.ComponentModel.AsyncCompletedEventArgs>(client_RecieveGameOverReceived);
             MainApp.client.GetPlayerPlugInsAsync();
+        }
+
+        void client_RecieveGameOverReceived(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            MessageBox.Show("Game over");
         }
 
         void client_RecieveErrorMessageReceived(object sender, RecieveErrorMessageReceivedEventArgs e)

@@ -181,7 +181,7 @@ namespace Brain
             for( int i=0; i<4; i++)
             {
                 this.RoundStatus[i].CurrentPlay[(playerIndex - i + 4)%4] = e.Play;
-                this.RoundStatus[i].PlayerTurn = (playerIndex + 1 + 4 - i) % 4;
+                this.RoundStatus[i].PlayerTurn = (PlayerSeat)((playerIndex + 1 + 4 - i) % 4);
             }
             if (playerIndex == leadingPlayer)
             {
@@ -318,7 +318,7 @@ namespace Brain
             for (int i = 0; i < 4; i++)
             {
                 this.RoundStatus[i].Biddings[(playerIndex - i + 4) % 4] = new Bid { Suit = null, Amount = e.Amount };
-                this.RoundStatus[i].PlayerTurn = (playerIndex + 1 - i + 4) % 4;
+                this.RoundStatus[i].PlayerTurn = (PlayerSeat)(((int)playerIndex + 1 - i + 4) % 4);
             }
             // if so: update all players, ask the next player to declare
             if ((playerIndex + 1) % 4 == leadingPlayer)
@@ -421,7 +421,7 @@ namespace Brain
                 for (int i = 0; i < 4; i++)
                 {
                     this.RoundStatus[i].Trump = currentStrongBid.Value.Suit;
-                    this.RoundStatus[i].LeadingPlayer = (lastBidderIndex - i + 4) % 4;
+                    this.RoundStatus[i].LeadingPlayer = (PlayerSeat)((lastBidderIndex - i + 4) % 4);
                     this.RoundStatus[i].State = RoundState.Contract;
                 }
                 leadingPlayer = lastBidderIndex;
@@ -432,7 +432,7 @@ namespace Brain
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    this.RoundStatus[i].PlayerTurn = (currentAwaitingIndex - i + 4) % 4;
+                    this.RoundStatus[i].PlayerTurn = (PlayerSeat)((currentAwaitingIndex - i + 4) % 4);
                 }
                 UpdateStatusToPlayers(false);
                 this.Players[currentAwaitingIndex].oPlayer.RequestBid();
@@ -483,7 +483,7 @@ namespace Brain
             for (int i = 0; i < 4; i++)
             {
                 this.RoundStatus[i].TricksTaken[(strongestCardPlayer - i + 4) % 4]++;
-                this.RoundStatus[i].LeadingPlayer = (strongestCardPlayer - i + 4) % 4;
+                this.RoundStatus[i].LeadingPlayer = (PlayerSeat)((strongestCardPlayer - i + 4) % 4);
                 
                 //update roundstatus state to be "results"
                 this.RoundStatus[i].State = RoundState.Results;
@@ -579,8 +579,8 @@ namespace Brain
             // update round status
             for (int i = 0; i < 4; i++)
             {
-                this.RoundStatus[i].LeadingPlayer = (this.dealerIndex - i + 4) % 4;
-                this.RoundStatus[i].PlayerTurn = (this.dealerIndex - i + 4) % 4;
+                this.RoundStatus[i].LeadingPlayer = (PlayerSeat)((this.dealerIndex - i + 4) % 4);
+                this.RoundStatus[i].PlayerTurn = (PlayerSeat)((this.dealerIndex - i + 4) % 4);
                 this.RoundStatus[i].State = RoundState.Bidding;
                 this.RoundStatus[i].Biddings = new Bid?[4];
                 this.RoundStatus[i].Trump = null;
@@ -639,7 +639,7 @@ namespace Brain
             for (int i = 0; i < 4; i++)
             {
                 this.Players[i].Passed = false;
-                this.RoundStatus[i].LeadingPlayer = (this.dealerIndex - i + 4) % 4;
+                this.RoundStatus[i].LeadingPlayer = (PlayerSeat)((this.dealerIndex - i + 4) % 4);
             }
             UpdateStatusToPlayers(true);
             lastBidderIndex = -1;

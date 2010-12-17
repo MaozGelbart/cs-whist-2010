@@ -63,7 +63,7 @@ namespace PlugIn
             Card? card = null;
             if (status.LeadingPlayer > 0)
             {
-                Suit s = status.CurrentPlay[status.LeadingPlayer].Value.Suit;
+                Suit s = status.CurrentPlay[(int)status.LeadingPlayer].Value.Suit;
                 card = (from cr in cards
                           where cr.Suit == s
                           select cr).FirstOrDefault();
