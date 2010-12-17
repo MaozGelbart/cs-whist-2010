@@ -45,6 +45,7 @@
     <Compile Include="CardExchangers\MaximizeTricksBidCardExchanger.cs" />
     <Compile Include="CardExchangers\PlayForZeroCardExchanger.cs" />
     <Compile Include="CardExchangers\RandomCardExchanger.cs" />
+    <Compile Include="DeepHotMagenta.cs" />
     <Compile Include="DumbPlayer.cs" />
     <Compile Include="Bidders\HighBidder.cs" />
     <Compile Include="Extenders\BidderBase.cs" />
