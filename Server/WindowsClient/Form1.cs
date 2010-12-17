@@ -48,9 +48,12 @@ namespace WindowsClient
             plugIns[1] = (string)lst_Types2.SelectedValue;
             plugIns[2] = (string)lst_Types3.SelectedValue;
             plugIns[3] = (string)lst_Types4.SelectedValue;
+            GameTable gameTable = new GameTable();
+            gameTable.Show();
             try
             {
-                GameFactory.CreateGame(new GameLogger(@"C:\MyFiles\University Files\ביואינפורמטיקה - שנה ג'\סמסטר א\אינטליגנציה משחקית\cs-whist-2010\Server\logfile.txt"), plugIns, int.Parse((string)lst_Rounds.SelectedItem), 20);
+                //GameFactory.CreateGame(new GameLogger(@"C:\MyFiles\University Files\ביואינפורמטיקה - שנה ג'\סמסטר א\אינטליגנציה משחקית\cs-whist-2010\Server\logfile.txt"), plugIns, int.Parse((string)lst_Rounds.SelectedItem), 20);
+                GameFactory.CreateGame(gameTable, plugIns, int.Parse((string)lst_Rounds.SelectedItem), 20);
             }
             catch (Exception ex)
             {
