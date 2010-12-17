@@ -15,7 +15,7 @@ namespace PlugIn.Gamers
             Suit? strongSuit = this.CurrentRoundStatus.Trump;
             Suit? turnSuit = null;
             if (this.CurrentRoundStatus.LeadingPlayer > 0)
-                turnSuit = this.CurrentRoundStatus.CurrentPlay[this.CurrentRoundStatus.LeadingPlayer].Value.Suit;
+                turnSuit = this.CurrentRoundStatus.CurrentPlay[(int)this.CurrentRoundStatus.LeadingPlayer].Value.Suit;
 
             Card chosen = default(Card);
             if (turnSuit.HasValue)

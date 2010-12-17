@@ -38,12 +38,12 @@ namespace Server.API
         /// <summary>
         /// The index of the player that should play next. 0 is you, 1 is the next clockwise, ..
         /// </summary>
-        public int PlayerTurn { get; set; }
+        public PlayerSeat PlayerTurn { get; set; }
 
         /// <summary>
         /// The player who started the current turn.
         /// </summary>
-        public int LeadingPlayer { get; set; }
+        public PlayerSeat LeadingPlayer { get; set; }
 
         /// <summary>
         /// The number of completed turns

@@ -60,5 +60,15 @@ namespace Server.Clients
             }
         }
 
+        public void RecieveGameOver()
+        {
+            try
+            {
+                webClient.RecieveGameOver();
+            }
+            catch (Exception e)
+            {
+            }
+        }
     }
 }

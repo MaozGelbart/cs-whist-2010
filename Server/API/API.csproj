@@ -42,18 +42,12 @@
   <ItemGroup>
     <Compile Include="Bid.cs" />
     <Compile Include="Card.cs" />
-    <Compile Include="Extenders\BidderBase.cs" />
-    <Compile Include="Extenders\CardExchangerBase.cs" />
-    <Compile Include="Extenders\GamerBase.cs" />
-    <Compile Include="Extenders\PlayerPartExtender.cs" />
     <Compile Include="Interfaces\IBidder.cs" />
     <Compile Include="Interfaces\ICardExchanger.cs" />
     <Compile Include="Interfaces\IGameViewer.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IPlayerBase.cs" />
     <Compile Include="Interfaces\IGamer.cs" />
-    <Compile Include="Extenders\LegoPlayer.cs" />
-    <Compile Include="Extenders\PlayerBase.cs" />
     <Compile Include="Interfaces\PlayerPlugin.cs" />
     <Compile Include="RoundStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

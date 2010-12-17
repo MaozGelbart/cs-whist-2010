@@ -49,16 +49,16 @@ namespace TestClient
             lbl_Name3.Foreground = black;
             switch (status.PlayerTurnk__BackingField)
             {
-                case 0:
+                case PlayerSeat.Self:
                     lbl_Name0.Foreground = red;
                     break;
-                case 1:
+                case PlayerSeat.West:
                     lbl_Name1.Foreground = red;
                     break;
-                case 2:
+                case PlayerSeat.North:
                     lbl_Name2.Foreground = red;
                     break;
-                case 3:
+                case PlayerSeat.East:
                     lbl_Name3.Foreground = red;
                     break;
             }

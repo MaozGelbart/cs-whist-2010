@@ -38,5 +38,8 @@ namespace WCFServer
 
         [OperationContract(IsOneWay = true)]
         void RecieveErrorMessage(string msg);
+
+        [OperationContract(IsOneWay = true)]
+        void RecieveGameOver();
     }
 }
