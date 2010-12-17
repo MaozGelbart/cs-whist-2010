@@ -16,7 +16,7 @@ namespace PlugIn
 
         public override string Name
         {
-            get { return "Hot Magenta"; }
+            get { return "DeepHotMagenta"; }
         }
     }
 }
