@@ -15,7 +15,7 @@ namespace PlugIn.CardExchangers
             List<Card> retCards = new List<Card>();
 
             //arrange he cards by suits
-            List<Card>[] suitsCount = ArrangeCardBySuits();            
+            List<Card>[] suitsCount = ArrangeCardBySuits();
 
             //look at each suit which has 2 cards or less and add those cards to the returned array
             foreach (List<Card> suit in suitsCount)
@@ -23,6 +23,7 @@ namespace PlugIn.CardExchangers
                 if (suit.Count <= 2)
                 { 
                     retCards.AddRange(suit);
+                    suit.Clear();
                 }
             }
 
@@ -37,15 +38,26 @@ namespace PlugIn.CardExchangers
                 while (retCards.Count > 3)
                 {
                     //remove the card with the lowest value - till we have only 3 cards left
-                    retCards.Remove(GetLowestCardInCollection(retCards));
+                    Card current = GetLowestCardInCollection(retCards);
+                    retCards.Remove(current);
                 }
             }
             else if (retCards.Count < 3)
             {
+                //copy cards for operation & remove cards already picked from that collection
+                ICollection<Card> cards_cpy = new HashSet<Card>(Cards);
+                foreach (Card c in retCards)
+                {
+                    cards_cpy.Remove(c);
+                }
+
                 //add highest card in my hand to return array - till I have 3 cards
                 while (retCards.Count < 3)
                 {
-                    retCards.Add(GetHighestCardInCollection(Cards));
+                    
+                    Card current = GetHighestCardInCollection(cards_cpy);
+                    retCards.Add(current);
+                    cards_cpy.Remove(current);
                 }
             }
 

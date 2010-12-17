@@ -61,7 +61,6 @@ namespace Server.API
                     highest = c;
                 }
             }
-            cards.Remove(highest);
             return highest;
         }
 
@@ -75,7 +74,6 @@ namespace Server.API
                     lowest = c;
                 }
             }
-            cards.Remove(lowest);
             return lowest;
         }
 
