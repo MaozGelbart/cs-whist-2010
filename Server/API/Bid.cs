@@ -31,6 +31,11 @@ namespace Server.API
             return false;
         }
 
+        public override string ToString()
+        {
+            return (Suit.HasValue ? Suit.Value.ToString() : "No-suit") + " " + Amount;
+        }
+
         #region IComparable<Bid> Members
 
         public int CompareTo(Bid other)

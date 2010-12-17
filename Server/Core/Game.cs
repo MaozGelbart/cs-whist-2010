@@ -567,7 +567,7 @@ namespace Brain
                 this.GameStatus[i].RoundNumber++;
             }
             UpdateGameStatusToPlayers();
-            if (this.GameStatus[0].RoundNumber == num_of_rounds - 1)
+            if (this.GameStatus[0].RoundNumber >= num_of_rounds )
                 GameFactory.KillGame(this);
             else
                 StartRound();

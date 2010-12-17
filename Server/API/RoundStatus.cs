@@ -91,6 +91,21 @@ namespace Server.API
         /// </summary>
         public Suit? Trump { get; set; }
 
+        public RoundStatus Clone()
+        {
+            return new RoundStatus
+            {
+                State = this.State,
+                PlayerTurn = this.PlayerTurn,
+                LeadingPlayer = this.LeadingPlayer,
+                Trump = this.Trump,
+                TricksTaken = (int[])this.TricksTaken.Clone(),
+                Biddings = (Bid?[])this.Biddings.Clone(),
+                TurnNumber = this.TurnNumber,
+                CurrentPlay = (Card?[])this.CurrentPlay.Clone()
+            };
+        }
+
     }
 
     /// <summary>
@@ -114,6 +129,11 @@ namespace Server.API
         /// Number of rounds played so far
         /// </summary>
         public int RoundNumber { get; set; }
+
+        public GameStatus Clone()
+        {
+            return new GameStatus { PlayerNames = (string[])this.PlayerNames.Clone(), RoundNumber = this.RoundNumber, Scores = (int[])this.Scores.Clone() };
+        }
 
     }
 }
