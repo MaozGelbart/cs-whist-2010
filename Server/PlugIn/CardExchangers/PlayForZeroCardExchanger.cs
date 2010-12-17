@@ -15,7 +15,7 @@ namespace PlugIn.CardExchangers
             List<Card> retCards = new List<Card>();
 
             //arrange he cards by suits
-            List<Card>[] suitsCount = ArrangeCardBySuits();
+            List<Card>[] suitsCount = ArrangeCardBySuits(Cards);
 
             //look at each suit which has 2 cards or less and add those cards to the returned array
             foreach (List<Card> suit in suitsCount)
