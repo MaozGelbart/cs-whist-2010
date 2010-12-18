@@ -59,7 +59,7 @@ namespace Server.API
             CurrentRoundStatus = status;  
 
             //end of play?
-            if (status.State == RoundState.Results)
+            if (status.State == RoundState.TurnResults)
             {
                 calculateRound(status);
             }

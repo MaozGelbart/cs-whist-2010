@@ -333,7 +333,7 @@ namespace TestClient.GameService {
         Playing = 3,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Results = 4,
+        TurnResults = 4,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -401,12 +401,12 @@ namespace TestClient.GameService {
     public interface IPlayerService {
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="Silverlight/IPlayerService/Register", ReplyAction="Silverlight/IPlayerService/RegisterResponse")]
-        System.IAsyncResult BeginRegister(string name, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginRegister(string name, string game_name, System.AsyncCallback callback, object asyncState);
         
         void EndRegister(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="Silverlight/IPlayerService/StartGame", ReplyAction="Silverlight/IPlayerService/StartGameResponse")]
-        System.IAsyncResult BeginStartGame(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginStartGame(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, System.AsyncCallback callback, object asyncState);
         
         void EndStartGame(System.IAsyncResult result);
         
@@ -672,8 +672,8 @@ namespace TestClient.GameService {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TestClient.GameService.IPlayerService.BeginRegister(string name, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginRegister(name, callback, asyncState);
+        System.IAsyncResult TestClient.GameService.IPlayerService.BeginRegister(string name, string game_name, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRegister(name, game_name, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -683,7 +683,8 @@ namespace TestClient.GameService {
         
         private System.IAsyncResult OnBeginRegister(object[] inValues, System.AsyncCallback callback, object asyncState) {
             string name = ((string)(inValues[0]));
-            return ((TestClient.GameService.IPlayerService)(this)).BeginRegister(name, callback, asyncState);
+            string game_name = ((string)(inValues[1]));
+            return ((TestClient.GameService.IPlayerService)(this)).BeginRegister(name, game_name, callback, asyncState);
         }
         
         private object[] OnEndRegister(System.IAsyncResult result) {
@@ -698,11 +699,11 @@ namespace TestClient.GameService {
             }
         }
         
-        public void RegisterAsync(string name) {
-            this.RegisterAsync(name, null);
+        public void RegisterAsync(string name, string game_name) {
+            this.RegisterAsync(name, game_name, null);
         }
         
-        public void RegisterAsync(string name, object userState) {
+        public void RegisterAsync(string name, string game_name, object userState) {
             if ((this.onBeginRegisterDelegate == null)) {
                 this.onBeginRegisterDelegate = new BeginOperationDelegate(this.OnBeginRegister);
             }
@@ -713,12 +714,13 @@ namespace TestClient.GameService {
                 this.onRegisterCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRegisterCompleted);
             }
             base.InvokeAsync(this.onBeginRegisterDelegate, new object[] {
-                        name}, this.onEndRegisterDelegate, this.onRegisterCompletedDelegate, userState);
+                        name,
+                        game_name}, this.onEndRegisterDelegate, this.onRegisterCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TestClient.GameService.IPlayerService.BeginStartGame(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginStartGame(name, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, callback, asyncState);
+        System.IAsyncResult TestClient.GameService.IPlayerService.BeginStartGame(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginStartGame(name, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, game_name, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -732,7 +734,8 @@ namespace TestClient.GameService {
             System.Collections.ObjectModel.ObservableCollection<string> player_AI = ((System.Collections.ObjectModel.ObservableCollection<string>)(inValues[2]));
             int num_of_rounds = ((int)(inValues[3]));
             int milliseconds_between_turns = ((int)(inValues[4]));
-            return ((TestClient.GameService.IPlayerService)(this)).BeginStartGame(name, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, callback, asyncState);
+            string game_name = ((string)(inValues[5]));
+            return ((TestClient.GameService.IPlayerService)(this)).BeginStartGame(name, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, game_name, callback, asyncState);
         }
         
         private object[] OnEndStartGame(System.IAsyncResult result) {
@@ -747,11 +750,11 @@ namespace TestClient.GameService {
             }
         }
         
-        public void StartGameAsync(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns) {
-            this.StartGameAsync(name, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, null);
+        public void StartGameAsync(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name) {
+            this.StartGameAsync(name, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, game_name, null);
         }
         
-        public void StartGameAsync(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, object userState) {
+        public void StartGameAsync(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, object userState) {
             if ((this.onBeginStartGameDelegate == null)) {
                 this.onBeginStartGameDelegate = new BeginOperationDelegate(this.OnBeginStartGame);
             }
@@ -766,7 +769,8 @@ namespace TestClient.GameService {
                         number_Of_AIPlayers,
                         player_AI,
                         num_of_rounds,
-                        milliseconds_between_turns}, this.onEndStartGameDelegate, this.onStartGameCompletedDelegate, userState);
+                        milliseconds_between_turns,
+                        game_name}, this.onEndStartGameDelegate, this.onStartGameCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1361,9 +1365,10 @@ namespace TestClient.GameService {
                     base(client) {
             }
             
-            public System.IAsyncResult BeginRegister(string name, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
+            public System.IAsyncResult BeginRegister(string name, string game_name, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
                 _args[0] = name;
+                _args[1] = game_name;
                 System.IAsyncResult _result = base.BeginInvoke("Register", _args, callback, asyncState);
                 return _result;
             }
@@ -1373,13 +1378,14 @@ namespace TestClient.GameService {
                 base.EndInvoke("Register", _args, result);
             }
             
-            public System.IAsyncResult BeginStartGame(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[5];
+            public System.IAsyncResult BeginStartGame(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[6];
                 _args[0] = name;
                 _args[1] = number_Of_AIPlayers;
                 _args[2] = player_AI;
                 _args[3] = num_of_rounds;
                 _args[4] = milliseconds_between_turns;
+                _args[5] = game_name;
                 System.IAsyncResult _result = base.BeginInvoke("StartGame", _args, callback, asyncState);
                 return _result;
             }

@@ -27,7 +27,7 @@ namespace WCFServer
 
         #region IPlayerService Members
 
-        public void Register(string name)
+        public void Register(string name, string game_name)
         {
             if (!Adaptors.ContainsKey(OperationContext.Current.SessionId))
             {
@@ -35,14 +35,14 @@ namespace WCFServer
                     OperationContext.Current.SessionId,
                     OperationContext.Current.GetCallbackChannel<IPlayerClient>());
                 PlayerService.Adaptors.Add(adaptor.SessionID, adaptor);
-                if (!Brain.GameFactory.AddPlayer(adaptor))
+                if (!Brain.GameFactory.AddPlayer(adaptor, game_name))
                     PlayerService.Adaptors.Remove(adaptor.SessionID);
             }
         }
 
-        public void StartGame(string name, int numberOfAIPlayers, string[] player_AI, int num_of_rounds, int milliseconds_between_turns)
+        public void StartGame(string name, int numberOfAIPlayers, string[] player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name)
         {
-            if (!Adaptors.ContainsKey(OperationContext.Current.SessionId))
+            if (Adaptors.ContainsKey(OperationContext.Current.SessionId))
             {
                 GameFactory.Games.Clear();
                 Adaptors.Remove(OperationContext.Current.SessionId);
@@ -51,7 +51,7 @@ namespace WCFServer
                 OperationContext.Current.SessionId,
                 OperationContext.Current.GetCallbackChannel<IPlayerClient>());
             PlayerService.Adaptors.Add(adaptor.SessionID, adaptor);
-            Brain.GameFactory.CreateGame(adaptor, numberOfAIPlayers, player_AI,  num_of_rounds,  milliseconds_between_turns);
+            Brain.GameFactory.CreateGame(adaptor, numberOfAIPlayers, player_AI,  num_of_rounds,  milliseconds_between_turns, game_name);
         }
 
         public void RequestUpdate()
@@ -94,7 +94,7 @@ namespace WCFServer
             ViewerSLAdaptor adaptor = new ViewerSLAdaptor(OperationContext.Current.SessionId,
                 OperationContext.Current.GetCallbackChannel<IPlayerClient>());
             PlayerService.ViewerAdaptors.Add(adaptor.SessionID, adaptor);
-            Brain.GameFactory.CreateGame(adaptor, player_AI, num_of_rounds, milliseconds_between_turns);
+            Brain.GameFactory.CreateGame(adaptor, player_AI, num_of_rounds, milliseconds_between_turns, null);
         }
 
         public void FinishGame()

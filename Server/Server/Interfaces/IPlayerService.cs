@@ -12,10 +12,10 @@ namespace WCFServer
     public interface IPlayerService
     {
         [OperationContract]
-        void Register(string name);
+        void Register(string name, string game_name);
 
         [OperationContract]
-        void StartGame(string name, int number_Of_AIPlayers, string[] player_AI, int num_of_rounds, int milliseconds_between_turns);
+        void StartGame(string name, int number_Of_AIPlayers, string[] player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name);
 
         [OperationContract]
         void StartGameView(string[] player_AI, int num_of_rounds, int milliseconds_between_turns);

@@ -86,6 +86,9 @@
     <Compile Include="Dialogs\DialogBid.xaml.cs">
       <DependentUpon>DialogBid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\DialogExchangedCards.xaml.cs">
+      <DependentUpon>DialogExchangedCards.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\MessageDialog.xaml.cs">
       <DependentUpon>MessageDialog.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\DialogBid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\DialogExchangedCards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,6 +241,10 @@
     <Resource Include="Images\spades-k-75.png" />
     <Resource Include="Images\spades-q-75.png" />
     <None Include="Service References\GameService\PlayerService1.disco" />
+    <Resource Include="Images\clubs.PNG" />
+    <Resource Include="Images\diamonds.PNG" />
+    <Resource Include="Images\hearts.PNG" />
+    <Resource Include="Images\spades.PNG" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

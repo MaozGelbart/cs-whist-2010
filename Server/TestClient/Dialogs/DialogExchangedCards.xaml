@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="TestClient.Dialogs.DialogExchangedCards"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="200" d:DesignWidth="200" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <dataInput:Label Height="33" HorizontalAlignment="Left" Margin="22,21,0,0" Name="label1" VerticalAlignment="Top" Width="109" Content="Recieved Cards:" />
+        <Image Height="71" HorizontalAlignment="Left" Margin="12,60,0,0" Name="img_card0" Stretch="Uniform" VerticalAlignment="Top" Width="55" Source="/TestClient;component/Images/clubs.PNG" />
+        <Image Height="69" HorizontalAlignment="Left" Margin="73,60,0,0" Name="img_card1" Stretch="Fill" VerticalAlignment="Top" Width="55" />
+        <Image Height="69" HorizontalAlignment="Right" Margin="0,60,12,0" Name="img_card2" Stretch="Fill" VerticalAlignment="Top" Width="55" />
+    </Grid>
+</UserControl>

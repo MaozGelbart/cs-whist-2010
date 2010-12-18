@@ -7,8 +7,8 @@
     d:DesignHeight="200" d:DesignWidth="200" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">
     
     <Grid x:Name="LayoutRoot" Background="White">
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="118,80,0,0" Name="comboBox1" VerticalAlignment="Top" Width="70" DisplayMemberPath="Name" />
-        <dataInput:Label Height="19" HorizontalAlignment="Left" Margin="12,84,0,0" Name="label1" VerticalAlignment="Top" Width="100" Content="No. of tricks:" />
-        <dataInput:Label Height="28" HorizontalAlignment="Left" Margin="12,20,0,0" Name="label2" VerticalAlignment="Top" Width="165" Content="Declare number of tricks:" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="118,112,0,0" Name="comboBox1" VerticalAlignment="Top" Width="70" DisplayMemberPath="Name" />
+        <dataInput:Label Height="19" HorizontalAlignment="Left" Margin="12,112,0,0" Name="label1" VerticalAlignment="Top" Width="100" Content="No. of tricks:" />
+        <Image Height="71" HorizontalAlignment="Left" Margin="63,12,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="76" />
     </Grid>
 </UserControl>
