@@ -51,6 +51,36 @@ namespace Server.API
             return 0;
         }
 
+        public static bool operator >= (Bid self, Bid other)
+        {
+            return self.CompareTo(other) >= 0;
+        }
+
+        public static bool operator ==(Bid self, Bid other)
+        {
+            return self.CompareTo(other) == 0;
+        }
+
+        public static bool operator !=(Bid self, Bid other)
+        {
+            return self.CompareTo(other) != 0;
+        }
+
+        public static bool operator >(Bid self, Bid other)
+        {
+            return self.CompareTo(other) > 0;
+        }
+
+        public static bool operator <(Bid self, Bid other)
+        {
+            return self.CompareTo(other) < 0;
+        }
+
+        public static bool operator <=(Bid self, Bid other)
+        {
+            return self.CompareTo(other) <= 0;
+        }
+
         #endregion
     }
 }

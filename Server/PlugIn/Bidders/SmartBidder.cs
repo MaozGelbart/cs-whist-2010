@@ -26,23 +26,22 @@ namespace PlugIn.Bidders
                 m_highestBidSuit = GetHighestBidSuit();
             //}
 
-            int currHighestBid = (from b in this.CurrentRoundStatus.Biddings
-                                   where b != null
-                                   orderby b.Value descending
-                                   select b.Value.Amount).FirstOrDefault();
+            // bid is ICompareable !! this means you can sort by simply the bid rather than implement comparing
+                Bid? currHighestBidObj = (from b in this.CurrentRoundStatus.Biddings
+                                          where b != null
+                                          orderby b.Value descending
+                                          select b.Value).FirstOrDefault();
+
+                Bid myHighestBid = new Bid { Amount = (int)m_highestBid, Suit = m_highestBidSuit };
 
 
-            Suit? currSuit = (from b in this.CurrentRoundStatus.Biddings
-                                  where b != null
-                                  orderby b.Value descending
-                                  select b.Value.Suit).FirstOrDefault();
-
-
-            if (m_highestBid >= currHighestBid && m_highestBid >= 5)
+            // each bidding round the minimum grows by one : 5 , 6 , 7
+            if (myHighestBid.Amount >= (5 + this.CurrentRoundStatus.TurnNumber))
             {
-                if (m_highestBidSuit > (currSuit == null ? 0 : currSuit))
+                // if there is no heighest bid or my bid is heigher than the highest one
+                if( !currHighestBidObj.HasValue || myHighestBid > currHighestBidObj.Value)
                 {
-                    return new Bid { Suit = m_highestBidSuit, Amount = (int)m_highestBid };
+                    return myHighestBid;
                 }
             }
 
@@ -51,11 +50,12 @@ namespace PlugIn.Bidders
 
         public override int RequestDeclare()
         {
+            /*  unused
             int matchHighestBid = (from b in this.CurrentRoundStatus.Biddings
                                    where b != null
                                    orderby b.Value descending
                                    select b.Value.Amount).FirstOrDefault();
-
+            */
             m_highestBid = GetHighestBidForTrump(this.CurrentRoundStatus.Trump, this.Cards);
 
             return (int)m_highestBid;
