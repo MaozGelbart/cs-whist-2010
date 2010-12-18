@@ -39,6 +39,8 @@ namespace TestClient
         }
 
         RoundStatus currentStatus;
+        private bool exchangedCardRecieved;
+        private bool bidRequested;
 
         #region Web Client Callbacks
 
@@ -51,22 +53,43 @@ namespace TestClient
 
         void client_ReqeustContractReceived(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            ContractDialogClass dialog = new ContractDialogClass();
+            ContractDialogClass dialog = new ContractDialogClass(currentStatus.Trumpk__BackingField);
             dialog.OnResponse += new EventHandler<DialogEventArgs<int>>(dialog_OnResponse);
             dialog.Show(DialogStyle.Modal);
         }
 
         void client_RequestBidReceived(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            DialogBidClass dialog = new DialogBidClass();
-            dialog.OnResponse += new EventHandler<DialogEventArgs<Bid?>>(dialog_OnResponse);
-            dialog.Show(DialogStyle.Modal);
+            if (exchangedCardRecieved)
+            {
+                DialogBidClass dialog = new DialogBidClass();
+                dialog.OnResponse += new EventHandler<DialogEventArgs<Bid?>>(dialog_OnResponse);
+                dialog.Show(DialogStyle.Modal);
+            }
+            else
+                bidRequested = true;
         }
 
         void client_RecieveExchangedCardsReceived(object sender, RecieveExchangedCardsReceivedEventArgs e)
         {
+            DialogExchangedCardsClass dialog = new DialogExchangedCardsClass(e.cards[0], e.cards[1], e.cards[2]);
+            exchangedCardRecieved = false;
+            bidRequested = true;
+            dialog.OnResponse += new EventHandler<DialogEventArgs<bool>>(dialog_OnResponse);
+            dialog.Show(DialogStyle.Modal);
             cards.AddRange(e.cards);
             RecieveCards();
+        }
+
+        void dialog_OnResponse(object sender, DialogEventArgs<bool> e)
+        {
+            exchangedCardRecieved = true;
+            if (bidRequested)
+            {
+                DialogBidClass dialog = new DialogBidClass();
+                dialog.OnResponse += new EventHandler<DialogEventArgs<Bid?>>(dialog_OnResponse);
+                dialog.Show(DialogStyle.Modal);
+            }
         }
 
         void client_RequestExchangeCardsReceived(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
@@ -109,7 +132,6 @@ namespace TestClient
             currentStatus = status;
             SetNames(game_status.PlayerNamesk__BackingField.ToArray());
             lbl_state.Content = "Bidding";
-            lbl_strong_shape.Content = "";
             UpdateTakes(new[] { 0, 0, 0, 0 });
             UpdateBids(new[] { "", "", "", "" });
             UpdateScores(game_status.Scoresk__BackingField.ToArray());
@@ -120,7 +142,7 @@ namespace TestClient
         {
             if (status.Statek__BackingField != currentStatus.Statek__BackingField)
             {
-                StartNewState(status.Statek__BackingField);
+                StartNewState(status.Statek__BackingField, status);
             }
             currentStatus = status;
             Brush red = new SolidColorBrush(Color.FromArgb(255,255,0,0));
@@ -148,7 +170,6 @@ namespace TestClient
                         select b.HasValue ? String.Format("{0} {1}", b.Value.Amountk__BackingField, b.Value.Suitk__BackingField.ToString()) : "" ).ToArray();
             UpdateBids(bids);
             ShowCards(status.CurrentPlayk__BackingField.ToArray());
-            lbl_strong_shape.Content = status.Trumpk__BackingField.HasValue ? status.Trumpk__BackingField.Value.ToString() : "";
             UpdateTakes(status.TricksTakenk__BackingField.ToArray());
         }
 
@@ -156,8 +177,18 @@ namespace TestClient
 
         #region Private Helpers
 
-        private void StartNewState(RoundState roundState)
+        private void StartNewState(RoundState roundState, RoundStatus status)
         {
+            switch(roundState)
+            {
+                case RoundState.Contract:
+                    img_trump.Source = new BitmapImage(new Uri(ContractDialog.GetSuitImageUrl(status.Trumpk__BackingField), UriKind.Relative));
+                    img_trump.Visibility = System.Windows.Visibility.Visible;
+                    break;
+                case RoundState.Bidding:
+                    img_trump.Visibility = System.Windows.Visibility.Collapsed;
+                    break;
+            }
         }
 
         private void UpdateBids(string[] p)
@@ -237,7 +268,7 @@ namespace TestClient
             lst_MyCards.ItemsSource = paths;
         }
 
-        private string GetCardNumberSymbol(int value)
+        public static string GetCardNumberSymbol(int value)
         {
             string num;
             if (value <= 10)
@@ -263,7 +294,7 @@ namespace TestClient
             return num;
         }
 
-        private string GetCardImageSouce(Card c)
+        public static string GetCardImageSouce(Card c)
         {
             return String.Format("Images/{0}-{1}-75.png", c.Suitk__BackingField.ToString(), GetCardNumberSymbol(c.Valuek__BackingField));
         }

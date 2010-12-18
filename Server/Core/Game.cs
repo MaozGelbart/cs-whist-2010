@@ -11,8 +11,9 @@ namespace Brain
     {
         const int MAXIMUM_TRIES_FOR_AN_UNCOPERATIVE_PLAYER = 4;
 
-        public Game(int num_of_rounds, int milisecs_between_truns)
+        public Game(int num_of_rounds, int milisecs_between_truns, string name)
         {
+            this.Name = name;
             this.num_of_rounds = num_of_rounds;
             this.milisecs_between_truns = milisecs_between_truns;
 
@@ -71,6 +72,8 @@ namespace Brain
         #endregion
 
         #region Public Members
+
+        public string Name { get; set; }
 
         public IGameViewer Viewer
         {
@@ -486,7 +489,7 @@ namespace Brain
                 this.RoundStatus[i].LeadingPlayer = (PlayerSeat)((strongestCardPlayer - i + 4) % 4);
                 
                 //update roundstatus state to be "results"
-                this.RoundStatus[i].State = RoundState.Results;
+                this.RoundStatus[i].State = RoundState.TurnResults;
             }
             leadingPlayer = strongestCardPlayer;
             UpdateStatusToPlayers(true);

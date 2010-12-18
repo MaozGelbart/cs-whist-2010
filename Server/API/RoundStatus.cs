@@ -10,7 +10,7 @@ namespace Server.API
         Bidding = 1,
         Contract = 2,
         Playing = 3,
-        Results = 4
+        TurnResults = 4
     }
 
 

@@ -17,6 +17,7 @@ namespace TestClient
 {
     public partial class Registration : UserControl
     {
+        const string ANY_GAME_NAME = "Any Game";
         List<PlayerPlugin> types;
         public Registration(PlayerPlugin[] _types)
         {
@@ -56,6 +57,10 @@ namespace TestClient
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            string game_name = null;
+            if (txt_game_name.Text != ANY_GAME_NAME)
+                game_name = txt_game_name.Text;
+
             MainApp.client.StartGameCompleted += new EventHandler<System.ComponentModel.AsyncCompletedEventArgs>(client_StartGameCompleted);
             MainApp.client.StartGameViewCompleted += new EventHandler<System.ComponentModel.AsyncCompletedEventArgs>(client_StartGameCompleted);
             System.Collections.ObjectModel.ObservableCollection<string> lst = new System.Collections.ObjectModel.ObservableCollection<string>();
@@ -77,7 +82,7 @@ namespace TestClient
             }
             if (PlayerType0.SelectedIndex == 0)
             {
-                MainApp.client.StartGameAsync(PlayerName.Text, lst.Count, lst, (int)((StamItem)lst_Rounds.SelectedItem).Value, (int)((StamItem)lst_Speed.SelectedItem).Value);
+                MainApp.client.StartGameAsync(PlayerName.Text, lst.Count, lst, (int)((StamItem)lst_Rounds.SelectedItem).Value, (int)((StamItem)lst_Speed.SelectedItem).Value, game_name);
             }
             else
                 MainApp.client.StartGameViewAsync(lst, (int)((StamItem)lst_Rounds.SelectedItem).Value, (int)((StamItem)lst_Speed.SelectedItem).Value);
@@ -90,7 +95,10 @@ namespace TestClient
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            MainApp.client.RegisterAsync(PlayerName.Text);
+            string game_name = null;
+            if (txt_game_name.Text != ANY_GAME_NAME)
+                game_name = txt_game_name.Text;
+            MainApp.client.RegisterAsync(PlayerName.Text, game_name);
         }
 
         private void client_StartGameCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
