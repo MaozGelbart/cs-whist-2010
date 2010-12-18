@@ -491,7 +491,7 @@ namespace Brain
             leadingPlayer = strongestCardPlayer;
             UpdateStatusToPlayers(true);
             UpdateStatusToPlayers(false);
-            tm = new Timer(new TimerCallback(l => StartPlayRound()), null, Viewer != null ? milisecs_between_truns : 10, Viewer != null ? milisecs_between_truns : 10);
+            tm = new Timer(new TimerCallback(l => StartPlayRound()), null, Viewer != null ? milisecs_between_truns : 10, System.Threading.Timeout.Infinite);
         }
 
         private void FinishPlaying()
