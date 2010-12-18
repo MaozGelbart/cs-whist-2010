@@ -19,25 +19,34 @@ namespace PlugIn.Bidders
 
         public override Bid? RequestBid()
         {
-            if (m_highestBid == -1)
-            {
+            //BUG BUG BUG..... where do you clean this (FGS) for the second round?!?!?! will always have the value of last bid!!!  BUG BUG BUG
+            //if (m_highestBid == -1)
+            //{
                 m_highestBid = GetHighestBid(this.Cards);
                 m_highestBidSuit = GetHighestBidSuit();
-            }
+            //}
 
             int currHighestBid = (from b in this.CurrentRoundStatus.Biddings
                                    where b != null
                                    orderby b.Value descending
                                    select b.Value.Amount).FirstOrDefault();
 
-            if (currHighestBid <= m_highestBid)
+
+            Suit? currSuit = (from b in this.CurrentRoundStatus.Biddings
+                                  where b != null
+                                  orderby b.Value descending
+                                  select b.Value.Suit).FirstOrDefault();
+
+
+            if (m_highestBid >= currHighestBid && m_highestBid >= 5)
             {
-                return new Bid { Suit = m_highestBidSuit, Amount = (int)m_highestBid };
+                if (m_highestBidSuit > (currSuit == null ? 0 : currSuit))
+                {
+                    return new Bid { Suit = m_highestBidSuit, Amount = (int)m_highestBid };
+                }
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
         public override int RequestDeclare()

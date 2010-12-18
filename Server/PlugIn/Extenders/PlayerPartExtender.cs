@@ -201,13 +201,16 @@ namespace Server.API
             //no cards from suit
             if (cards.Count == 0)
             {
-                totalBid += 1.5;
+                //TODO: not sure!!!! read http://www.myspades.com/bidding-strategy.php and fix!!!!
+                //totalBid += 1.5;
+                totalBid += 0.5;
             }
 
             //1 card from suit
             if (cards.Count == 1)
             {
-                totalBid += 1;
+                //TODO: not sure!!!! read http://www.myspades.com/bidding-strategy.php and fix!!!!
+                //totalBid += 1;
             }
 
             return totalBid;

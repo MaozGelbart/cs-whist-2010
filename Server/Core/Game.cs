@@ -277,7 +277,7 @@ namespace Brain
         {
             // check if contract is legal
             bool legal = false;
-            if( e.Amount > 0 && e.Amount <=13)
+            if( e.Amount >= 0 && e.Amount <=13)
             {
                 if (playerIndex == leadingPlayer)
                 {
