@@ -606,7 +606,7 @@ namespace Brain
             {
                 foreach (Player p in Players)
                 {
-                    Thread.Sleep(30);
+                    Thread.Sleep(10);
                     int cardNum = r.Next(cards.Count);
                     Card c = cards[cardNum];
                     cards.Remove(c);

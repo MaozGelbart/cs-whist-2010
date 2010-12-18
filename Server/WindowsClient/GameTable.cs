@@ -12,9 +12,20 @@ namespace WindowsClient
 {
     public partial class GameTable : Form, IGameViewer
     {
-        public GameTable()
+        List<object> statusHistory = new List<object>();
+        int index = -1;
+
+        int roundIndex = 0;
+        int maxRonudIndex = 0;
+        Dictionary<int, int> round_to_index = new Dictionary<int, int>();
+        int num_of_rounds;
+
+        public GameTable(int num_of_rounds)
         {
             InitializeComponent();
+
+            this.num_of_rounds = num_of_rounds;
+
             string[] c_id = new[]
                 {
                     "2","3","4","5","6","7","8","9","10","j","q","k", "a"
@@ -47,9 +58,6 @@ namespace WindowsClient
             }
         }
 
-        List<object> statusHistory = new List<object>();
-        int index = -1;
-
 
         #region IGameViewer Members
 
@@ -57,6 +65,13 @@ namespace WindowsClient
         {
             //BeginInvoke(new MethodInvoker( delegate() { ShowGameStatus(status); }));
             statusHistory.Add(status.Clone());
+            int _roundIndex = status.RoundNumber;
+            if (!round_to_index.ContainsKey(_roundIndex))
+                round_to_index.Add(_roundIndex, statusHistory.Count - 1);
+            if (_roundIndex > maxRonudIndex)
+                maxRonudIndex = _roundIndex;
+            BeginInvoke(new MethodInvoker(delegate() { lbl_status.Text = "Finished simulating round #" + maxRonudIndex; }));
+            
         }
 
         public void UpdateRoundStatus(RoundStatus status, Card[][] allCards)
@@ -69,12 +84,12 @@ namespace WindowsClient
 
         public void RecieveErrorMessage(string msg)
         {
-            MessageBox.Show(msg);
+         //   MessageBox.Show(msg);
         }
 
         public void RecieveGameOver()
         {
-            MessageBox.Show("Game Over");
+           // MessageBox.Show("Game Over");
         }
 
         #endregion
@@ -82,9 +97,15 @@ namespace WindowsClient
         private void ShowStatus()
         {
             if (index < 0)
+            {
+                index = 0;
                 return;
+            }
             if (index >= statusHistory.Count)
+            {
+                index = statusHistory.Count - 1;
                 return;
+            }
             object status = statusHistory[index];
             if (status is status_and_cards)
                 ShowRoundStatus(((status_and_cards)status).Status, ((status_and_cards)status).Cards);
@@ -106,6 +127,7 @@ namespace WindowsClient
             lbl_score_east.Text = status.Scores[3] + "";
 
             lbl_round_count.Text = status.RoundNumber + "";
+            ShowRoundStatus(new RoundStatus { Biddings = new Bid?[4], CurrentPlay = new Card?[4], TricksTaken = new int[4]}, new[] { new Card[0], new Card[0], new Card[0], new Card[0] });
         }
 
         public void ShowRoundStatus(RoundStatus status, Card[][] allCards)
@@ -199,13 +221,47 @@ namespace WindowsClient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            index--;
+            index = 0;
             ShowStatus();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            roundIndex = maxRonudIndex;
+            index = round_to_index[roundIndex];
+            ShowStatus();
+
+            index = statusHistory.Count - 1;
+            ShowStatus();
+        }
+
+        private void btn_prev_turn_Click(object sender, EventArgs e)
+        {
+            index--;
+            ShowStatus();
+        }
+
+        private void btn_next_turn_Click(object sender, EventArgs e)
+        {
             index++;
+            ShowStatus();
+        }
+
+        private void btn_prev_round_Click(object sender, EventArgs e)
+        {
+            roundIndex--;
+            if (roundIndex < 0)
+                roundIndex = 0;
+            index = round_to_index[roundIndex];
+            ShowStatus();
+        }
+
+        private void btn_next_round_Click(object sender, EventArgs e)
+        {
+            roundIndex++;
+            if (roundIndex > maxRonudIndex)
+                roundIndex = maxRonudIndex;
+            index = round_to_index[roundIndex];
             ShowStatus();
         }
 
