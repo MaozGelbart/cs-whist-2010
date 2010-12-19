@@ -464,7 +464,7 @@ namespace Brain
                 tm.Dispose();
                 tm = null;
             }
-            if (this.RoundStatus[0].TurnNumber == 12)
+            if (this.RoundStatus[0].TurnNumber == 13)
             {
                 FinishPlaying();
                 return;
@@ -504,11 +504,27 @@ namespace Brain
                 int score = this.RoundStatus[i].Biddings[0].Value.Amount - this.RoundStatus[i].TricksTaken[0];
                 if (score == 0)
                 {
-                    score = (int)Math.Pow(this.RoundStatus[i].TricksTaken[0], 2.0) + 10;
+                    //check if played for zero
+                    if (this.RoundStatus[i].Biddings[0].Value.Amount == 0)
+                    {
+                        score = GetScoreForZeroBid(i, Math.Abs(score));
+                    }
+                    else
+                    {
+                        score = (int)Math.Pow(this.RoundStatus[i].TricksTaken[0], 2.0) + 10;
+                    }
                 }
                 else
                 {
-                    score = Math.Abs(score) * -10;
+                    //check if played for zero
+                    if (this.RoundStatus[i].Biddings[0].Value.Amount == 0)
+                    {
+                        score = GetScoreForZeroBid(i, Math.Abs(score));
+                    }
+                    else
+                    {
+                        score = Math.Abs(score) * -10;
+                    }
                 }
                 for (int j = 0; j < 4; j++)
                 {
@@ -516,6 +532,19 @@ namespace Brain
                 }
             }
             CompleteRound();
+        }
+
+        private int GetScoreForZeroBid(int i, int score)
+        {
+            //check if over \ under
+            if (this.RoundStatus[i].IsBiddingUnder)
+            {
+                return (score == 0) ? 50 : (-50 + (10 * (score-1)));
+            }
+            else
+            {
+                return (score == 0) ? 25 : (-25 + (5 * (score - 1)));
+            }
         }
 
         private void StartContract()
@@ -556,10 +585,6 @@ namespace Brain
 
         private void CompleteRound()
         {
-            /// TODO : calculate scores acording to bids and tricks(takes)
-            ///     update scores to game status
-            ///     
-
             // move dealer to next player
             this.dealerIndex++;
             this.dealerIndex %= 4;
