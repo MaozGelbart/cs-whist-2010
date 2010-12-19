@@ -84,12 +84,12 @@ namespace WindowsClient
 
         public void RecieveErrorMessage(string msg)
         {
-         //   MessageBox.Show(msg);
+            BeginInvoke(new MethodInvoker(delegate() { lbl_message.Text = msg; }));
         }
 
         public void RecieveGameOver()
         {
-           // MessageBox.Show("Game Over");
+            BeginInvoke(new MethodInvoker(delegate() { lbl_message.Text = "Game Over"; }));
         }
 
         #endregion

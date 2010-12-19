@@ -76,6 +76,7 @@
             this.btn_next_turn = new System.Windows.Forms.Button();
             this.btn_prev_turn = new System.Windows.Forms.Button();
             this.lbl_status = new System.Windows.Forms.Label();
+            this.lbl_message = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_north)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.play_self)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.play_east)).BeginInit();
@@ -85,7 +86,7 @@
             // 
             // pictureBox_north
             // 
-            this.pictureBox_north.Location = new System.Drawing.Point(424, 249);
+            this.pictureBox_north.Location = new System.Drawing.Point(424, 267);
             this.pictureBox_north.Name = "pictureBox_north";
             this.pictureBox_north.Size = new System.Drawing.Size(57, 76);
             this.pictureBox_north.TabIndex = 2;
@@ -93,7 +94,7 @@
             // 
             // play_self
             // 
-            this.play_self.Location = new System.Drawing.Point(424, 387);
+            this.play_self.Location = new System.Drawing.Point(424, 405);
             this.play_self.Name = "play_self";
             this.play_self.Size = new System.Drawing.Size(57, 76);
             this.play_self.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -102,7 +103,7 @@
             // 
             // play_east
             // 
-            this.play_east.Location = new System.Drawing.Point(508, 303);
+            this.play_east.Location = new System.Drawing.Point(508, 321);
             this.play_east.Name = "play_east";
             this.play_east.Size = new System.Drawing.Size(57, 76);
             this.play_east.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -111,7 +112,7 @@
             // 
             // play_west
             // 
-            this.play_west.Location = new System.Drawing.Point(351, 303);
+            this.play_west.Location = new System.Drawing.Point(351, 321);
             this.play_west.Name = "play_west";
             this.play_west.Size = new System.Drawing.Size(57, 76);
             this.play_west.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -121,7 +122,7 @@
             // lbl_name_west
             // 
             this.lbl_name_west.AutoSize = true;
-            this.lbl_name_west.Location = new System.Drawing.Point(116, 276);
+            this.lbl_name_west.Location = new System.Drawing.Point(116, 294);
             this.lbl_name_west.Name = "lbl_name_west";
             this.lbl_name_west.Size = new System.Drawing.Size(35, 13);
             this.lbl_name_west.TabIndex = 3;
@@ -130,7 +131,7 @@
             // lbl_name_self
             // 
             this.lbl_name_self.AutoSize = true;
-            this.lbl_name_self.Location = new System.Drawing.Point(195, 503);
+            this.lbl_name_self.Location = new System.Drawing.Point(195, 521);
             this.lbl_name_self.Name = "lbl_name_self";
             this.lbl_name_self.Size = new System.Drawing.Size(35, 13);
             this.lbl_name_self.TabIndex = 3;
@@ -138,7 +139,7 @@
             // 
             // play_north
             // 
-            this.play_north.Location = new System.Drawing.Point(424, 249);
+            this.play_north.Location = new System.Drawing.Point(424, 267);
             this.play_north.Name = "play_north";
             this.play_north.Size = new System.Drawing.Size(57, 76);
             this.play_north.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -148,7 +149,7 @@
             // lbl_name_east
             // 
             this.lbl_name_east.AutoSize = true;
-            this.lbl_name_east.Location = new System.Drawing.Point(727, 276);
+            this.lbl_name_east.Location = new System.Drawing.Point(727, 294);
             this.lbl_name_east.Name = "lbl_name_east";
             this.lbl_name_east.Size = new System.Drawing.Size(35, 13);
             this.lbl_name_east.TabIndex = 3;
@@ -157,7 +158,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(116, 295);
+            this.label3.Location = new System.Drawing.Point(116, 313);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(25, 13);
             this.label3.TabIndex = 4;
@@ -166,7 +167,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(116, 312);
+            this.label4.Location = new System.Drawing.Point(116, 330);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 5;
@@ -175,7 +176,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(119, 329);
+            this.label5.Location = new System.Drawing.Point(119, 347);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 6;
@@ -184,7 +185,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(195, 526);
+            this.label6.Location = new System.Drawing.Point(195, 544);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(25, 13);
             this.label6.TabIndex = 4;
@@ -193,7 +194,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(195, 543);
+            this.label7.Location = new System.Drawing.Point(195, 561);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(39, 13);
             this.label7.TabIndex = 5;
@@ -202,7 +203,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(198, 560);
+            this.label8.Location = new System.Drawing.Point(198, 578);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 13);
             this.label8.TabIndex = 6;
@@ -211,7 +212,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(724, 296);
+            this.label9.Location = new System.Drawing.Point(724, 314);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(25, 13);
             this.label9.TabIndex = 4;
@@ -220,7 +221,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(724, 313);
+            this.label10.Location = new System.Drawing.Point(724, 331);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(39, 13);
             this.label10.TabIndex = 5;
@@ -229,7 +230,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(727, 330);
+            this.label11.Location = new System.Drawing.Point(727, 348);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 13);
             this.label11.TabIndex = 6;
@@ -238,7 +239,7 @@
             // lbl_name_north
             // 
             this.lbl_name_north.AutoSize = true;
-            this.lbl_name_north.Location = new System.Drawing.Point(544, 105);
+            this.lbl_name_north.Location = new System.Drawing.Point(544, 123);
             this.lbl_name_north.Name = "lbl_name_north";
             this.lbl_name_north.Size = new System.Drawing.Size(35, 13);
             this.lbl_name_north.TabIndex = 3;
@@ -247,7 +248,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(541, 125);
+            this.label12.Location = new System.Drawing.Point(541, 143);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(25, 13);
             this.label12.TabIndex = 4;
@@ -256,7 +257,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(541, 142);
+            this.label13.Location = new System.Drawing.Point(541, 160);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(39, 13);
             this.label13.TabIndex = 5;
@@ -265,7 +266,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(544, 159);
+            this.label14.Location = new System.Drawing.Point(544, 177);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(38, 13);
             this.label14.TabIndex = 6;
@@ -274,7 +275,7 @@
             // lbl_bid_west
             // 
             this.lbl_bid_west.AutoSize = true;
-            this.lbl_bid_west.Location = new System.Drawing.Point(162, 295);
+            this.lbl_bid_west.Location = new System.Drawing.Point(162, 313);
             this.lbl_bid_west.Name = "lbl_bid_west";
             this.lbl_bid_west.Size = new System.Drawing.Size(35, 13);
             this.lbl_bid_west.TabIndex = 7;
@@ -283,7 +284,7 @@
             // lbl_tricks_west
             // 
             this.lbl_tricks_west.AutoSize = true;
-            this.lbl_tricks_west.Location = new System.Drawing.Point(162, 312);
+            this.lbl_tricks_west.Location = new System.Drawing.Point(162, 330);
             this.lbl_tricks_west.Name = "lbl_tricks_west";
             this.lbl_tricks_west.Size = new System.Drawing.Size(35, 13);
             this.lbl_tricks_west.TabIndex = 7;
@@ -292,7 +293,7 @@
             // lbl_score_west
             // 
             this.lbl_score_west.AutoSize = true;
-            this.lbl_score_west.Location = new System.Drawing.Point(163, 329);
+            this.lbl_score_west.Location = new System.Drawing.Point(163, 347);
             this.lbl_score_west.Name = "lbl_score_west";
             this.lbl_score_west.Size = new System.Drawing.Size(35, 13);
             this.lbl_score_west.TabIndex = 7;
@@ -301,7 +302,7 @@
             // lbl_bid_self
             // 
             this.lbl_bid_self.AutoSize = true;
-            this.lbl_bid_self.Location = new System.Drawing.Point(240, 526);
+            this.lbl_bid_self.Location = new System.Drawing.Point(240, 544);
             this.lbl_bid_self.Name = "lbl_bid_self";
             this.lbl_bid_self.Size = new System.Drawing.Size(35, 13);
             this.lbl_bid_self.TabIndex = 7;
@@ -310,7 +311,7 @@
             // lbl_tricks_self
             // 
             this.lbl_tricks_self.AutoSize = true;
-            this.lbl_tricks_self.Location = new System.Drawing.Point(240, 543);
+            this.lbl_tricks_self.Location = new System.Drawing.Point(240, 561);
             this.lbl_tricks_self.Name = "lbl_tricks_self";
             this.lbl_tricks_self.Size = new System.Drawing.Size(35, 13);
             this.lbl_tricks_self.TabIndex = 7;
@@ -319,7 +320,7 @@
             // lbl_score_self
             // 
             this.lbl_score_self.AutoSize = true;
-            this.lbl_score_self.Location = new System.Drawing.Point(241, 560);
+            this.lbl_score_self.Location = new System.Drawing.Point(241, 578);
             this.lbl_score_self.Name = "lbl_score_self";
             this.lbl_score_self.Size = new System.Drawing.Size(35, 13);
             this.lbl_score_self.TabIndex = 7;
@@ -328,7 +329,7 @@
             // lbl_bid_east
             // 
             this.lbl_bid_east.AutoSize = true;
-            this.lbl_bid_east.Location = new System.Drawing.Point(769, 296);
+            this.lbl_bid_east.Location = new System.Drawing.Point(769, 314);
             this.lbl_bid_east.Name = "lbl_bid_east";
             this.lbl_bid_east.Size = new System.Drawing.Size(35, 13);
             this.lbl_bid_east.TabIndex = 7;
@@ -337,7 +338,7 @@
             // lbl_tricks_east
             // 
             this.lbl_tricks_east.AutoSize = true;
-            this.lbl_tricks_east.Location = new System.Drawing.Point(769, 313);
+            this.lbl_tricks_east.Location = new System.Drawing.Point(769, 331);
             this.lbl_tricks_east.Name = "lbl_tricks_east";
             this.lbl_tricks_east.Size = new System.Drawing.Size(35, 13);
             this.lbl_tricks_east.TabIndex = 7;
@@ -346,7 +347,7 @@
             // lbl_score_east
             // 
             this.lbl_score_east.AutoSize = true;
-            this.lbl_score_east.Location = new System.Drawing.Point(770, 330);
+            this.lbl_score_east.Location = new System.Drawing.Point(770, 348);
             this.lbl_score_east.Name = "lbl_score_east";
             this.lbl_score_east.Size = new System.Drawing.Size(35, 13);
             this.lbl_score_east.TabIndex = 7;
@@ -355,7 +356,7 @@
             // lbl_bid_north
             // 
             this.lbl_bid_north.AutoSize = true;
-            this.lbl_bid_north.Location = new System.Drawing.Point(586, 125);
+            this.lbl_bid_north.Location = new System.Drawing.Point(586, 143);
             this.lbl_bid_north.Name = "lbl_bid_north";
             this.lbl_bid_north.Size = new System.Drawing.Size(35, 13);
             this.lbl_bid_north.TabIndex = 7;
@@ -364,7 +365,7 @@
             // lbl_tricks_north
             // 
             this.lbl_tricks_north.AutoSize = true;
-            this.lbl_tricks_north.Location = new System.Drawing.Point(586, 142);
+            this.lbl_tricks_north.Location = new System.Drawing.Point(586, 160);
             this.lbl_tricks_north.Name = "lbl_tricks_north";
             this.lbl_tricks_north.Size = new System.Drawing.Size(35, 13);
             this.lbl_tricks_north.TabIndex = 7;
@@ -373,7 +374,7 @@
             // lbl_score_north
             // 
             this.lbl_score_north.AutoSize = true;
-            this.lbl_score_north.Location = new System.Drawing.Point(587, 159);
+            this.lbl_score_north.Location = new System.Drawing.Point(587, 177);
             this.lbl_score_north.Name = "lbl_score_north";
             this.lbl_score_north.Size = new System.Drawing.Size(35, 13);
             this.lbl_score_north.TabIndex = 7;
@@ -382,7 +383,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(117, 104);
+            this.label1.Location = new System.Drawing.Point(117, 122);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 8;
@@ -391,7 +392,7 @@
             // lbl_round_count
             // 
             this.lbl_round_count.AutoSize = true;
-            this.lbl_round_count.Location = new System.Drawing.Point(163, 105);
+            this.lbl_round_count.Location = new System.Drawing.Point(163, 123);
             this.lbl_round_count.Name = "lbl_round_count";
             this.lbl_round_count.Size = new System.Drawing.Size(35, 13);
             this.lbl_round_count.TabIndex = 9;
@@ -400,7 +401,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(117, 125);
+            this.label2.Location = new System.Drawing.Point(117, 143);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 8;
@@ -409,7 +410,7 @@
             // lbl_trump
             // 
             this.lbl_trump.AutoSize = true;
-            this.lbl_trump.Location = new System.Drawing.Point(163, 125);
+            this.lbl_trump.Location = new System.Drawing.Point(163, 143);
             this.lbl_trump.Name = "lbl_trump";
             this.lbl_trump.Size = new System.Drawing.Size(35, 13);
             this.lbl_trump.TabIndex = 9;
@@ -417,35 +418,35 @@
             // 
             // cards_north
             // 
-            this.cards_north.Location = new System.Drawing.Point(120, 31);
+            this.cards_north.Location = new System.Drawing.Point(120, 49);
             this.cards_north.Name = "cards_north";
             this.cards_north.Size = new System.Drawing.Size(686, 70);
             this.cards_north.TabIndex = 10;
             // 
             // cards_self
             // 
-            this.cards_self.Location = new System.Drawing.Point(120, 599);
+            this.cards_self.Location = new System.Drawing.Point(120, 617);
             this.cards_self.Name = "cards_self";
             this.cards_self.Size = new System.Drawing.Size(686, 70);
             this.cards_self.TabIndex = 10;
             // 
             // cards_west
             // 
-            this.cards_west.Location = new System.Drawing.Point(21, 31);
+            this.cards_west.Location = new System.Drawing.Point(21, 49);
             this.cards_west.Name = "cards_west";
             this.cards_west.Size = new System.Drawing.Size(89, 638);
             this.cards_west.TabIndex = 10;
             // 
             // cards_east
             // 
-            this.cards_east.Location = new System.Drawing.Point(821, 31);
+            this.cards_east.Location = new System.Drawing.Point(821, 49);
             this.cards_east.Name = "cards_east";
             this.cards_east.Size = new System.Drawing.Size(89, 638);
             this.cards_east.TabIndex = 10;
             // 
             // btn_start
             // 
-            this.btn_start.Location = new System.Drawing.Point(21, 2);
+            this.btn_start.Location = new System.Drawing.Point(17, 12);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(75, 23);
             this.btn_start.TabIndex = 11;
@@ -455,7 +456,7 @@
             // 
             // btn_end
             // 
-            this.btn_end.Location = new System.Drawing.Point(491, 2);
+            this.btn_end.Location = new System.Drawing.Point(487, 12);
             this.btn_end.Name = "btn_end";
             this.btn_end.Size = new System.Drawing.Size(75, 23);
             this.btn_end.TabIndex = 12;
@@ -465,7 +466,7 @@
             // 
             // btn_prev_round
             // 
-            this.btn_prev_round.Location = new System.Drawing.Point(102, 2);
+            this.btn_prev_round.Location = new System.Drawing.Point(98, 12);
             this.btn_prev_round.Name = "btn_prev_round";
             this.btn_prev_round.Size = new System.Drawing.Size(74, 23);
             this.btn_prev_round.TabIndex = 13;
@@ -475,7 +476,7 @@
             // 
             // btn_next_round
             // 
-            this.btn_next_round.Location = new System.Drawing.Point(406, 2);
+            this.btn_next_round.Location = new System.Drawing.Point(402, 12);
             this.btn_next_round.Name = "btn_next_round";
             this.btn_next_round.Size = new System.Drawing.Size(75, 23);
             this.btn_next_round.TabIndex = 14;
@@ -485,7 +486,7 @@
             // 
             // btn_next_turn
             // 
-            this.btn_next_turn.Location = new System.Drawing.Point(325, 2);
+            this.btn_next_turn.Location = new System.Drawing.Point(321, 12);
             this.btn_next_turn.Name = "btn_next_turn";
             this.btn_next_turn.Size = new System.Drawing.Size(75, 23);
             this.btn_next_turn.TabIndex = 15;
@@ -495,7 +496,7 @@
             // 
             // btn_prev_turn
             // 
-            this.btn_prev_turn.Location = new System.Drawing.Point(182, 2);
+            this.btn_prev_turn.Location = new System.Drawing.Point(178, 12);
             this.btn_prev_turn.Name = "btn_prev_turn";
             this.btn_prev_turn.Size = new System.Drawing.Size(75, 23);
             this.btn_prev_turn.TabIndex = 15;
@@ -506,17 +507,27 @@
             // lbl_status
             // 
             this.lbl_status.AutoSize = true;
-            this.lbl_status.Location = new System.Drawing.Point(605, 9);
+            this.lbl_status.Location = new System.Drawing.Point(580, 9);
             this.lbl_status.Name = "lbl_status";
             this.lbl_status.Size = new System.Drawing.Size(41, 13);
             this.lbl_status.TabIndex = 16;
             this.lbl_status.Text = "label15";
             // 
+            // lbl_message
+            // 
+            this.lbl_message.AutoSize = true;
+            this.lbl_message.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbl_message.Location = new System.Drawing.Point(587, 25);
+            this.lbl_message.Name = "lbl_message";
+            this.lbl_message.Size = new System.Drawing.Size(0, 13);
+            this.lbl_message.TabIndex = 17;
+            // 
             // GameTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 681);
+            this.ClientSize = new System.Drawing.Size(931, 697);
+            this.Controls.Add(this.lbl_message);
             this.Controls.Add(this.lbl_status);
             this.Controls.Add(this.btn_prev_turn);
             this.Controls.Add(this.btn_next_turn);
@@ -627,5 +638,6 @@
         private System.Windows.Forms.Button btn_next_turn;
         private System.Windows.Forms.Button btn_prev_turn;
         private System.Windows.Forms.Label lbl_status;
+        private System.Windows.Forms.Label lbl_message;
     }
 }
