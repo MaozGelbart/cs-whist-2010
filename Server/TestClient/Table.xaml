@@ -62,7 +62,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Height="630" Width="1024" Background="#FF009300">
+    <Grid Height="630" Width="1024" Background="{x:Null}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
