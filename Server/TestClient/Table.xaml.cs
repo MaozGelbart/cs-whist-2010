@@ -282,7 +282,7 @@ namespace TestClient
 
         private void RecieveCards()
         {
-            cards = cards.OrderBy(c => c.Suitk__BackingField).ThenBy(c => c.Valuek__BackingField).ToList();
+            cards = cards.OrderBy(c => c.Suitk__BackingField != Suit.Hearts ? (int)c.Suitk__BackingField : 99).ThenBy(c => c.Valuek__BackingField).ToList();
             var paths = (from c in cards
                          select new CardThumbnail(GetCardImageSouce(c), c)).ToArray();
             lst_MyCards.ItemsSource = paths;
