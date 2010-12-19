@@ -41,12 +41,20 @@ namespace TestClient
         RoundStatus currentStatus;
         private bool exchangedCardRecieved;
         private bool bidRequested;
+        private Card? cardToThrow;
 
         #region Web Client Callbacks
 
         void client_RequestPlayReceived(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            MessageDialogClass dialog = new MessageDialogClass("Select a card to play");
+            MessageDialogClass dialog;
+            if (cardToThrow != null)
+            {
+                dialog = new MessageDialogClass("This action is ilegal, select a different card");
+            }
+            else
+                dialog = new MessageDialogClass("Select a card to play");
+            
             dialog.Show(DialogStyle.Modal);
             TestClient.App.UIThread.Run(SwitchCardSelectionToSingle);
         }
@@ -140,10 +148,19 @@ namespace TestClient
 
         public void UpdateRoundStatus(RoundStatus status)
         {
+            // check if the state has changed
             if (status.Statek__BackingField != currentStatus.Statek__BackingField)
             {
                 StartNewState(status.Statek__BackingField, status);
             }
+            // if waiting for approval for card to throw
+            if (cardToThrow != null && status.Statek__BackingField == RoundState.Playing)
+            {
+                cards.Remove(cardToThrow.Value);
+                RecieveCards();
+                cardToThrow = null;
+            }
+            // highlight current player
             currentStatus = status;
             Brush red = new SolidColorBrush(Color.FromArgb(255,255,0,0));
             Brush black = new SolidColorBrush(Color.FromArgb(255,0,0,0));
@@ -166,10 +183,13 @@ namespace TestClient
                     lbl_Name3.Foreground = red;
                     break;
             }
+            // update bids
             var bids = (from b in status.Biddingsk__BackingField
                         select b.HasValue ? String.Format("{0} {1}", b.Value.Amountk__BackingField, b.Value.Suitk__BackingField.ToString()) : "" ).ToArray();
             UpdateBids(bids);
+            // update cards
             ShowCards(status.CurrentPlayk__BackingField.ToArray());
+            
             UpdateTakes(status.TricksTakenk__BackingField.ToArray());
         }
 
@@ -313,6 +333,7 @@ namespace TestClient
             MainApp.client.MakeBidAsync(e.Value);
         }
 
+
         private void btn_ThrowCard_Click(object sender, RoutedEventArgs e)
         {
             if ((string)btn_ThrowCard.Content == "Pass")
@@ -338,9 +359,8 @@ namespace TestClient
                 if ((string)btn_ThrowCard.Content == "Play")
                 {
                     Card c = ((CardThumbnail)lst_MyCards.SelectedItem).card;
+                    cardToThrow = c;
                     MainApp.client.PlayCardAsync(c);
-                    cards.Remove(c);
-                    RecieveCards();
                     btn_ThrowCard.IsEnabled = false;
                    
                 }
