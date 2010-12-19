@@ -4,8 +4,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="630" d:DesignWidth="1024" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input" xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data">
-
+    d:DesignHeight="818" d:DesignWidth="1218" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input" xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data">
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+            <GradientStop Color="Black" Offset="0" />
+            <GradientStop Color="White" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Background>
     <UserControl.Resources>
        
         <Style x:Key="PlayerDisplayBorder" TargetType="Border">
@@ -61,8 +66,8 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-
-    <Grid Height="630" Width="1024" Background="{x:Null}">
+    <Grid>
+        <Grid Height="630" Width="1024">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -81,12 +86,12 @@
         <Image Height="30" HorizontalAlignment="Left" Name="img_trump" Stretch="Fill" VerticalAlignment="Top" Width="30" Margin="12,32,0,0" />
 
         <!--North Player display-->
-        <Border Grid.Column="1" Style="{StaticResource PlayerDisplayBorder}" >
-        <Grid>
+        <Border Grid.Column="1" Style="{StaticResource PlayerDisplayBorder}" Margin="312,0,292,0" Width="196">
+        <Grid Width="193">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="109" />
+                <ColumnDefinition Width="35*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -95,14 +100,14 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name2" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Content="Bid: " Name="label2" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Grid.Column="1" Name="lbl_bid2" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label5" Content="Takes: " />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Grid.Column="1" Name="lbl_takes2" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Content="Score: " Name="label10" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Grid.Column="1" Name="lbl_score2" />
-        </Grid>
+            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name2" Margin="5,1,0,0" />
+            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Content="Bid: " Name="label2" Margin="5,1,0,0" />
+                <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label5" Content="Takes: " Margin="5,1,0,0" />
+                <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Content="Score: " Name="label10" Margin="5,1,0,0" />
+                <dataInput:Label Style="{StaticResource Label}" Name="lbl_bid2" Margin="0,0,0,1" Grid.Column="1" Grid.Row="1" />
+                <dataInput:Label Style="{StaticResource Label}" Name="lbl_takes2" Margin="0,0,0,1" Grid.Column="1" Grid.Row="2" />
+                <dataInput:Label Style="{StaticResource Label}" Name="lbl_score2" Margin="0,0,0,1" Grid.Column="1" Grid.Row="3" />
+            </Grid>
         </Border>
 
         <!--Cards display-->
@@ -125,11 +130,11 @@
         </Grid>
 
         <!--West Player display-->
-        <Border Grid.Row="1" Style="{StaticResource PlayerDisplayBorder}" >
-        <Grid>
+        <Border Grid.Row="1" Style="{StaticResource PlayerDisplayBorder}" Grid.ColumnSpan="2" Margin="1,152,0,152" Width="185" HorizontalAlignment="Left">
+        <Grid Width="185">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="109" />
+                <ColumnDefinition Width="35*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -138,37 +143,34 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name1" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="label1" Content="Bid:" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Grid.Column="1" Name="lbl_bid1" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label4" Content="Takes:" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Grid.Column="1" Name="lbl_takes1"/>
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label9" Content="Score:" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Grid.Column="1" Name="lbl_score1" />
-        </Grid>
+            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name1" Margin="5,1,0,0" />
+            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="label1" Content="Bid:" Margin="5,1,0,0" />
+                <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label4" Content="Takes:" Margin="5,1,0,0" />
+                <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label9" Content="Score:" Margin="5,1,0,0" />
+            </Grid>
         </Border>
 
         <!--East Player display-->
-        <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource PlayerDisplayBorder}" >
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource PlayerDisplayBorder}" Width="176" Grid.ColumnSpan="2" Height="86" Margin="737,152,-1,151">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="108*" />
+                    <ColumnDefinition Width="66*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name3" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Content="Bid:" Name="label3" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Grid.Column="1" Name="lbl_bid3" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label6" Content="Takes:" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Grid.Column="1" Name="lbl_takes3" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3"  Content="Score:" Name="label11" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Grid.Column="1" Name="lbl_score3" />
+            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name3" Margin="5,1,0,0" />
+            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Content="Bid:" Name="label3" Margin="5,1,0,0" />
+            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_bid3" Margin="0,0,0,1" Grid.Column="1" />
+            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label6" Content="Takes:" Margin="5,1,0,0" />
+            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="lbl_takes3" Margin="0,0,0,1" Grid.Column="1" />
+            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3"  Content="Score:" Name="label11" Margin="5,1,0,0" />
+            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="lbl_score3" Margin="0,0,0,1" Grid.Column="1" />
         </Grid>
         </Border>
 
@@ -176,11 +178,11 @@
         <Button Grid.Row="1" Grid.Column="2" Margin="0,0,0,5" Content="Go" Height="40" Name="btn_ThrowCard" VerticalAlignment="Bottom" Width="100" IsEnabled="False" Click="btn_ThrowCard_Click" />
 
         <!--Current Player display-->
-        <Border Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource PlayerDisplayBorder}" Margin="0,0,0,5">
-        <Grid>
+        <Border Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource PlayerDisplayBorder}" Margin="1,0,726,5" Grid.ColumnSpan="2" Width="185">
+        <Grid Width="185">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="109" />
+                <ColumnDefinition Width="35*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -189,19 +191,35 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name0" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Content="Bid:" Name="label7" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Grid.Column="1" Name="lbl_bid0" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label8" Content="Takes:" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Grid.Column="1" Name="lbl_takes0" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Content="Score:" Name="label12" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Grid.Column="1" Name="lbl_score0" />
-        </Grid>
+            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name0" Margin="5,1,0,0" />
+            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Content="Bid:" Name="label7" Margin="5,1,0,0" />
+                <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label8" Content="Takes:" Margin="5,1,0,0" />
+                <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Content="Score:" Name="label12" Margin="5,1,0,0" />
+            </Grid>
         </Border>
 
         <!--Player's cards display-->
         <ListBox Grid.Row="3" Grid.ColumnSpan="3" Name="lst_MyCards" ItemsSource="{Binding}" Style="{StaticResource horizontalListBoxStyle}" Margin="0,0,0,15" Height="140" VerticalAlignment="Bottom" SelectionMode="Single" />
+        <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_bid1" Margin="0,175,0,194" Grid.Column="1" />
+        <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_takes1" Margin="111,195,0,174" Grid.ColumnSpan="2" />
+        <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_score1" Margin="111,217,0,152" Grid.ColumnSpan="2" />
+        <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_bid0" Margin="111,321,0,48" Grid.ColumnSpan="2" />
+        <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_takes0" Margin="111,342,0,27" Grid.ColumnSpan="2" />
+        <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_score0" Margin="111,363,0,6" Grid.ColumnSpan="2" />
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                <GradientStop Color="#FF1C7E1C" Offset="0" />
+                <GradientStop Color="#FF05BF05" Offset="1" />
+                <GradientStop Color="#FF10CE10" Offset="0.861" />
+            </LinearGradientBrush>
+        </Grid.Background>
+    </Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                <GradientStop Color="Maroon" Offset="0" />
+                <GradientStop Color="#FF6D0202" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
 
     </Grid>
-    
 </UserControl>
