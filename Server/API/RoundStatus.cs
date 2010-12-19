@@ -58,6 +58,25 @@ namespace Server.API
         public Bid? GetBid(PlayerSeat seat) { return Biddings[(int)seat]; }
 
         /// <summary>
+        /// Returns boolean indicating if bidding is over or under 13
+        /// </summary>
+        public bool IsBiddingUnder 
+        {
+            get
+            {
+                int sum = 0;
+                foreach (Bid b in Biddings)
+                {
+                    sum += b.Amount;
+                }
+
+                return (sum < 13);
+            }
+
+        }
+
+
+        /// <summary>
         /// Array of 4 cards, the current cards on the board, starting from you
         /// </summary>
         public Card?[] CurrentPlay { get; set; }
