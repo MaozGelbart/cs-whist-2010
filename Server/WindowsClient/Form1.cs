@@ -54,7 +54,7 @@ namespace WindowsClient
             try
             {
                 //GameFactory.CreateGame(new GameLogger(@"C:\MyFiles\University Files\ביואינפורמטיקה - שנה ג'\סמסטר א\אינטליגנציה משחקית\cs-whist-2010\Server\logfile.txt"), plugIns, int.Parse((string)lst_Rounds.SelectedItem), 20);
-                GameFactory.CreateGame(gameTable, plugIns, num_of_rounds, 0);
+                GameFactory.CreateGame(gameTable, plugIns, num_of_rounds, 0, null);
                 //GameFactory.CreateGame(null, plugIns, int.Parse((string)lst_Rounds.SelectedItem), 20);
             }
             catch (Exception ex)
