@@ -6,6 +6,9 @@ using Server.API;
 
 namespace Brain
 {
+    /// <summary>
+    /// Uses by core to keep a player info
+    /// </summary>
     public class Player
     {
         public IAsyncPlayer oPlayer;
@@ -33,5 +36,7 @@ namespace Brain
         {
             oPlayer.RecieveCards(Cards.ToArray());
         }
+
+        public string Type { get; set; }
     }
 }

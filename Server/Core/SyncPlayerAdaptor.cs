@@ -6,6 +6,9 @@ using Server.API;
 
 namespace Brain
 {
+    /// <summary>
+    /// Connects a sync-player( AIPlayer) to the async core system
+    /// </summary>
     class SyncPlayerAdaptor : IAsyncPlayer
     {
         IPlayer imp;
@@ -98,6 +101,13 @@ namespace Brain
         {
             // nothing to do
         }
+
+        public void RecieveChatMessage(PlayerSeat sender, string msg)
+        {
+            // nothing to do
+        }
+
+        public event EventHandler<RecieveChatMessageEventArgs> OnSendChatMessage;
 
         #endregion
     }

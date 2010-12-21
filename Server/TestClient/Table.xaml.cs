@@ -26,6 +26,7 @@ namespace TestClient
             MainApp.client.RequestBidReceived += new EventHandler<System.ComponentModel.AsyncCompletedEventArgs>(client_RequestBidReceived);
             MainApp.client.ReqeustContractReceived += new EventHandler<System.ComponentModel.AsyncCompletedEventArgs>(client_ReqeustContractReceived);
             MainApp.client.RequestPlayReceived += new EventHandler<System.ComponentModel.AsyncCompletedEventArgs>(client_RequestPlayReceived);
+            MainApp.client.RecieveChatMessageReceived += new EventHandler<RecieveChatMessageReceivedEventArgs>(client_RecieveChatMessageReceived);
         }
 
         List<Card> cards;
@@ -39,11 +40,22 @@ namespace TestClient
         }
 
         RoundStatus currentStatus;
+        GameStatus currentGameStatus;
         private bool exchangedCardRecieved;
         private bool bidRequested;
         private Card? cardToThrow;
+        
 
         #region Web Client Callbacks
+
+        void client_RecieveChatMessageReceived(object sender, RecieveChatMessageReceivedEventArgs e)
+        {
+            if (e.sender != PlayerSeat.Self)
+            {
+                WriteToChat(e.sender, e.msg);
+            }
+        }
+
 
         void client_RequestPlayReceived(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
@@ -138,12 +150,28 @@ namespace TestClient
         public void InitView(GameStatus game_status, RoundStatus status)
         {
             currentStatus = status;
+            currentGameStatus = game_status;
             SetNames(game_status.PlayerNamesk__BackingField.ToArray());
             lbl_state.Content = "Bidding";
             UpdateTakes(new[] { 0, 0, 0, 0 });
             UpdateBids(new[] { "", "", "", "" });
             UpdateScores(game_status.Scoresk__BackingField.ToArray());
             ShowCards(new Card?[4] { null, null, null, null });
+
+            img_player_self.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[0], game_status.PlayerNamesk__BackingField[0]), UriKind.Absolute));
+            img_player_west.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[1], game_status.PlayerNamesk__BackingField[1]), UriKind.Absolute));
+            img_player_north.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[2], game_status.PlayerNamesk__BackingField[2]), UriKind.Absolute));
+            img_player_east.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[3], game_status.PlayerNamesk__BackingField[3]), UriKind.Absolute));
+        }
+
+        private string GetImageForPlayer(string type, string name)
+        {
+            string picName = "";
+            if (type == "_human")
+                picName = "_human_" + name.Replace(" ", "_");
+            else
+                picName = type;
+            return "http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/Players/" + picName + ".jpg";
         }
 
         public void UpdateRoundStatus(RoundStatus status)
@@ -319,6 +347,26 @@ namespace TestClient
             return String.Format("Images/{0}-{1}-75.png", c.Suitk__BackingField.ToString(), GetCardNumberSymbol(c.Valuek__BackingField));
         }
 
+        private void WriteToChat(PlayerSeat playerSeat, string _msg)
+        {
+            string msg = "";
+            msg += currentGameStatus.PlayerNamesk__BackingField[(int)playerSeat];
+            msg += ": " + _msg;
+            txt_chat.Text += msg + "\n";
+            scrl_chat.ScrollToVerticalOffset(4000.0);
+        }
+
+        private void SendChatMessage()
+        {
+            string msg = txt_chat_input.Text.Trim();
+            if (!String.IsNullOrEmpty(msg))
+            {
+                MainApp.client.SendChatMessageAsync(msg);
+                txt_chat_input.Text = "";
+                WriteToChat(PlayerSeat.Self, msg);
+            }
+        }
+
         #endregion
 
         #region User Events
@@ -367,9 +415,23 @@ namespace TestClient
             }
         }
 
+        private void txt_chat_info_LostFocus(object sender, RoutedEventArgs e)
+        {
+            SendChatMessage();
+        }
+
+        private void txt_chat_info_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SendChatMessage();
+            }
+        }
+
         #endregion
 
     }
+
     public class CardThumbnail
     {
         public string path { get; set; }
