@@ -65,6 +65,21 @@ namespace Server.API
                 this.Bidder.Cards = value;
                 this.CardExchanger.Cards = value;
                 this.Gamer.Cards = value;
+
+                //reset memory & empty suits
+                m_playedCards = new HashSet<int>[4];
+                for (int i = 0; i < 4; i++)
+                {
+                    m_playedCards[i] = new HashSet<int>();
+                }
+
+                m_playerEmptySuits = new HashSet<Suit?>[3];
+                for (int i = 0; i < 3; i++)
+                {
+                    m_playerEmptySuits[i] = new HashSet<Suit?>();
+                }
+
+                this.Gamer.UpdateMemory(m_playedCards, m_playerEmptySuits);
             }
         }
 
@@ -95,6 +110,48 @@ namespace Server.API
                 this.Bidder.CurrentRoundStatus = value;
                 this.CardExchanger.CurrentRoundStatus = value;
                 this.Gamer.CurrentRoundStatus = value;
+
+                //end of play?
+                if (value.State == RoundState.TurnResults)
+                {
+                    calculateRound(value);
+                }
+            }
+        }
+
+        #endregion
+
+        #region LegoPlayer Memory Related
+
+        protected ISet<int>[] m_playedCards;
+        protected ISet<Suit?>[] m_playerEmptySuits;
+
+        private void calculateRound(RoundStatus status)
+        {
+            //check all other players
+            for (int i = 0; i < 3; i++)
+            {
+                //different suit?
+                if (status.GetCurrentPlaySuit() != status.GetCurrentPlay((PlayerSeat)i + 1).Value.Suit)
+                {
+                    m_playerEmptySuits[i].Add(status.GetCurrentPlaySuit());
+                }
+            }
+
+            //update memory
+            updateMemory(status.CurrentPlay);
+            this.Gamer.UpdateMemory(m_playedCards, m_playerEmptySuits);
+        }
+
+        /// <summary>
+        /// happens at the end of each round - insert played cards to memory
+        /// </summary>
+        /// <param name="roundCards">played cards</param>
+        private void updateMemory(Card?[] roundCards)
+        {
+            foreach (Card c in roundCards)
+            {
+                m_playedCards[(int)c.Suit - 1].Add(c.Value);
             }
         }
 
