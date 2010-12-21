@@ -77,8 +77,9 @@ namespace Server.API
                 }
             }
 
-            //card was not thrown yet. calculate statistics
-            double retVal = (13 - m_playedCards[(int)card.Suit - 1].Count) / 13;
+            //card was not thrown yet. calculate statistics (acctually left!=0 otherwise we already returned... but who cares...)
+            int left = (13 - m_playedCards[(int)card.Suit - 1].Count);
+            double retVal = (left == 0) ? 0 : 1/left;
 
             return retVal;
         }
