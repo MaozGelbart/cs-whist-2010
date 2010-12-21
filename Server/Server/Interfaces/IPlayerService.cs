@@ -40,6 +40,9 @@ namespace WCFServer
 
         [OperationContract]
         void FinishGame();
+
+        [OperationContract]
+        void SendChatMessage(string msg);
     }
 
 }

@@ -116,6 +116,15 @@ namespace WCFServer
             }
         }
 
+        public void SendChatMessage(string msg)
+        {
+            PlayerSLAdaptor adaptor = PlayerService.GetAdaptorBySessionID(OperationContext.Current.SessionId);
+            if (adaptor != null)
+            {
+                adaptor.SendMessage(msg);
+            }
+        }
+
         #endregion
     }
 }

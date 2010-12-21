@@ -28,7 +28,7 @@ namespace TestClient
         }
 
         PollingDuplexHttpBinding binding = new PollingDuplexHttpBinding();
-        Uri SERVICE_ADDRESS;
+        public Uri SERVICE_ADDRESS;
         string serviceAddress;
         EndpointAddress add;
         public PlayerServiceClient client;

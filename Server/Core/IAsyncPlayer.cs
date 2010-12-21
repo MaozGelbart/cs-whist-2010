@@ -45,6 +45,15 @@ namespace Server.API
         /// </summary>
         /// <param name="msg"></param>
         void RecieveErrorMessage(string msg);
+
+        /// <summary>
+        /// Uses for human players, to chat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="msg"></param>
+        void RecieveChatMessage(PlayerSeat sender, string msg);
+
+        event EventHandler<RecieveChatMessageEventArgs> OnSendChatMessage;
     }
 
     /// <summary>
@@ -97,6 +106,19 @@ namespace Server.API
             :base()
         {
             this.Play = play;
+        }
+    }
+
+    /// <summary>
+    /// Callback result for chatting
+    /// </summary>
+    public class RecieveChatMessageEventArgs : EventArgs
+    {
+        public string Message { get; set; }
+        public RecieveChatMessageEventArgs(string msg)
+            :base()
+        {
+            this.Message = msg;
         }
     }
    

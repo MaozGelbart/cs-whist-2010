@@ -41,5 +41,8 @@ namespace WCFServer
 
         [OperationContract(IsOneWay = true)]
         void RecieveGameOver();
+
+        [OperationContract(IsOneWay = true)]
+        void RecieveChatMessage(PlayerSeat sender, string msg);
     }
 }

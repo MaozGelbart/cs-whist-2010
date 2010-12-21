@@ -343,6 +343,8 @@ namespace TestClient.GameService {
         
         private System.Collections.ObjectModel.ObservableCollection<string> PlayerNamesk__BackingFieldField;
         
+        private System.Collections.ObjectModel.ObservableCollection<string> PlayerTypesk__BackingFieldField;
+        
         private int RoundNumberk__BackingFieldField;
         
         private System.Collections.ObjectModel.ObservableCollection<int> Scoresk__BackingFieldField;
@@ -356,6 +358,19 @@ namespace TestClient.GameService {
                 if ((object.ReferenceEquals(this.PlayerNamesk__BackingFieldField, value) != true)) {
                     this.PlayerNamesk__BackingFieldField = value;
                     this.RaisePropertyChanged("PlayerNamesk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<PlayerTypes>k__BackingField", IsRequired=true)]
+        public System.Collections.ObjectModel.ObservableCollection<string> PlayerTypesk__BackingField {
+            get {
+                return this.PlayerTypesk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlayerTypesk__BackingFieldField, value) != true)) {
+                    this.PlayerTypesk__BackingFieldField = value;
+                    this.RaisePropertyChanged("PlayerTypesk__BackingField");
                 }
             }
         }
@@ -449,6 +464,11 @@ namespace TestClient.GameService {
         System.IAsyncResult BeginFinishGame(System.AsyncCallback callback, object asyncState);
         
         void EndFinishGame(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="Silverlight/IPlayerService/SendChatMessage", ReplyAction="Silverlight/IPlayerService/SendChatMessageResponse")]
+        System.IAsyncResult BeginSendChatMessage(string msg, System.AsyncCallback callback, object asyncState);
+        
+        void EndSendChatMessage(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -486,6 +506,9 @@ namespace TestClient.GameService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="Silverlight/IPlayerService/RecieveGameOver")]
         void RecieveGameOver();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="Silverlight/IPlayerService/RecieveChatMessage")]
+        void RecieveChatMessage(TestClient.GameService.PlayerSeat sender, string msg);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -575,6 +598,12 @@ namespace TestClient.GameService {
         
         private System.Threading.SendOrPostCallback onFinishGameCompletedDelegate;
         
+        private BeginOperationDelegate onBeginSendChatMessageDelegate;
+        
+        private EndOperationDelegate onEndSendChatMessageDelegate;
+        
+        private System.Threading.SendOrPostCallback onSendChatMessageCompletedDelegate;
+        
         private bool useGeneratedCallback;
         
         private BeginOperationDelegate onBeginOpenDelegate;
@@ -645,6 +674,8 @@ namespace TestClient.GameService {
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> FinishGameCompleted;
         
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SendChatMessageCompleted;
+        
         public event System.EventHandler<RecieveRoundStatusUpdateReceivedEventArgs> RecieveRoundStatusUpdateReceived;
         
         public event System.EventHandler<RecieveGameStatusUpdateReceivedEventArgs> RecieveGameStatusUpdateReceived;
@@ -666,6 +697,8 @@ namespace TestClient.GameService {
         public event System.EventHandler<RecieveErrorMessageReceivedEventArgs> RecieveErrorMessageReceived;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RecieveGameOverReceived;
+        
+        public event System.EventHandler<RecieveChatMessageReceivedEventArgs> RecieveChatMessageReceived;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -1132,6 +1165,51 @@ namespace TestClient.GameService {
             base.InvokeAsync(this.onBeginFinishGameDelegate, null, this.onEndFinishGameDelegate, this.onFinishGameCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult TestClient.GameService.IPlayerService.BeginSendChatMessage(string msg, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSendChatMessage(msg, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void TestClient.GameService.IPlayerService.EndSendChatMessage(System.IAsyncResult result) {
+            base.Channel.EndSendChatMessage(result);
+        }
+        
+        private System.IAsyncResult OnBeginSendChatMessage(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string msg = ((string)(inValues[0]));
+            return ((TestClient.GameService.IPlayerService)(this)).BeginSendChatMessage(msg, callback, asyncState);
+        }
+        
+        private object[] OnEndSendChatMessage(System.IAsyncResult result) {
+            ((TestClient.GameService.IPlayerService)(this)).EndSendChatMessage(result);
+            return null;
+        }
+        
+        private void OnSendChatMessageCompleted(object state) {
+            if ((this.SendChatMessageCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SendChatMessageCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SendChatMessageAsync(string msg) {
+            this.SendChatMessageAsync(msg, null);
+        }
+        
+        public void SendChatMessageAsync(string msg, object userState) {
+            if ((this.onBeginSendChatMessageDelegate == null)) {
+                this.onBeginSendChatMessageDelegate = new BeginOperationDelegate(this.OnBeginSendChatMessage);
+            }
+            if ((this.onEndSendChatMessageDelegate == null)) {
+                this.onEndSendChatMessageDelegate = new EndOperationDelegate(this.OnEndSendChatMessage);
+            }
+            if ((this.onSendChatMessageCompletedDelegate == null)) {
+                this.onSendChatMessageCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSendChatMessageCompleted);
+            }
+            base.InvokeAsync(this.onBeginSendChatMessageDelegate, new object[] {
+                        msg}, this.onEndSendChatMessageDelegate, this.onSendChatMessageCompletedDelegate, userState);
+        }
+        
         private void OnRecieveRoundStatusUpdateReceived(object state) {
             if ((this.RecieveRoundStatusUpdateReceived != null)) {
                 object[] results = ((object[])(state));
@@ -1209,9 +1287,16 @@ namespace TestClient.GameService {
             }
         }
         
+        private void OnRecieveChatMessageReceived(object state) {
+            if ((this.RecieveChatMessageReceived != null)) {
+                object[] results = ((object[])(state));
+                this.RecieveChatMessageReceived(this, new RecieveChatMessageReceivedEventArgs(results, null, false, null));
+            }
+        }
+        
         private void VerifyCallbackEvents() {
             if (((this.useGeneratedCallback != true) 
-                        && (((((((((((this.RecieveRoundStatusUpdateReceived != null) 
+                        && ((((((((((((this.RecieveRoundStatusUpdateReceived != null) 
                         || (this.RecieveGameStatusUpdateReceived != null)) 
                         || (this.RecieveCardsReceived != null)) 
                         || (this.RecieveExchangedCardsReceived != null)) 
@@ -1221,7 +1306,8 @@ namespace TestClient.GameService {
                         || (this.RequestPlayReceived != null)) 
                         || (this.RecieveStatusCardsReceived != null)) 
                         || (this.RecieveErrorMessageReceived != null)) 
-                        || (this.RecieveGameOverReceived != null)))) {
+                        || (this.RecieveGameOverReceived != null)) 
+                        || (this.RecieveChatMessageReceived != null)))) {
                 throw new System.InvalidOperationException("Callback events cannot be used when the callback InstanceContext is specified. Pl" +
                         "ease choose between specifying the callback InstanceContext or subscribing to th" +
                         "e callback events.");
@@ -1357,6 +1443,12 @@ namespace TestClient.GameService {
             public void RecieveGameOver() {
                 this.proxy.OnRecieveGameOverReceived(new object[0]);
             }
+            
+            public void RecieveChatMessage(TestClient.GameService.PlayerSeat sender, string msg) {
+                this.proxy.OnRecieveChatMessageReceived(new object[] {
+                            sender,
+                            msg});
+            }
         }
         
         private class PlayerServiceClientChannel : ChannelBase<TestClient.GameService.IPlayerService>, TestClient.GameService.IPlayerService {
@@ -1490,6 +1582,18 @@ namespace TestClient.GameService {
                 object[] _args = new object[0];
                 base.EndInvoke("FinishGame", _args, result);
             }
+            
+            public System.IAsyncResult BeginSendChatMessage(string msg, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = msg;
+                System.IAsyncResult _result = base.BeginInvoke("SendChatMessage", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndSendChatMessage(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("SendChatMessage", _args, result);
+            }
         }
     }
     
@@ -1598,6 +1702,30 @@ namespace TestClient.GameService {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    public class RecieveChatMessageReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public RecieveChatMessageReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public TestClient.GameService.PlayerSeat sender {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((TestClient.GameService.PlayerSeat)(this.results[0]));
+            }
+        }
+        
+        public string msg {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[1]));
             }
         }
     }

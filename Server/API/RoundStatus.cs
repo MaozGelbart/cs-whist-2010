@@ -140,6 +140,11 @@ namespace Server.API
         public string[] PlayerNames { get; set; }
 
         /// <summary>
+        /// strings representing the types of the player ( the fullname of their class)
+        /// </summary>
+        public string[] PlayerTypes { get; set; }
+
+        /// <summary>
         /// Scores of players, starts with you, continues clockwise
         /// </summary>
         public int[] Scores { get; set; }

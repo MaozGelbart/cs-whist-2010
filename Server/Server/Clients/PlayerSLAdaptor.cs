@@ -135,6 +135,23 @@ namespace WCFServer.Clients
             catch { }
         }
 
+        public void RecieveChatMessage(PlayerSeat sender, string msg)
+        {
+            try
+            {
+                this.webClient.RecieveChatMessage(sender, msg);
+            }
+            catch { }
+        }
+
+        public event EventHandler<RecieveChatMessageEventArgs> OnSendChatMessage;
+        public void SendMessage(string msg)
+        {
+            if (OnSendChatMessage != null)
+                OnSendChatMessage(this, new RecieveChatMessageEventArgs(msg));
+        }
+
+
         #endregion
     }
 }
