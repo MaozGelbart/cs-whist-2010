@@ -94,7 +94,7 @@ namespace TestClient
         {
             DialogExchangedCardsClass dialog = new DialogExchangedCardsClass(e.cards[0], e.cards[1], e.cards[2]);
             exchangedCardRecieved = false;
-            bidRequested = true;
+            bidRequested = false;
             dialog.OnResponse += new EventHandler<DialogEventArgs<bool>>(dialog_OnResponse);
             dialog.Show(DialogStyle.Modal);
             cards.AddRange(e.cards);
