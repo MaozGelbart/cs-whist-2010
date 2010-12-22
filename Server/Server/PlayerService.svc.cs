@@ -126,5 +126,11 @@ namespace WCFServer
         }
 
         #endregion
+
+        internal static void KillPlayer(PlayerSLAdaptor playerSLAdaptor)
+        {
+            // get rid of this player
+            Adaptors.Remove(playerSLAdaptor.SessionID);
+        }
     }
 }
