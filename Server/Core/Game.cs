@@ -14,6 +14,11 @@ namespace Brain
         /// </summary>
         const int MAXIMUM_TRIES_FOR_AN_UNCOPERATIVE_PLAYER = 4;
 
+        /// <summary>
+        /// The minimum time span, without any of the player responding, before the game is killed
+        /// </summary>
+        public static TimeSpan TIME_TO_CALL_GAME_DEATH = TimeSpan.FromSeconds(120);
+
         #region Constructor
 
         /// <summary>
@@ -36,6 +41,7 @@ namespace Brain
                 this.GameStatus[i] = new GameStatus();
             }
             this.Players = new Player[4];
+            ResponseRecieved();
         }
 
         #endregion
@@ -81,6 +87,10 @@ namespace Brain
         int current_repeating_request = 0;
 
         int current_responding_player_index = -1;
+
+        Timer gameKiller;
+
+        DateTime gamePlannedDeathTime;
 
         #endregion
 
@@ -129,26 +139,31 @@ namespace Brain
             // register all event of the player
             newPlayer.oPlayer.OnUpdateStatusRequested += delegate(object sender, EventArgs e)
             {
+                ResponseRecieved();
                 PlayerUpdateStatusRequested(sender, e, playerIndex);
             };
 
             newPlayer.oPlayer.OnGetBidCompleted += delegate (object sender, RecieveBidEventArgs e)
                 {
+                    ResponseRecieved();
                     PlayerBidAccepted(sender, e, playerIndex);
                 };
 
             newPlayer.oPlayer.OnGetContractCompleted += delegate(object sender, RecieveContractEventArgs e)
             {
+                ResponseRecieved();
                 PlayerContractAccepted(sender, e, playerIndex);
             };
 
             newPlayer.oPlayer.OnGetExchangedCardsCompleted += delegate(object sender, RecieveCardsEventArgs e)
             {
+                ResponseRecieved();
                 PlayerCardsAccepted(sender, e, playerIndex);
             };
 
             newPlayer.oPlayer.OnGetPlayCompleted += delegate(object sender, RecievePlayEventArgs e)
             {
+                ResponseRecieved();
                 PlayerPlayAccepted(sender, e, playerIndex);
             };
 
@@ -156,8 +171,11 @@ namespace Brain
 
             newPlayer.oPlayer.OnSendChatMessage += delegate(object sender, RecieveChatMessageEventArgs e)
             {
+                ResponseRecieved();
                 PlayerSentMessage(sender, e, playerIndex);
             };
+
+            ResponseRecieved();
            
             // if we have enough players, start playing
             if (playerMissing == 0)
@@ -167,6 +185,30 @@ namespace Brain
         #endregion
 
         #region Player Callbacks
+
+        /// <summary>
+        /// Gives the game more time to live.
+        /// Every game has a planned time of death unless one of players does an action.
+        /// To prevent from dead games to be kept in memory of the server
+        /// </summary>
+        private void ResponseRecieved()
+        {
+            gamePlannedDeathTime = DateTime.Now.Add(TIME_TO_CALL_GAME_DEATH);
+            if (gameKiller == null)
+            {
+                gameKiller = new Timer(
+                    delegate(object obj)
+                    {
+                        // check if the time for the game to die has passed
+                        if (gamePlannedDeathTime < DateTime.Now)
+                        {
+                            GameFactory.KillGame(this);
+                            gameKiller.Dispose();
+                        }
+                    }
+                    , null, TIME_TO_CALL_GAME_DEATH, TIME_TO_CALL_GAME_DEATH);
+            }
+        }
 
         /// <summary>
         /// When player (playerIndex) sends a message (e.Message)
