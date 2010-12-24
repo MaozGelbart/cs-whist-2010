@@ -629,7 +629,7 @@ namespace Brain
             {
                 this.RoundStatus[i].TurnNumber++;
                 this.RoundStatus[i].State = RoundState.Playing;
-
+                this.RoundStatus[i].PlayerTurn = (PlayerSeat)((leadingPlayer - i + 4) % 4);
                 for (int j = 0; j < 4; j++)
                     this.RoundStatus[i].CurrentPlay[j] = null;
             }
