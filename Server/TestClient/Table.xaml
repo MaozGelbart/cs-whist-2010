@@ -4,23 +4,33 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="818" d:DesignWidth="1218" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input" xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data">
-    <UserControl.Background>
-        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-            <GradientStop Color="Black" Offset="0" />
-            <GradientStop Color="White" Offset="1" />
-        </LinearGradientBrush>
-    </UserControl.Background>
+    d:DesignHeight="630" d:DesignWidth="1000" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input" xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data">
+    
     <UserControl.Resources>
-       
         <Style x:Key="PlayerDisplayBorder" TargetType="Border">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Width" Value="110" />
+            <Setter Property="Width" Value="120" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="BorderBrush" Value="Silver" />
+            <Setter Property="Opacity" Value="0.9" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="CornerRadius" Value="10" />
         </Style>
-        
+
+        <Style x:Key="LeftSideDisplayBorder" TargetType="Border">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="BorderBrush" Value="Brown" />
+            <Setter Property="Opacity" Value="0.8" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+            <Setter Property="Padding" Value="4" />
+        </Style>
+
         <Style x:Key="Label" TargetType="dataInput:Label">
             <Setter Property="Height" Value="20" />
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -66,170 +76,238 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-    <Grid>
-        <Grid Height="630" Width="1024">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="800" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <!--Current Trump Display-->
-        <dataInput:Label Height="19" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lbl_state" VerticalAlignment="Top" Width="100" FontWeight="Bold" />
-        <Image Height="30" HorizontalAlignment="Left" Name="img_trump" Stretch="Fill" VerticalAlignment="Top" Width="30" Margin="12,32,0,0" />
-
-        <!--North Player display-->
-        <Border Grid.Column="1" Style="{StaticResource PlayerDisplayBorder}" Margin="312,0,292,0" Width="196">
-        <Grid Width="193">
+    <Border CornerRadius="20" BorderThickness="2" BorderBrush="Black">
+        <!--<Border.Background>
+            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                <GradientStop Color="Black" Offset="0" />
+                <GradientStop Color="Green" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>-->
+        <Border.Background>
+            <ImageBrush ImageSource="/TestClient;component/Images/wood-table-texture-3.jpg" />
+        </Border.Background>
+        <Grid Height="630" Width="1000">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="109" />
-                <ColumnDefinition Width="35*" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="450" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="120" />
                 <RowDefinition />
-            </Grid.RowDefinitions>
-
-            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name2" Margin="5,1,0,0" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Content="Bid: " Name="label2" Margin="5,1,0,0" />
-                <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label5" Content="Takes: " Margin="5,1,0,0" />
-                <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Content="Score: " Name="label10" Margin="5,1,0,0" />
-                <dataInput:Label Style="{StaticResource Label}" Name="lbl_bid2" Margin="0,0,0,1" Grid.Column="1" Grid.Row="1" />
-                <dataInput:Label Style="{StaticResource Label}" Name="lbl_takes2" Margin="0,0,0,1" Grid.Column="1" Grid.Row="2" />
-                <dataInput:Label Style="{StaticResource Label}" Name="lbl_score2" Margin="0,0,0,1" Grid.Column="1" Grid.Row="3" />
-            </Grid>
-        </Border>
-
-        <!--Cards display-->
-        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="270" Height="360">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="90" />
-                <ColumnDefinition Width="90" />
-                <ColumnDefinition Width="90" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="120" />
-                <RowDefinition Height="120" />
                 <RowDefinition Height="120" />
             </Grid.RowDefinitions>
 
-            <Image Style="{StaticResource CardImage}" Grid.Column="1" Name="image2" />
-            <Image Style="{StaticResource CardImage}" Grid.Row="1" Name="image1" />
-            <Image Style="{StaticResource CardImage}" Grid.Row="1" Grid.Column="2" Name="image3" />
-            <Image Style="{StaticResource CardImage}" Grid.Row="2" Grid.Column="1" Name="image0" />
-        </Grid>
+            <Border Grid.Column="1" Grid.Row="1" Margin="20,10,20,10" CornerRadius="20" BorderThickness="3" BorderBrush="Black" Background="#FF007500"></Border>
+            <StackPanel Orientation="Vertical" Width="150" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.RowSpan="2">
+                
+                <!--Current Round Display-->
+                <Border Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource LeftSideDisplayBorder}" >
+                    <StackPanel Orientation="Vertical">
+                        <dataInput:Label Content="Current status: " FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <dataInput:Label Name="lbl_state" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
 
-        <!--West Player display-->
-            <!--East Player display-->
-        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource PlayerDisplayBorder}" Width="176" Grid.ColumnSpan="2" Height="86" Margin="737,152,-1,151">
-        <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="108*" />
-                    <ColumnDefinition Width="66*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+                <!--Current Trump Display-->
+                <Border Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource LeftSideDisplayBorder}" >
+                    <StackPanel Orientation="Vertical">
+                        <dataInput:Label Content="Trump: " FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <Image Height="30" HorizontalAlignment="Center" Name="img_trump" Stretch="Fill" Width="30" />
+                    </StackPanel>
+                </Border>
 
-            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name3" Margin="5,1,0,0" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Content="Bid:" Name="label3" Margin="5,1,0,0" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_bid3" Margin="0,0,0,1" Grid.Column="1" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label6" Content="Takes:" Margin="5,1,0,0" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="lbl_takes3" Margin="0,0,0,1" Grid.Column="1" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3"  Content="Score:" Name="label11" Margin="5,1,0,0" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="lbl_score3" Margin="0,0,0,1" Grid.Column="1" />
-        </Grid>
-        </Border>
-
-        <!--Go Button-->
-        <Button Grid.Row="1" Grid.Column="1" Margin="644,0,56,5" Content="Go" Height="40" Name="btn_ThrowCard" VerticalAlignment="Bottom" Width="100" IsEnabled="False" Click="btn_ThrowCard_Click" />
-
-        <!--Current Player display-->
-        <Border Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource PlayerDisplayBorder}" Margin="97,0,630,5" Grid.ColumnSpan="2" Width="185">
-        <Grid Width="185">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="109" />
-                <ColumnDefinition Width="35*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-
-            <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name0" Margin="5,1,0,0" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Content="Bid:" Name="label7" Margin="5,1,0,0" />
-                <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label8" Content="Takes:" Margin="5,1,0,0" />
-                <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Content="Score:" Name="label12" Margin="5,1,0,0" />
-            </Grid>
-        </Border>
-
-        <!--Player's cards display-->
-        <ListBox Grid.Row="2" Grid.ColumnSpan="2" Name="lst_MyCards" ItemsSource="{Binding}" Style="{StaticResource horizontalListBoxStyle}" Margin="0,0,56,0" Height="140" VerticalAlignment="Bottom" SelectionMode="Single" />
-            <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_bid0" Margin="95,321,0,48" Grid.Column="1" />
-        <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_takes0" Margin="95,342,0,27" Grid.Column="1" />
-        <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_score0" Margin="95,363,0,6" Grid.Column="1" />
-            <Image Grid.Row="1" Height="85" Width="85" Name="img_player_self" Stretch="Fill" VerticalAlignment="Top" Margin="12,298,16,0" />
-            <Image Height="85" Margin="7,63,21,0" Name="img_player_west" Stretch="Fill" VerticalAlignment="Top" Width="85" Grid.Row="1" />
-            <Image Height="85" Margin="228,1,487,0" Name="img_player_north" Stretch="Fill" VerticalAlignment="Top" Width="85" Grid.Column="1" />
-            <Image Height="85" Margin="743,63,83,0" Name="img_player_east" Stretch="Fill" VerticalAlignment="Top" Width="85" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" />
-                <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="750,342,0,29" Name="scrl_chat" Width="163" Grid.RowSpan="2" Background="White" Grid.ColumnSpan="2">
-                    <TextBlock Name="txt_chat" Text="" />
-                </ScrollViewer>
-                <TextBox Grid.Column="1" Grid.Row="2" Height="28" HorizontalAlignment="Left" Margin="750,127,0,0" Name="txt_chat_input" LostFocus="txt_chat_info_LostFocus" KeyDown="txt_chat_info_KeyDown" VerticalAlignment="Top" Width="161" Background="#FFFFFFAB" Grid.ColumnSpan="2" />
-                <Border Style="{StaticResource PlayerDisplayBorder}" Margin="21,150,0,154" Width="185" HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Row="1">
-                    <Grid Width="185">
+                <!--Current Player display-->
+                <Border Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource LeftSideDisplayBorder}" >
+                    <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="109" />
-                            <ColumnDefinition Width="35*" />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <dataInput:Label Style="{StaticResource Label}" Name="lbl_Name1" Margin="5,1,0,0" />
-                        <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="label1" Content="Bid:" Margin="5,1,0,0" />
-                        <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label4" Content="Takes:" Margin="5,1,0,0" />
-                        <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label9" Content="Score:" Margin="5,1,0,0" />
+
+                        <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Source="/TestClient;component/Images/human.png" Name="img_player_self"/>
+                        <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Grid.ColumnSpan="2" Name="lbl_Name0" Margin="0,0,0,5" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Content="Bid:" Name="label7" FontWeight="Bold" />
+                        <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label8" Content="Takes:" FontWeight="Bold" />
+                        <dataInput:Label Style="{StaticResource Label}" Grid.Row="4" Content="Score:" Name="label12" FontWeight="Bold" />
+                        <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="lbl_bid0" Grid.Column="1" />
+                        <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="lbl_takes0" Grid.Column="1" />
+                        <dataInput:Label Style="{StaticResource Label}" Grid.Row="4" Name="lbl_score0" Grid.Column="1" />
                     </Grid>
                 </Border>
-                <dataInput:Label Style="{StaticResource Label}" Name="lbl_bid1" Margin="20,173,0,196" Grid.Column="1" Grid.Row="1" />
-                <dataInput:Label Style="{StaticResource Label}" Name="lbl_takes1" Margin="18,193,0,176" Grid.Column="1" Grid.Row="1" />
-                <dataInput:Label Style="{StaticResource Label}" Name="lbl_score1" Margin="18,215,0,154" Grid.Column="1" Grid.Row="1" />
-                <Grid.Background>
-            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                <GradientStop Color="#FF1C7E1C" Offset="0" />
-                <GradientStop Color="#FF05BF05" Offset="1" />
-                <GradientStop Color="#FF10CE10" Offset="0.861" />
-            </LinearGradientBrush>
-        </Grid.Background>
-    </Grid>
-            <Grid Height="629" HorizontalAlignment="Left" Margin="1120,95,0,0" Name="grid1" VerticalAlignment="Top" Width="90" />
-            <Grid.Background>
-            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                <GradientStop Color="Black" Offset="0" />
-                <GradientStop Color="#FFA50202" Offset="1" />
-            </LinearGradientBrush>
-        </Grid.Background>
 
-    </Grid>
-        
-    </Grid>
+            </StackPanel>
+
+            <!--Go Button-->
+            <Button Grid.Row="1" Grid.Column="0" Content="Go" Height="40" Name="btn_ThrowCard" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="80" IsEnabled="False" Click="btn_ThrowCard_Click" Margin="-100,0,0,0"/>
+
+            <!--North Player display-->
+            <Grid Grid.Column="1" HorizontalAlignment="Center" Name="northGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <Border Grid.Column="1" Style="{StaticResource PlayerDisplayBorder}" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Source="/TestClient;component/Images/dumb.png" Name="img_player_north"/>
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_Name2" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Bottom" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Content="Bid: " Name="label2" FontWeight="Bold" />
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label5" Content="Takes: " FontWeight="Bold" />
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="4" Content="Score: " Name="label10" FontWeight="Bold" />
+                    <dataInput:Label Style="{StaticResource Label}" Name="lbl_bid2" Grid.Column="1" Grid.Row="2" />
+                    <dataInput:Label Style="{StaticResource Label}" Name="lbl_takes2" Grid.Column="1" Grid.Row="3" />
+                    <dataInput:Label Style="{StaticResource Label}" Name="lbl_score2" Grid.Column="1" Grid.Row="4" />
+                </Grid>
+            </Border>
+
+            <!--Cards display-->
+            <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="270" Height="360">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90" />
+                    <ColumnDefinition Width="90" />
+                    <ColumnDefinition Width="90" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120" />
+                    <RowDefinition Height="120" />
+                    <RowDefinition Height="120" />
+                </Grid.RowDefinitions>
+
+                <Image Style="{StaticResource CardImage}" Grid.Column="1" Name="image2" />
+                <Image Style="{StaticResource CardImage}" Grid.Row="1" Name="image1" />
+                <Image Style="{StaticResource CardImage}" Grid.Row="1" Grid.Column="2" Name="image3" />
+                <Image Style="{StaticResource CardImage}" Grid.Row="2" Grid.Column="1" Name="image0" />
+            </Grid>
+
+            <!--East Player display-->
+            <Grid HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2" Width="100" Name="eastGrid" Margin="5,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="70" />
+                </Grid.RowDefinitions>
+            </Grid>
+
+            <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource PlayerDisplayBorder}" HorizontalAlignment="Left">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Source="/TestClient;component/Images/dumb.png" Name="img_player_east"/>
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_Name3" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Bottom" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Content="Bid:" Name="label3" FontWeight="Bold" />
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="lbl_bid3" Grid.Column="1" />
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label6" Content="Takes:" FontWeight="Bold" />
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="lbl_takes3" Grid.Column="1" />
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="4"  Content="Score:" Name="label11" FontWeight="Bold" />
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="4" Name="lbl_score3" Grid.Column="1" />
+                </Grid>
+            </Border>
+
+            <!--Player's cards display-->
+            <ListBox Grid.Row="2" Grid.ColumnSpan="3" Name="lst_MyCards" ItemsSource="{Binding}" Style="{StaticResource horizontalListBoxStyle}" Height="120" VerticalAlignment="Bottom" SelectionMode="Single" />
+
+            <!--West Player's Display-->
+            <Grid HorizontalAlignment="Right" Grid.Row="1" Width="100" Name="westGrid" Margin="0,0,5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+            </Grid>
+            <Border Style="{StaticResource PlayerDisplayBorder}" HorizontalAlignment="Right" Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Source="/TestClient;component/Images/dumb.png" Name="img_player_west"/>
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_Name1" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Bottom" FontWeight="Bold" Margin="0,0,0,5" />
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label1" Content="Bid:" FontWeight="Bold" />
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label4" Content="Takes:" FontWeight="Bold" />
+                    <dataInput:Label Style="{StaticResource Label}" Grid.Row="4" Name="label9" Content="Score:" FontWeight="Bold" />
+                    <dataInput:Label Style="{StaticResource Label}" Name="lbl_bid1" Grid.Column="1" Grid.Row="2" />
+                    <dataInput:Label Style="{StaticResource Label}" Name="lbl_takes1" Grid.Column="1" Grid.Row="3" />
+                    <dataInput:Label Style="{StaticResource Label}" Name="lbl_score1" Grid.Column="1" Grid.Row="4" />
+                </Grid>
+            </Border>
+
+            <!--Chat-->
+            <ScrollViewer Grid.Column="2" HorizontalAlignment="Center" Name="scrl_chat" Width="250" Background="White" Height="90" VerticalAlignment="Top">
+                <TextBlock Name="txt_chat" Text="" />
+            </ScrollViewer>
+            <TextBox Grid.Column="2" Height="28" HorizontalAlignment="Center" Name="txt_chat_input" LostFocus="txt_chat_info_LostFocus" KeyDown="txt_chat_info_KeyDown" VerticalAlignment="Bottom" Width="250" Background="#FFFFFFAB" />
+        </Grid>
+    </Border>
 </UserControl>

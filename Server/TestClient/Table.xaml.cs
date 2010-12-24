@@ -44,7 +44,8 @@ namespace TestClient
         private bool exchangedCardRecieved;
         private bool bidRequested;
         private Card? cardToThrow;
-        
+        private int cardCounter;
+
 
         #region Web Client Callbacks
 
@@ -66,7 +67,7 @@ namespace TestClient
             }
             else
                 dialog = new MessageDialogClass("Select a card to play");
-            
+
             dialog.Show(DialogStyle.Modal);
             TestClient.App.UIThread.Run(SwitchCardSelectionToSingle);
         }
@@ -119,6 +120,7 @@ namespace TestClient
             dialog.Show(DialogStyle.Modal);
             TestClient.App.UIThread.Run(SwitchCardSelectionToMultiple);
         }
+
         void client_RecieveCardsReceived(object sender, RecieveCardsReceivedEventArgs e)
         {
             cards = e.cards.ToList();
@@ -158,24 +160,72 @@ namespace TestClient
             UpdateScores(game_status.Scoresk__BackingField.ToArray());
             ShowCards(new Card?[4] { null, null, null, null });
 
-            img_player_self.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[0], game_status.PlayerNamesk__BackingField[0]), UriKind.Absolute));
-            img_player_west.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[1], game_status.PlayerNamesk__BackingField[1]), UriKind.Absolute));
-            img_player_north.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[2], game_status.PlayerNamesk__BackingField[2]), UriKind.Absolute));
-            img_player_east.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[3], game_status.PlayerNamesk__BackingField[3]), UriKind.Absolute));
+            InitCardDisplay();
+
+            img_player_self.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[0], game_status.PlayerNamesk__BackingField[0]), UriKind.Relative));
+            img_player_west.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[1], game_status.PlayerNamesk__BackingField[1]), UriKind.Relative));
+            img_player_north.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[2], game_status.PlayerNamesk__BackingField[2]), UriKind.Relative));
+            img_player_east.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[3], game_status.PlayerNamesk__BackingField[3]), UriKind.Relative));
 
             scrl_chat.Visibility = game_status.PlayerTypesk__BackingField.Count(t => t.Equals("_human")) > 1 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             txt_chat_input.Visibility = scrl_chat.Visibility;
         }
 
+        private void InitCardDisplay()
+        {
+            for (int i = 0; i < 13; i++)
+            {
+                Image card = new Image();
+                card.Source = new BitmapImage(new Uri("Images/back-red-75-1.png", UriKind.Relative));
+                card.Visibility = System.Windows.Visibility.Visible;
+                card.Width = 70;
+                card.Height = 100;
+                northGrid.Children.Add(card);
+                Grid.SetColumn(card, i);
+            }
+
+            for (int i = 0; i < 13; i++)
+            {
+                Image card = new Image();
+                card.Source = new BitmapImage(new Uri("Images/back-red-75-1-side.png", UriKind.Relative));
+                card.Visibility = System.Windows.Visibility.Visible;
+                card.Width = 100;
+                card.Height = 70;
+                westGrid.Children.Add(card);
+                card.VerticalAlignment = VerticalAlignment.Bottom;
+                Grid.SetRow(card, i);
+            }
+
+            for (int i = 0; i < 13; i++)
+            {
+                Image card = new Image();
+                card.Source = new BitmapImage(new Uri("Images/back-red-75-1-side.png", UriKind.Relative));
+                card.Visibility = System.Windows.Visibility.Visible;
+                card.Width = 100;
+                card.Height = 70;
+                eastGrid.Children.Add(card);
+                Grid.SetRow(card, i);
+            }
+        }
+
         private string GetImageForPlayer(string type, string name)
         {
-            string picName = "";
             if (type == "_human")
-                picName = "_human_" + name.Replace(" ", "_");
-            else
-                picName = type;
-            return "http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/Players/" + picName + ".jpg";
+            {
+                return "Images/Human.png";
+            }
+            return "Images/" + name + ".png";
         }
+
+        //private string GetImageForPlayer(string type, string name)
+        //{
+        //    string picName = "";
+        //    if (type == "_human")
+        //        picName = "_human_" + name.Replace(" ", "_");
+        //    else
+        //        picName = type;
+        //    return "http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/Players/" + picName + ".jpg";
+        //}
 
         public void UpdateRoundStatus(RoundStatus status)
         {
@@ -193,8 +243,8 @@ namespace TestClient
             }
             // highlight current player
             currentStatus = status;
-            Brush red = new SolidColorBrush(Color.FromArgb(255,255,0,0));
-            Brush black = new SolidColorBrush(Color.FromArgb(255,0,0,0));
+            Brush red = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+            Brush black = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
             lbl_Name0.Foreground = black;
             lbl_Name1.Foreground = black;
             lbl_Name2.Foreground = black;
@@ -216,11 +266,11 @@ namespace TestClient
             }
             // update bids
             var bids = (from b in status.Biddingsk__BackingField
-                        select b.HasValue ? String.Format("{0} {1}", b.Value.Amountk__BackingField, b.Value.Suitk__BackingField.ToString()) : "" ).ToArray();
+                        select b.HasValue ? String.Format("{0} {1}", b.Value.Amountk__BackingField, b.Value.Suitk__BackingField.ToString()) : "").ToArray();
             UpdateBids(bids);
             // update cards
             ShowCards(status.CurrentPlayk__BackingField.ToArray());
-            
+
             UpdateTakes(status.TricksTakenk__BackingField.ToArray());
         }
 
@@ -230,7 +280,7 @@ namespace TestClient
 
         private void StartNewState(RoundState roundState, RoundStatus status)
         {
-            switch(roundState)
+            switch (roundState)
             {
                 case RoundState.Contract:
                     img_trump.Source = new BitmapImage(new Uri(ContractDialog.GetSuitImageUrl(status.Trumpk__BackingField), UriKind.Relative));
@@ -273,6 +323,8 @@ namespace TestClient
             {
                 image1.Source = new BitmapImage(new Uri(GetCardImageSouce(cards[1].Value), UriKind.Relative));
                 image1.Visibility = System.Windows.Visibility.Visible;
+                removeTurnedCardRow(westGrid, 13 - this.currentStatus.TurnNumberk__BackingField, 0);
+                cardCounter++;
             }
             else
                 image1.Visibility = System.Windows.Visibility.Collapsed;
@@ -280,6 +332,8 @@ namespace TestClient
             {
                 image2.Source = new BitmapImage(new Uri(GetCardImageSouce(cards[2].Value), UriKind.Relative));
                 image2.Visibility = System.Windows.Visibility.Visible;
+                removeTurnedCardRow(northGrid, this.currentStatus.TurnNumberk__BackingField - 1, 1);
+                cardCounter++;
             }
             else
                 image2.Visibility = System.Windows.Visibility.Collapsed;
@@ -287,9 +341,34 @@ namespace TestClient
             {
                 image3.Source = new BitmapImage(new Uri(GetCardImageSouce(cards[3].Value), UriKind.Relative));
                 image3.Visibility = System.Windows.Visibility.Visible;
+                removeTurnedCardRow(eastGrid, this.currentStatus.TurnNumberk__BackingField - 1, 0);
+                cardCounter++;
             }
             else
                 image3.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void removeTurnedCardRow(Grid grid, int i, int rowOrColumn)
+        {
+            foreach (FrameworkElement elem in grid.Children)
+            {
+                if (rowOrColumn == 0)
+                {
+                    if (Grid.GetRow(elem) == i)
+                    {
+                        (elem as Image).Visibility = Visibility.Collapsed;
+                        return;
+                    }
+                }
+                else
+                {
+                    if (Grid.GetColumn(elem) == i)
+                    {
+                        (elem as Image).Visibility = Visibility.Collapsed;
+                        return;
+                    }
+                }
+            }
         }
 
         private void ShowMyCard(Card? card)
@@ -413,7 +492,7 @@ namespace TestClient
                     cardToThrow = c;
                     MainApp.client.PlayCardAsync(c);
                     btn_ThrowCard.IsEnabled = false;
-                   
+
                 }
             }
         }
