@@ -219,12 +219,12 @@ namespace TestClient
 */
         private string GetImageForPlayer(string type, string name)
         {
-            string picName = "";
+        //    string picName = "";
 //            if (type == "_human")
   //              picName = "_human_" + name.Replace(" ", "_");
     //        else
-            picName = type;
-            return "http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/Players/" + picName + ".png";
+      //          picName = type;
+            return "http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/Players/" + type + ".png";
         }
 
         public void UpdateRoundStatus(RoundStatus status)
