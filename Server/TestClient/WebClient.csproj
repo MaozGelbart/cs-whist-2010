@@ -245,6 +245,7 @@
     <Resource Include="Images\diamonds.PNG" />
     <Resource Include="Images\hearts.PNG" />
     <Resource Include="Images\spades.PNG" />
+    <Resource Include="Images\human.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -253,9 +254,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\GameService\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\Players\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

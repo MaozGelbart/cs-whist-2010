@@ -162,10 +162,10 @@ namespace TestClient
 
             InitCardDisplay();
 
-            img_player_self.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[0], game_status.PlayerNamesk__BackingField[0]), UriKind.Relative));
-            img_player_west.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[1], game_status.PlayerNamesk__BackingField[1]), UriKind.Relative));
-            img_player_north.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[2], game_status.PlayerNamesk__BackingField[2]), UriKind.Relative));
-            img_player_east.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[3], game_status.PlayerNamesk__BackingField[3]), UriKind.Relative));
+        //    img_player_self.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[0], game_status.PlayerNamesk__BackingField[0]), UriKind.Relative));
+            img_player_west.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[1], game_status.PlayerNamesk__BackingField[1]), UriKind.Absolute));
+            img_player_north.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[2], game_status.PlayerNamesk__BackingField[2]), UriKind.Absolute));
+            img_player_east.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[3], game_status.PlayerNamesk__BackingField[3]), UriKind.Absolute));
 
             scrl_chat.Visibility = game_status.PlayerTypesk__BackingField.Count(t => t.Equals("_human")) > 1 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             txt_chat_input.Visibility = scrl_chat.Visibility;
@@ -208,24 +208,24 @@ namespace TestClient
             }
         }
 
-        private string GetImageForPlayer(string type, string name)
+ /*       private string GetImageForPlayer(string type, string name)
         {
             if (type == "_human")
             {
-                return "Images/Human.png";
+                return "Images/Players/Human.png";
             }
             return "Images/" + name + ".png";
         }
-
-        //private string GetImageForPlayer(string type, string name)
-        //{
-        //    string picName = "";
-        //    if (type == "_human")
-        //        picName = "_human_" + name.Replace(" ", "_");
-        //    else
-        //        picName = type;
-        //    return "http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/Players/" + picName + ".jpg";
-        //}
+*/
+        private string GetImageForPlayer(string type, string name)
+        {
+            string picName = "";
+//            if (type == "_human")
+  //              picName = "_human_" + name.Replace(" ", "_");
+    //        else
+            picName = type;
+            return "http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/Players/" + picName + ".png";
+        }
 
         public void UpdateRoundStatus(RoundStatus status)
         {

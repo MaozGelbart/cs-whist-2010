@@ -135,7 +135,7 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
-                        <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Source="/TestClient;component/Images/human.png" Name="img_player_self"/>
+                        <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Source="Images/human.png" Name="img_player_self"/>
                         <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Grid.ColumnSpan="2" Name="lbl_Name0" Margin="0,0,0,5" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Content="Bid:" Name="label7" FontWeight="Bold" />
                         <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label8" Content="Takes:" FontWeight="Bold" />
@@ -184,7 +184,7 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Source="/TestClient;component/Images/dumb.png" Name="img_player_north"/>
+                    <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Name="img_player_north"/>
                     <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_Name2" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Bottom" FontWeight="Bold" Margin="0,0,0,5"/>
                     <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Content="Bid: " Name="label2" FontWeight="Bold" />
                     <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label5" Content="Takes: " FontWeight="Bold" />
@@ -246,7 +246,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Source="/TestClient;component/Images/dumb.png" Name="img_player_east"/>
+                    <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Name="img_player_east"/>
                     <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_Name3" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Bottom" FontWeight="Bold" Margin="0,0,0,5"/>
                     <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Content="Bid:" Name="label3" FontWeight="Bold" />
                     <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="lbl_bid3" Grid.Column="1" />

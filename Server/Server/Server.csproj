@@ -60,9 +60,6 @@
     <Content Include="ClientBin\TestClient.xap" />
     <Content Include="ClientBin\WhistClient.xap" />
     <Content Include="PlayerService.svc" />
-    <Resource Include="Images\Players\PlugIn.DeepHotMagenta.JPG" />
-    <Resource Include="Images\Players\PlugIn.DumbPlayer.jpg" />
-    <Resource Include="Images\Players\PlugIn.RandomExchangerHighBidderStrongestPlayer.JPG" />
     <Content Include="Silverlight.js" />
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
@@ -106,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Players\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
