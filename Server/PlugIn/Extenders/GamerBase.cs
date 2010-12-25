@@ -35,7 +35,7 @@ namespace Server.API
         /// <returns></returns>
         protected bool getPlayerSuitStatus(PlayerSeat p, Suit s)
         {
-            return !m_playerEmptySuits[(int)p].Contains(s);
+            return !m_playerEmptySuits[(int)p - 1].Contains(s);
         }
 
         /// <summary>
