@@ -44,9 +44,11 @@ namespace Server.API
                 return -1;
             if (other.Amount < this.Amount)
                 return 1;
-            if (other.Suit > this.Suit)
+            int mySuit = this.Suit.HasValue ? (int)this.Suit.Value : 5;
+            int hisSuit = other.Suit.HasValue ? (int)other.Suit.Value : 5;
+            if (hisSuit > mySuit)
                 return -1;
-            if (other.Suit < this.Suit)
+            if (hisSuit < mySuit)
                 return 1;
             return 0;
         }
