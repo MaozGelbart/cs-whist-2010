@@ -52,8 +52,6 @@ namespace Brain
 
         private GameStatus[] GameStatus { get; set; }
 
-        private Player[] Players { get; set; }
-
         private int playerMissing = 4;
 
         private int dealerIndex = 0;
@@ -95,6 +93,20 @@ namespace Brain
         #endregion
 
         #region Public Members
+
+        public Player[] Players { get; set; }
+
+        public DateTime TimeStarted { get; set; }
+
+        public GameStatus GetGameStatus()
+        {
+            return this.GameStatus[0];
+        }
+
+        public RoundStatus GetRoundStatus()
+        {
+            return this.RoundStatus[0];
+        }
 
         /// <summary>
         /// Name of the game
@@ -761,6 +773,7 @@ namespace Brain
             }
             UpdateGameStatusToPlayers();
             dealerIndex = 0;
+            this.TimeStarted = DateTime.Now;
             StartRound();
         }
 
