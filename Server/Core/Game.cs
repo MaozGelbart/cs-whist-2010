@@ -313,17 +313,33 @@ namespace Brain
             else
             {
                 // if not check if the card is the strongest yet
-                if (strongestCard.Value.Suit == currentStrongBid.Value.Suit)
+                // is this game with trump?
+                if (currentStrongBid.Value.Suit.HasValue)
                 {
-                    if (e.Play.Suit == currentStrongBid.Value.Suit && e.Play.Value > strongestCard.Value.Value)
+                    // did anyone put a trump card yet?
+                    if (strongestCard.Value.Suit == currentStrongBid.Value.Suit.Value)
                     {
-                        strongestCard = e.Play;
-                        strongestCardPlayer = playerIndex;
+                        // did current user also put trump card and is it higher?
+                        if (e.Play.Suit == currentStrongBid.Value.Suit.Value && e.Play.Value > strongestCard.Value.Value)
+                        {
+                            strongestCard = e.Play;
+                            strongestCardPlayer = playerIndex;
+                        }
                     }
-                }
+                    else
+                    {
+                        // did current player put trump card or did he put this leading suit card with higher value?
+                        if (e.Play.Suit == currentStrongBid.Value.Suit.Value || (e.Play.Suit == roundSuit && e.Play.Value > strongestCard.Value.Value))
+                        {
+                            strongestCard = e.Play;
+                            strongestCardPlayer = playerIndex;
+                        }
+                    }
+                }  
                 else
                 {
-                    if (e.Play.Suit == currentStrongBid.Value.Suit || (e.Play.Suit == roundSuit && e.Play.Value > strongestCard.Value.Value))
+                    // no trump game
+                    if (e.Play.Suit == roundSuit && e.Play.Value > strongestCard.Value.Value)
                     {
                         strongestCard = e.Play;
                         strongestCardPlayer = playerIndex;
