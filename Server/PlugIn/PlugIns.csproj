@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Bidders\JustinBidder.cs" />
     <Compile Include="Bidders\SmartBidder.cs" />
+    <Compile Include="Brainiac.cs" />
     <Compile Include="CardExchangers\MaximizeTricksBidCardExchanger.cs" />
     <Compile Include="CardExchangers\PlayForZeroCardExchanger.cs" />
     <Compile Include="CardExchangers\RandomCardExchanger.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="JustinBieber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomExchangerHighBidderStrongestPlayer.cs" />
+    <Compile Include="Gamers\SmartGamer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\API\API.csproj">
