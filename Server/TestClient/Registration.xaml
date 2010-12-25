@@ -27,7 +27,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <Image Source="/TestClient;component/Images/header.png" />
+        <Image Source="Images/header.png" />
 
         <Border CornerRadius="10" Background="#FFFAFAFA" Grid.Row="1" Height="430" Width="400" Margin="0,25,0,0">
             <Grid>

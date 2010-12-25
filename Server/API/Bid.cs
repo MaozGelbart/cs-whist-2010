@@ -44,13 +44,18 @@ namespace Server.API
                 return -1;
             if (other.Amount < this.Amount)
                 return 1;
-            int mySuit = this.Suit.HasValue ? (int)this.Suit.Value : 5;
-            int hisSuit = other.Suit.HasValue ? (int)other.Suit.Value : 5;
+            int mySuit = GetBidSuitCode(this.Suit);
+            int hisSuit = GetBidSuitCode(other.Suit);
             if (hisSuit > mySuit)
                 return -1;
             if (hisSuit < mySuit)
                 return 1;
             return 0;
+        }
+
+        public static int GetBidSuitCode(Suit? suit)
+        {
+            return suit.HasValue ? (int)suit.Value : 5;
         }
 
         public static bool operator >= (Bid self, Bid other)
@@ -81,6 +86,16 @@ namespace Server.API
         public static bool operator <=(Bid self, Bid other)
         {
             return self.CompareTo(other) <= 0;
+        }
+
+        /// <summary>
+        /// Hash for a bid is 3 LSB is for suit (values:1-5)
+        /// all the rest are for amount
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return Bid.GetBidSuitCode(this.Suit) + this.Amount * 8;
         }
 
         #endregion
