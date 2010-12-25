@@ -85,7 +85,7 @@
             </LinearGradientBrush>
         </Border.Background>-->
         <Border.Background>
-            <ImageBrush ImageSource="/TestClient;component/Images/wood-table-texture-3.jpg" />
+            <ImageBrush ImageSource="Images/wood-table-texture-3.jpg" />
         </Border.Background>
         <Grid Height="630" Width="1000">
 
@@ -292,7 +292,7 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Source="/TestClient;component/Images/dumb.png" Name="img_player_west"/>
+                    <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Name="img_player_west"/>
                     <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Name="lbl_Name1" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Bottom" FontWeight="Bold" Margin="0,0,0,5" />
                     <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Name="label1" Content="Bid:" FontWeight="Bold" />
                     <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label4" Content="Takes:" FontWeight="Bold" />

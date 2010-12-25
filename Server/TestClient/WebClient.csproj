@@ -246,6 +246,8 @@
     <Resource Include="Images\hearts.PNG" />
     <Resource Include="Images\spades.PNG" />
     <Resource Include="Images\human.png" />
+    <Resource Include="Images\header.png" />
+    <Resource Include="Images\wood-table-texture-3.jpg" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

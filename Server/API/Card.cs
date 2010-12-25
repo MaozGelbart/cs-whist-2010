@@ -50,5 +50,14 @@ namespace Server.API
         {
             return this.Value == 0 || this.Suit == 0;
         }
+
+        /// <summary>
+        /// Hash code for a card is 2 bits for suit (1,2,3,4) the rest are for value
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return (int)this.Suit + this.Value * 4;
+        }
     }
 }
