@@ -59,6 +59,7 @@
   <ItemGroup>
     <Content Include="ClientBin\TestClient.xap" />
     <Content Include="ClientBin\WhistClient.xap" />
+    <Content Include="dashboard.aspx" />
     <Content Include="PlayerService.svc" />
     <Content Include="Silverlight.js" />
     <Content Include="Styles\Site.css" />
@@ -80,6 +81,13 @@
   <ItemGroup>
     <Compile Include="Clients\PlayerSLAdaptor.cs" />
     <Compile Include="Clients\ViewerSLAdaptor.cs" />
+    <Compile Include="dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
