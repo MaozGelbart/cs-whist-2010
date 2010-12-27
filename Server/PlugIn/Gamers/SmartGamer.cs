@@ -203,7 +203,10 @@ namespace PlugIn.Gamers
                 //if we have cards from leading suit, but not lower than card played, we'll throw our lowest card from that suit
                 if (chosen.IsEmpty())
                 {
-                    chosen = GetLowestCardInCollection(GetCardsBySuit(ArrangeCardBySuits(Cards), turnSuit));
+                    chosen = (from c in GetCardsBySuit(ArrangeCardBySuits(Cards), turnSuit)
+                              orderby ChanceToLoseTheHand(c) ascending
+                              orderby c.Value descending
+                              select c).FirstOrDefault();
                 }
             }
 
@@ -377,7 +380,7 @@ namespace PlugIn.Gamers
 
                 chosen = (from c in nominees
                           orderby ChanceToLoseTheHand(c) ascending
-                          orderby c.Value ascending
+                          orderby c.Value descending
                           select c).FirstOrDefault();
 
                 if (ChanceToLoseTheHand(chosen) == 1)
