@@ -10,7 +10,7 @@ namespace PlugIn
     class JustinBieber : LegoPlayer
     {
         public JustinBieber()
-            : base(new JustinBidder(), new PlugIn.CardExchangers.PlayForZeroCardExchanger(), new PlugIn.Gamers.StrongerCardGamer())
+            : base(new JustinBidder(), new PlugIn.CardExchangers.PlayForZeroCardExchanger(), new PlugIn.Gamers.SmartGamer())
         {
         }
 
