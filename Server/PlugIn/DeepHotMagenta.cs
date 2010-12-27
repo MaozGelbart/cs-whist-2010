@@ -10,7 +10,7 @@ namespace PlugIn
     class DeepHotMagenta: LegoPlayer
     {
         public DeepHotMagenta()
-            :base(new SmartBidder(), new PlugIn.CardExchangers.MaximizeTricksBidCardExchanger(), new PlugIn.Gamers.StrongerCardGamer())
+            :base(new SmartBidder(), new PlugIn.CardExchangers.MaximizeTricksBidCardExchanger(), new PlugIn.Gamers.SmartGamer())
         {
         }
 
