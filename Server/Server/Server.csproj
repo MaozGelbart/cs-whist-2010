@@ -34,6 +34,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -55,11 +57,13 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientBin\TestClient.xap" />
     <Content Include="ClientBin\WhistClient.xap" />
     <Content Include="dashboard.aspx" />
+    <Resource Include="Images\wood-table-texture-3.jpg" />
     <Content Include="PlayerService.svc" />
     <Content Include="Silverlight.js" />
     <Content Include="Styles\Site.css" />

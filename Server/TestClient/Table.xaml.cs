@@ -27,6 +27,9 @@ namespace TestClient
             MainApp.client.ReqeustContractReceived += new EventHandler<System.ComponentModel.AsyncCompletedEventArgs>(client_ReqeustContractReceived);
             MainApp.client.RequestPlayReceived += new EventHandler<System.ComponentModel.AsyncCompletedEventArgs>(client_RequestPlayReceived);
             MainApp.client.RecieveChatMessageReceived += new EventHandler<RecieveChatMessageReceivedEventArgs>(client_RecieveChatMessageReceived);
+            img_background.ImageSource = new BitmapImage(
+                new Uri("http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/wood-table-texture-3.jpg", UriKind.Absolute)
+                );
         }
 
         List<Card> cards;

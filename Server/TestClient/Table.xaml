@@ -85,7 +85,7 @@
             </LinearGradientBrush>
         </Border.Background>-->
         <Border.Background>
-            <ImageBrush ImageSource="Images/wood-table-texture-3.jpg" />
+            <ImageBrush x:Name="img_background" />
         </Border.Background>
         <Grid Height="630" Width="1000">
 
