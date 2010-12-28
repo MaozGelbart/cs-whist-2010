@@ -29,9 +29,9 @@ namespace TestClient
             PlayerType3.ItemsSource = types;
             PlayerType4.ItemsSource = types;
             PlayerType0.SelectedIndex = 0;
-            PlayerType2.SelectedIndex = 1;
-            PlayerType3.SelectedIndex = 1;
-            PlayerType4.SelectedIndex = 1;
+            PlayerType2.SelectedIndex = 3;
+            PlayerType3.SelectedIndex = 3;
+            PlayerType4.SelectedIndex = 3;
 
             lst_Rounds.ItemsSource = (from i in new[] { 1, 2, 5, 10, 15, 20, 50, 100, 200, 1000 }
                                      select new StamItem() { Value = i, Name = i.ToString() }).ToArray();

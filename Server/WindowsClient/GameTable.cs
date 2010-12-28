@@ -134,10 +134,10 @@ namespace WindowsClient
         {
             lbl_trump.Text = status.Trump.HasValue ? status.Trump.Value.ToString() : "No-suit" ;
 
-            lbl_bid_self.Text = status.Biddings[0] + "";
-            lbl_bid_west.Text = status.Biddings[1] + "";
-            lbl_bid_north.Text = status.Biddings[2] + "";
-            lbl_bid_east.Text = status.Biddings[3] + "";
+            lbl_bid_self.Text = GetBiddingText(status.State == RoundState.Bidding,  status.Biddings[0]);
+            lbl_bid_west.Text = GetBiddingText(status.State == RoundState.Bidding, status.Biddings[1]);
+            lbl_bid_north.Text = GetBiddingText(status.State == RoundState.Bidding, status.Biddings[2]);
+            lbl_bid_east.Text = GetBiddingText(status.State == RoundState.Bidding, status.Biddings[3]);
 
             lbl_tricks_self.Text = status.TricksTaken[0] + "";
             lbl_tricks_west.Text = status.TricksTaken[1] + "";
@@ -153,6 +153,11 @@ namespace WindowsClient
             SetAllCardsToPlayer(cards_west, allCards[1]);
             SetAllCardsToPlayer(cards_north, allCards[2]);
             SetAllCardsToPlayer(cards_east, allCards[3]);
+        }
+
+        private string GetBiddingText(bool isBidding, Bid? bid)
+        {
+            return isBidding ? bid + "" : ( bid.HasValue ? bid.Value.Amount + "" : "");
         }
 
 

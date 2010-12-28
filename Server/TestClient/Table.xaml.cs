@@ -154,7 +154,6 @@ namespace TestClient
             currentStatus = status;
             currentGameStatus = game_status;
             SetNames(game_status.PlayerNamesk__BackingField.ToArray());
-            lbl_state.Content = "Bidding";
             UpdateTakes(new[] { 0, 0, 0, 0 });
             UpdateBids(new[] { "", "", "", "" });
             UpdateScores(game_status.Scoresk__BackingField.ToArray());
@@ -241,6 +240,7 @@ namespace TestClient
                 RecieveCards();
                 cardToThrow = null;
             }
+            lbl_state.Content = status.Statek__BackingField.ToString();
             // highlight current player
             currentStatus = status;
             Brush red = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
