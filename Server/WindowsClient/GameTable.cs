@@ -161,7 +161,10 @@ namespace WindowsClient
             list.Controls.Clear();
             int y = 0;
             int x = 0;
-            foreach( Card c in card)
+            var arranged = (from c in card
+                            orderby (c.Suit != Suit.Hearts ? (int)c.Suit : 5), c.Value
+                            select c).ToArray();
+            foreach (Card c in arranged)
             {
                 PictureBox box = new PictureBox();
                 box.Width = 36;
