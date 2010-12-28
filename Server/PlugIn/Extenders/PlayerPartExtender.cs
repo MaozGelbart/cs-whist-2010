@@ -88,19 +88,16 @@ namespace Server.API
         {
             List<Card>[] cardsBySuit = ArrangeCardBySuits(cards);
             double totalBid = 0;
-
+            int number_of_unused_trumps;
+            totalBid += CalcBidForStrongTrump(cardsBySuit[(int)suit - 1], out number_of_unused_trumps);
             for (int i = 0; i < cardsBySuit.Length; i++)
             {
                 List<Card> currList = cardsBySuit[i];
 
                 // this is the list of the 'strong' trump
-                if ((i + 1) == (int)suit)
+                if ((i + 1) != (int)suit)
                 {
-                    totalBid += CalcBidForStrongTrump(currList);
-                }
-                else
-                {
-                    totalBid += CalcBidForWeakTrump(currList);
+                    totalBid += CalcBidForWeakTrump(currList, ref number_of_unused_trumps);
                 }
             }
 
@@ -128,47 +125,35 @@ namespace Server.API
         /// Calculates the best bid for a set of same suit cards that
         /// are the 'strong' trump.
         /// </summary>
-        private double CalcBidForStrongTrump(ICollection<Card> cards)
+        private double CalcBidForStrongTrump(ICollection<Card> cards, out int number_of_unused_trumps)
         {
             double totalBid = 0;
-
-            //check if has A
-            if (ContainsValue(cards, 14))
+            number_of_unused_trumps = cards.Count;
+            int number_of_strong_trumps_i_dont_have = 0;
+            for (int current_card = 14; current_card > 1; current_card--)
             {
-                //check if has Q & 1 more trump
-                if (ContainsValue(cards, 12) && cards.Count >= 3)
+                if (ContainsValue(cards, current_card))
                 {
-                    totalBid += 2;
+                    // if the number of trumps I have (beside the current one) is enough (heruistically) to make other players
+                    // secrefice their stronger cards
+                    if (number_of_strong_trumps_i_dont_have > number_of_unused_trumps - 1 )
+                    {
+                        return totalBid;
+                    }
+                    else
+                    {
+                        // substract the amount of trumps needed to secrefice until the current is the highest one
+                        number_of_unused_trumps -= number_of_strong_trumps_i_dont_have;
+                        // substruct the current one
+                        number_of_unused_trumps--;
+                        // all stronger cards were cleared
+                        number_of_strong_trumps_i_dont_have = 0;
+                        totalBid++;
+                    }
                 }
-
-                totalBid++;
+                else
+                    number_of_strong_trumps_i_dont_have++;
             }
-
-            //check if has Q & no A & 2 more trumps
-            if (ContainsValue(cards, 12) && !ContainsValue(cards, 14) && cards.Count >= 3)
-            {
-                totalBid++;
-            }
-
-            //check if has K & no A & 1 more trump
-            if (ContainsValue(cards, 13) && cards.Count >= 2)
-            {
-                //check if has J & 2 more trumps
-                if (ContainsValue(cards, 11) && cards.Count >= 4)
-                {
-                    totalBid += 2;
-                }
-
-                totalBid++;
-            }
-
-            //check if has more than 4 
-            if (cards.Count >= 4)
-            {
-                totalBid++;
-                totalBid += (cards.Count - 4) * 0.5;
-            }
-
             return totalBid;
         }
 
@@ -176,7 +161,7 @@ namespace Server.API
         /// Calculates the best bid for a set of cards of the same
         /// suit that is not the 'strong' trump.
         /// </summary>
-        private double CalcBidForWeakTrump(ICollection<Card> cards)
+        private double CalcBidForWeakTrump(ICollection<Card> cards, ref int number_of_unused_trumps)
         {
             double totalBid = 0;
 
@@ -195,22 +180,25 @@ namespace Server.API
             //check if has Q & 2 more from suit
             if (ContainsValue(cards, 12) && cards.Count >= 3)
             {
-                totalBid++;
+                totalBid+= (2.0/3);
             }
 
             //no cards from suit
             if (cards.Count == 0)
             {
                 //TODO: not sure!!!! read http://www.myspades.com/bidding-strategy.php and fix!!!!
-                //totalBid += 1.5;
-                totalBid += 0.5;
+                double to_add = Math.Min(1.5, (double)number_of_unused_trumps / 1.5);
+                totalBid += to_add;
+                number_of_unused_trumps -= (int)Math.Ceiling(to_add * 1.5);
             }
 
             //1 card from suit
             if (cards.Count == 1)
             {
                 //TODO: not sure!!!! read http://www.myspades.com/bidding-strategy.php and fix!!!!
-                //totalBid += 1;
+                double to_add = Math.Min(1, number_of_unused_trumps / 2.5);
+                totalBid += to_add;
+                number_of_unused_trumps -= (int)(to_add * 2.5);
             }
 
             return totalBid;

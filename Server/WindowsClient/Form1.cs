@@ -24,19 +24,19 @@ namespace WindowsClient
             lst_Types1.DataSource = plugIns;
             lst_Types1.DisplayMember = "Name";
             lst_Types1.ValueMember = "ID";
-            lst_Types1.SelectedIndex = 0;
+            lst_Types1.SelectedIndex = 2;
             lst_Types2.DataSource = plugIns.Clone();
             lst_Types2.DisplayMember = "Name";
             lst_Types2.ValueMember = "ID";
-            lst_Types2.SelectedIndex = 0;
+            lst_Types2.SelectedIndex = 2;
             lst_Types3.DataSource = plugIns.Clone();
             lst_Types3.DisplayMember = "Name";
             lst_Types3.ValueMember = "ID";
-            lst_Types3.SelectedIndex = 0;
+            lst_Types3.SelectedIndex = 2;
             lst_Types4.DataSource = plugIns.Clone();
             lst_Types4.DisplayMember = "Name";
             lst_Types4.ValueMember = "ID";
-            lst_Types4.SelectedIndex = 0;
+            lst_Types4.SelectedIndex = 2;
 
             lst_Rounds.SelectedIndex = 3;
         }
