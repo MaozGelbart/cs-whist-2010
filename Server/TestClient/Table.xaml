@@ -135,7 +135,7 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
-                        <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Source="Images/human.png" Name="img_player_self"/>
+                        <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Width="50" Height="50" Name="img_player_self"/>
                         <dataInput:Label Style="{StaticResource Label}" Grid.Row="1" Grid.ColumnSpan="2" Name="lbl_Name0" Margin="0,0,0,5" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         <dataInput:Label Style="{StaticResource Label}" Grid.Row="2" Content="Bid:" Name="label7" FontWeight="Bold" />
                         <dataInput:Label Style="{StaticResource Label}" Grid.Row="3" Name="label8" Content="Takes:" FontWeight="Bold" />
@@ -149,7 +149,7 @@
             </StackPanel>
 
             <!--Go Button-->
-            <Button Grid.Row="1" Grid.Column="0" Content="Go" Height="40" Name="btn_ThrowCard" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="80" IsEnabled="False" Click="btn_ThrowCard_Click" Margin="-100,0,0,0"/>
+            <Button Grid.Row="1" Grid.Column="0" Content="Go" Height="40" Name="btn_ThrowCard" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="80" IsEnabled="False" Click="btn_ThrowCard_Click" Margin="-100,0,0,0" Background="#FFE54746" Foreground="Black" OpacityMask="Black" />
 
             <!--North Player display-->
             <Grid Grid.Column="1" HorizontalAlignment="Center" Name="northGrid">

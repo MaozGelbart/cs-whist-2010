@@ -145,6 +145,11 @@ namespace Server.API
         public string[] PlayerTypes { get; set; }
 
         /// <summary>
+        /// Used to recieve facebook players photo
+        /// </summary>
+        public string[] PlayerPhotos { get; set; }
+
+        /// <summary>
         /// Scores of players, starts with you, continues clockwise
         /// </summary>
         public int[] Scores { get; set; }

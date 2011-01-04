@@ -7,6 +7,6 @@
     d:DesignHeight="200" d:DesignWidth="200" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input">
     
     <Grid x:Name="LayoutRoot" Background="White">
-        <TextBlock Height="88" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" Width="176" TextWrapping="Wrap" />
+        <TextBlock Height="147" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" Width="176" TextWrapping="Wrap" />
     </Grid>
 </UserControl>

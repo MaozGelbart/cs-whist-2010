@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using TestClient.Dialogs;
 using TestClient.GameService;
+using System.Windows.Media.Imaging;
 
 namespace TestClient
 {
@@ -43,6 +44,16 @@ namespace TestClient
 
             lst_Speed.DisplayMemberPath = "Name";
             lst_Speed.SelectedIndex = 1;
+            img_background.Source = new BitmapImage(
+                new Uri("http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/wood-table-texture-3.jpg", UriKind.Absolute)
+                );
+            if (MainApp.viewMode == App.ViewMode.Facebook)
+            {
+                lbl_facebook_login.Content = String.Format("Hi {0}", MainApp.firstName) ;
+                PlayerName.Text = MainApp.firstName;
+                PlayerName.Visibility = System.Windows.Visibility.Collapsed;
+                lbl_facebook_login.Visibility = System.Windows.Visibility.Visible;
+            }
         }
 
         public App MainApp
@@ -51,6 +62,12 @@ namespace TestClient
             {
                 return (App)App.Current;
             }
+        }
+
+        public void UpdateFacebookLogin()
+        {
+            if( MainApp.account != null)
+                lbl_facebook_login.Content = String.Format("Hi {0}, your current score is {1}", MainApp.firstName, MainApp.account.Score);
         }
 
         public MessageDialogClass dialog;
@@ -82,7 +99,7 @@ namespace TestClient
             }
             if (PlayerType0.SelectedIndex == 0)
             {
-                MainApp.client.StartGameAsync(PlayerName.Text, lst.Count, lst, (int)((StamItem)lst_Rounds.SelectedItem).Value, (int)((StamItem)lst_Speed.SelectedItem).Value, game_name);
+                MainApp.client.StartGameAsync(PlayerName.Text, MainApp.photoUrl, lst.Count, lst, (int)((StamItem)lst_Rounds.SelectedItem).Value, (int)((StamItem)lst_Speed.SelectedItem).Value, game_name);
             }
             else
                 MainApp.client.StartGameViewAsync(lst, (int)((StamItem)lst_Rounds.SelectedItem).Value, (int)((StamItem)lst_Speed.SelectedItem).Value);
@@ -98,7 +115,7 @@ namespace TestClient
             string game_name = null;
             if (txt_game_name.Text != ANY_GAME_NAME)
                 game_name = txt_game_name.Text;
-            MainApp.client.RegisterAsync(PlayerName.Text, game_name);
+            MainApp.client.RegisterAsync(PlayerName.Text, MainApp.photoUrl, game_name);
         }
 
         private void client_StartGameCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)

@@ -13,11 +13,12 @@ namespace WCFServer.Clients
 
         #region Constructor
 
-        public PlayerSLAdaptor(string Name, string SessionID, IPlayerClient webClient)
+        public PlayerSLAdaptor(string Name, string SessionID, string photoUrl, IPlayerClient webClient)
         {
             this.SessionID = SessionID;
             this._name = Name;
             this.webClient = webClient;
+            this.PhotoUrl = photoUrl;
             ResponseRecieved();
         }
 
@@ -63,18 +64,32 @@ namespace WCFServer.Clients
 
         public string SessionID { get; set; }
 
+        public string PhotoUrl { get; set; }
+
         #endregion
 
         #region IPlayer Members
 
         public void RecieveCards(Card[] cards)
         {
-            this.webClient.RecieveCards(cards);
+            try
+            {
+                this.webClient.RecieveCards(cards);
+            }
+            catch (Exception e)
+            {
+            }
         }
 
         public void RecieveExchangeCards(Card[] cards)
         {
-            this.webClient.RecieveExchangedCards(cards);
+            try
+            {
+                this.webClient.RecieveExchangedCards(cards);
+            }
+            catch (Exception e)
+            {
+            }
         }
 
         public void UpdateRoundStatus(RoundStatus status)
