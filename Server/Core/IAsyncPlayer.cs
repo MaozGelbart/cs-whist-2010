@@ -54,6 +54,8 @@ namespace Server.API
         void RecieveChatMessage(PlayerSeat sender, string msg);
 
         event EventHandler<RecieveChatMessageEventArgs> OnSendChatMessage;
+
+        string PhotoUrl { get; }
     }
 
     /// <summary>

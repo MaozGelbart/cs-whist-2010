@@ -17,6 +17,12 @@ namespace TestClient
     public partial class App : Application
     {
 
+        public enum ViewMode
+        {
+            Normal = 0,
+            Facebook = 1
+        }
+
         public static class UIThread
         {
             public static System.Windows.Threading.Dispatcher Dispatcher { get; set; }
@@ -33,6 +39,11 @@ namespace TestClient
         EndpointAddress add;
         public PlayerServiceClient client;
 
+        public ViewMode viewMode;
+        public Account account;
+        public string firstName;
+        public string photoUrl;
+
         public App()
         {
             SERVICE_ADDRESS = System.Windows.Browser.HtmlPage.Document.DocumentUri;
@@ -41,16 +52,44 @@ namespace TestClient
             this.Startup += this.Application_Startup;
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
-
             InitializeComponent();
-
             client = new PlayerServiceClient(binding, add);
+        }
 
+        private void InitFacebookLogin(string id)
+        {
+            viewMode = ViewMode.Facebook;
+            client.RegisterFacebookAccountCompleted += new EventHandler<RegisterFacebookAccountCompletedEventArgs>(client_RegisterFacebookAccountCompleted);
+            client.RegisterFacebookAccountAsync(id);
+
+        }
+
+        void client_RegisterFacebookAccountCompleted(object sender, RegisterFacebookAccountCompletedEventArgs e)
+        {
+            account = e.Result;
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new MainPage();
+           this.RootVisual = new MainPage();
+           if (e.InitParams.ContainsKey("viewMode"))
+               this.viewMode = e.InitParams["viewMode"] == "facebook" ? ViewMode.Facebook : ViewMode.Normal;
+           if (this.viewMode == ViewMode.Facebook)
+           {
+               if (e.InitParams.ContainsKey("uid"))
+               {
+                   string id = e.InitParams["uid"];
+                   InitFacebookLogin(id);
+               }
+               if (e.InitParams.ContainsKey("firstName"))
+               {
+                   firstName = e.InitParams["firstName"];
+               }
+               if (e.InitParams.ContainsKey("photo"))
+               {
+                   photoUrl = e.InitParams["photo"];
+               }
+           }
             App.UIThread.Dispatcher = RootVisual.Dispatcher;
         }
 

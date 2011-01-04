@@ -156,26 +156,32 @@
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\GameService\configuration91.svcinfo" />
     <None Include="Service References\GameService\configuration.svcinfo" />
+    <None Include="Service References\GameService\PlayerService10.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\GameService\PlayerService2.wsdl" />
-    <None Include="Service References\GameService\PlayerService21.wsdl" />
+    <None Include="Service References\GameService\PlayerService3.wsdl" />
     <None Include="Service References\GameService\PlayerService5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameService\PlayerService51.xsd">
+    <None Include="Service References\GameService\PlayerService6.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameService\PlayerService52.xsd">
+    <None Include="Service References\GameService\PlayerService7.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameService\PlayerService53.xsd">
+    <None Include="Service References\GameService\PlayerService8.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameService\PlayerService54.xsd">
+    <None Include="Service References\GameService\PlayerService9.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GameService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\GameService\TestClient.GameService.Account.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GameService\TestClient.GameService.PlayerPlugin.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -240,14 +246,13 @@
     <Resource Include="Images\spades-j-75.png" />
     <Resource Include="Images\spades-k-75.png" />
     <Resource Include="Images\spades-q-75.png" />
-    <None Include="Service References\GameService\PlayerService1.disco" />
     <Resource Include="Images\clubs.PNG" />
     <Resource Include="Images\diamonds.PNG" />
     <Resource Include="Images\hearts.PNG" />
     <Resource Include="Images\spades.PNG" />
-    <Resource Include="Images\human.png" />
     <Resource Include="Images\header.png" />
     <Resource Include="Images\back-red-75-1-side.png" />
+    <None Include="Service References\GameService\PlayerService1.disco" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,66 @@ namespace TestClient.GameService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Account", Namespace="http://schemas.datacontract.org/2004/07/AccountCenter")]
+    public partial class Account : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string IDField;
+        
+        private string NameField;
+        
+        private double ScoreField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Score {
+            get {
+                return this.ScoreField;
+            }
+            set {
+                if ((this.ScoreField.Equals(value) != true)) {
+                    this.ScoreField = value;
+                    this.RaisePropertyChanged("Score");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Card", Namespace="http://schemas.datacontract.org/2004/07/Server.API")]
     public partial struct Card : System.ComponentModel.INotifyPropertyChanged {
         
@@ -343,6 +403,8 @@ namespace TestClient.GameService {
         
         private System.Collections.ObjectModel.ObservableCollection<string> PlayerNamesk__BackingFieldField;
         
+        private System.Collections.ObjectModel.ObservableCollection<string> PlayerPhotosk__BackingFieldField;
+        
         private System.Collections.ObjectModel.ObservableCollection<string> PlayerTypesk__BackingFieldField;
         
         private int RoundNumberk__BackingFieldField;
@@ -358,6 +420,19 @@ namespace TestClient.GameService {
                 if ((object.ReferenceEquals(this.PlayerNamesk__BackingFieldField, value) != true)) {
                     this.PlayerNamesk__BackingFieldField = value;
                     this.RaisePropertyChanged("PlayerNamesk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<PlayerPhotos>k__BackingField", IsRequired=true)]
+        public System.Collections.ObjectModel.ObservableCollection<string> PlayerPhotosk__BackingField {
+            get {
+                return this.PlayerPhotosk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlayerPhotosk__BackingFieldField, value) != true)) {
+                    this.PlayerPhotosk__BackingFieldField = value;
+                    this.RaisePropertyChanged("PlayerPhotosk__BackingField");
                 }
             }
         }
@@ -416,12 +491,22 @@ namespace TestClient.GameService {
     public interface IPlayerService {
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="Silverlight/IPlayerService/Register", ReplyAction="Silverlight/IPlayerService/RegisterResponse")]
-        System.IAsyncResult BeginRegister(string name, string game_name, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginRegister(string name, string photoUrl, string game_name, System.AsyncCallback callback, object asyncState);
         
         void EndRegister(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="Silverlight/IPlayerService/RegisterFacebookAccount", ReplyAction="Silverlight/IPlayerService/RegisterFacebookAccountResponse")]
+        System.IAsyncResult BeginRegisterFacebookAccount(string id, System.AsyncCallback callback, object asyncState);
+        
+        TestClient.GameService.Account EndRegisterFacebookAccount(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="Silverlight/IPlayerService/UpdateAccount", ReplyAction="Silverlight/IPlayerService/UpdateAccountResponse")]
+        System.IAsyncResult BeginUpdateAccount(TestClient.GameService.Account account, System.AsyncCallback callback, object asyncState);
+        
+        void EndUpdateAccount(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="Silverlight/IPlayerService/StartGame", ReplyAction="Silverlight/IPlayerService/StartGameResponse")]
-        System.IAsyncResult BeginStartGame(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginStartGame(string name, string photoUrl, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, System.AsyncCallback callback, object asyncState);
         
         void EndStartGame(System.IAsyncResult result);
         
@@ -517,6 +602,25 @@ namespace TestClient.GameService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class RegisterFacebookAccountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public RegisterFacebookAccountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public TestClient.GameService.Account Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((TestClient.GameService.Account)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetPlayerPlugInsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -543,6 +647,18 @@ namespace TestClient.GameService {
         private EndOperationDelegate onEndRegisterDelegate;
         
         private System.Threading.SendOrPostCallback onRegisterCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginRegisterFacebookAccountDelegate;
+        
+        private EndOperationDelegate onEndRegisterFacebookAccountDelegate;
+        
+        private System.Threading.SendOrPostCallback onRegisterFacebookAccountCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateAccountDelegate;
+        
+        private EndOperationDelegate onEndUpdateAccountDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateAccountCompletedDelegate;
         
         private BeginOperationDelegate onBeginStartGameDelegate;
         
@@ -656,6 +772,10 @@ namespace TestClient.GameService {
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RegisterCompleted;
         
+        public event System.EventHandler<RegisterFacebookAccountCompletedEventArgs> RegisterFacebookAccountCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdateAccountCompleted;
+        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> StartGameCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> StartGameViewCompleted;
@@ -705,8 +825,8 @@ namespace TestClient.GameService {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TestClient.GameService.IPlayerService.BeginRegister(string name, string game_name, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginRegister(name, game_name, callback, asyncState);
+        System.IAsyncResult TestClient.GameService.IPlayerService.BeginRegister(string name, string photoUrl, string game_name, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRegister(name, photoUrl, game_name, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -716,8 +836,9 @@ namespace TestClient.GameService {
         
         private System.IAsyncResult OnBeginRegister(object[] inValues, System.AsyncCallback callback, object asyncState) {
             string name = ((string)(inValues[0]));
-            string game_name = ((string)(inValues[1]));
-            return ((TestClient.GameService.IPlayerService)(this)).BeginRegister(name, game_name, callback, asyncState);
+            string photoUrl = ((string)(inValues[1]));
+            string game_name = ((string)(inValues[2]));
+            return ((TestClient.GameService.IPlayerService)(this)).BeginRegister(name, photoUrl, game_name, callback, asyncState);
         }
         
         private object[] OnEndRegister(System.IAsyncResult result) {
@@ -732,11 +853,11 @@ namespace TestClient.GameService {
             }
         }
         
-        public void RegisterAsync(string name, string game_name) {
-            this.RegisterAsync(name, game_name, null);
+        public void RegisterAsync(string name, string photoUrl, string game_name) {
+            this.RegisterAsync(name, photoUrl, game_name, null);
         }
         
-        public void RegisterAsync(string name, string game_name, object userState) {
+        public void RegisterAsync(string name, string photoUrl, string game_name, object userState) {
             if ((this.onBeginRegisterDelegate == null)) {
                 this.onBeginRegisterDelegate = new BeginOperationDelegate(this.OnBeginRegister);
             }
@@ -748,12 +869,104 @@ namespace TestClient.GameService {
             }
             base.InvokeAsync(this.onBeginRegisterDelegate, new object[] {
                         name,
+                        photoUrl,
                         game_name}, this.onEndRegisterDelegate, this.onRegisterCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TestClient.GameService.IPlayerService.BeginStartGame(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginStartGame(name, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, game_name, callback, asyncState);
+        System.IAsyncResult TestClient.GameService.IPlayerService.BeginRegisterFacebookAccount(string id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRegisterFacebookAccount(id, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        TestClient.GameService.Account TestClient.GameService.IPlayerService.EndRegisterFacebookAccount(System.IAsyncResult result) {
+            return base.Channel.EndRegisterFacebookAccount(result);
+        }
+        
+        private System.IAsyncResult OnBeginRegisterFacebookAccount(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string id = ((string)(inValues[0]));
+            return ((TestClient.GameService.IPlayerService)(this)).BeginRegisterFacebookAccount(id, callback, asyncState);
+        }
+        
+        private object[] OnEndRegisterFacebookAccount(System.IAsyncResult result) {
+            TestClient.GameService.Account retVal = ((TestClient.GameService.IPlayerService)(this)).EndRegisterFacebookAccount(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnRegisterFacebookAccountCompleted(object state) {
+            if ((this.RegisterFacebookAccountCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.RegisterFacebookAccountCompleted(this, new RegisterFacebookAccountCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void RegisterFacebookAccountAsync(string id) {
+            this.RegisterFacebookAccountAsync(id, null);
+        }
+        
+        public void RegisterFacebookAccountAsync(string id, object userState) {
+            if ((this.onBeginRegisterFacebookAccountDelegate == null)) {
+                this.onBeginRegisterFacebookAccountDelegate = new BeginOperationDelegate(this.OnBeginRegisterFacebookAccount);
+            }
+            if ((this.onEndRegisterFacebookAccountDelegate == null)) {
+                this.onEndRegisterFacebookAccountDelegate = new EndOperationDelegate(this.OnEndRegisterFacebookAccount);
+            }
+            if ((this.onRegisterFacebookAccountCompletedDelegate == null)) {
+                this.onRegisterFacebookAccountCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRegisterFacebookAccountCompleted);
+            }
+            base.InvokeAsync(this.onBeginRegisterFacebookAccountDelegate, new object[] {
+                        id}, this.onEndRegisterFacebookAccountDelegate, this.onRegisterFacebookAccountCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult TestClient.GameService.IPlayerService.BeginUpdateAccount(TestClient.GameService.Account account, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateAccount(account, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void TestClient.GameService.IPlayerService.EndUpdateAccount(System.IAsyncResult result) {
+            base.Channel.EndUpdateAccount(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateAccount(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            TestClient.GameService.Account account = ((TestClient.GameService.Account)(inValues[0]));
+            return ((TestClient.GameService.IPlayerService)(this)).BeginUpdateAccount(account, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateAccount(System.IAsyncResult result) {
+            ((TestClient.GameService.IPlayerService)(this)).EndUpdateAccount(result);
+            return null;
+        }
+        
+        private void OnUpdateAccountCompleted(object state) {
+            if ((this.UpdateAccountCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateAccountCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateAccountAsync(TestClient.GameService.Account account) {
+            this.UpdateAccountAsync(account, null);
+        }
+        
+        public void UpdateAccountAsync(TestClient.GameService.Account account, object userState) {
+            if ((this.onBeginUpdateAccountDelegate == null)) {
+                this.onBeginUpdateAccountDelegate = new BeginOperationDelegate(this.OnBeginUpdateAccount);
+            }
+            if ((this.onEndUpdateAccountDelegate == null)) {
+                this.onEndUpdateAccountDelegate = new EndOperationDelegate(this.OnEndUpdateAccount);
+            }
+            if ((this.onUpdateAccountCompletedDelegate == null)) {
+                this.onUpdateAccountCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateAccountCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateAccountDelegate, new object[] {
+                        account}, this.onEndUpdateAccountDelegate, this.onUpdateAccountCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult TestClient.GameService.IPlayerService.BeginStartGame(string name, string photoUrl, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginStartGame(name, photoUrl, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, game_name, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -763,12 +976,13 @@ namespace TestClient.GameService {
         
         private System.IAsyncResult OnBeginStartGame(object[] inValues, System.AsyncCallback callback, object asyncState) {
             string name = ((string)(inValues[0]));
-            int number_Of_AIPlayers = ((int)(inValues[1]));
-            System.Collections.ObjectModel.ObservableCollection<string> player_AI = ((System.Collections.ObjectModel.ObservableCollection<string>)(inValues[2]));
-            int num_of_rounds = ((int)(inValues[3]));
-            int milliseconds_between_turns = ((int)(inValues[4]));
-            string game_name = ((string)(inValues[5]));
-            return ((TestClient.GameService.IPlayerService)(this)).BeginStartGame(name, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, game_name, callback, asyncState);
+            string photoUrl = ((string)(inValues[1]));
+            int number_Of_AIPlayers = ((int)(inValues[2]));
+            System.Collections.ObjectModel.ObservableCollection<string> player_AI = ((System.Collections.ObjectModel.ObservableCollection<string>)(inValues[3]));
+            int num_of_rounds = ((int)(inValues[4]));
+            int milliseconds_between_turns = ((int)(inValues[5]));
+            string game_name = ((string)(inValues[6]));
+            return ((TestClient.GameService.IPlayerService)(this)).BeginStartGame(name, photoUrl, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, game_name, callback, asyncState);
         }
         
         private object[] OnEndStartGame(System.IAsyncResult result) {
@@ -783,11 +997,11 @@ namespace TestClient.GameService {
             }
         }
         
-        public void StartGameAsync(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name) {
-            this.StartGameAsync(name, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, game_name, null);
+        public void StartGameAsync(string name, string photoUrl, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name) {
+            this.StartGameAsync(name, photoUrl, number_Of_AIPlayers, player_AI, num_of_rounds, milliseconds_between_turns, game_name, null);
         }
         
-        public void StartGameAsync(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, object userState) {
+        public void StartGameAsync(string name, string photoUrl, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, object userState) {
             if ((this.onBeginStartGameDelegate == null)) {
                 this.onBeginStartGameDelegate = new BeginOperationDelegate(this.OnBeginStartGame);
             }
@@ -799,6 +1013,7 @@ namespace TestClient.GameService {
             }
             base.InvokeAsync(this.onBeginStartGameDelegate, new object[] {
                         name,
+                        photoUrl,
                         number_Of_AIPlayers,
                         player_AI,
                         num_of_rounds,
@@ -1457,10 +1672,11 @@ namespace TestClient.GameService {
                     base(client) {
             }
             
-            public System.IAsyncResult BeginRegister(string name, string game_name, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[2];
+            public System.IAsyncResult BeginRegister(string name, string photoUrl, string game_name, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[3];
                 _args[0] = name;
-                _args[1] = game_name;
+                _args[1] = photoUrl;
+                _args[2] = game_name;
                 System.IAsyncResult _result = base.BeginInvoke("Register", _args, callback, asyncState);
                 return _result;
             }
@@ -1470,14 +1686,40 @@ namespace TestClient.GameService {
                 base.EndInvoke("Register", _args, result);
             }
             
-            public System.IAsyncResult BeginStartGame(string name, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[6];
+            public System.IAsyncResult BeginRegisterFacebookAccount(string id, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = id;
+                System.IAsyncResult _result = base.BeginInvoke("RegisterFacebookAccount", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public TestClient.GameService.Account EndRegisterFacebookAccount(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                TestClient.GameService.Account _result = ((TestClient.GameService.Account)(base.EndInvoke("RegisterFacebookAccount", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginUpdateAccount(TestClient.GameService.Account account, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = account;
+                System.IAsyncResult _result = base.BeginInvoke("UpdateAccount", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndUpdateAccount(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("UpdateAccount", _args, result);
+            }
+            
+            public System.IAsyncResult BeginStartGame(string name, string photoUrl, int number_Of_AIPlayers, System.Collections.ObjectModel.ObservableCollection<string> player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[7];
                 _args[0] = name;
-                _args[1] = number_Of_AIPlayers;
-                _args[2] = player_AI;
-                _args[3] = num_of_rounds;
-                _args[4] = milliseconds_between_turns;
-                _args[5] = game_name;
+                _args[1] = photoUrl;
+                _args[2] = number_Of_AIPlayers;
+                _args[3] = player_AI;
+                _args[4] = num_of_rounds;
+                _args[5] = milliseconds_between_turns;
+                _args[6] = game_name;
                 System.IAsyncResult _result = base.BeginInvoke("StartGame", _args, callback, asyncState);
                 return _result;
             }

@@ -38,5 +38,7 @@ namespace Brain
         }
 
         public string Type { get; set; }
+
+        public string PhotoUrl { get; set; }
     }
 }

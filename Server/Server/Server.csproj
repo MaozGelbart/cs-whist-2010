@@ -64,6 +64,10 @@
     <Content Include="ClientBin\WhistClient.xap" />
     <Content Include="dashboard.aspx" />
     <Resource Include="Images\wood-table-texture-3.jpg" />
+    <Content Include="facebook\default1.html" />
+    <Content Include="facebook\game.aspx" />
+    <Content Include="facebook\game2.aspx" />
+    <Resource Include="Images\Players\human.png" />
     <Content Include="PlayerService.svc" />
     <Content Include="Silverlight.js" />
     <Content Include="Styles\Site.css" />
@@ -71,7 +75,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
-    <Content Include="TestClientTestPage.aspx" />
+    <Content Include="facebook\default.aspx" />
     <Content Include="default.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -91,6 +95,13 @@
     </Compile>
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="facebook\game2.aspx.cs">
+      <DependentUpon>game2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="facebook\game2.aspx.designer.cs">
+      <DependentUpon>game2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -115,12 +126,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\Players\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\facebook-csharp-sdk-52cf249\facebook\FacebookAPI.csproj">
+      <Project>{1F538275-4C0C-4983-8D92-BFF2AA0E5FC1}</Project>
+      <Name>FacebookAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AccountCenter\AccountCenter.csproj">
+      <Project>{1D41A38D-852E-4040-A8DA-7C1312FADC5B}</Project>
+      <Name>AccountCenter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\API\API.csproj">
       <Project>{84079F75-1450-465B-A46F-EAABD91046B6}</Project>
       <Name>API</Name>

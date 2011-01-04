@@ -17,7 +17,7 @@ namespace Brain
         /// <summary>
         /// The minimum time span, without any of the player responding, before the game is killed
         /// </summary>
-        public static TimeSpan TIME_TO_CALL_GAME_DEATH = TimeSpan.FromSeconds(120);
+        public static TimeSpan TIME_TO_CALL_GAME_DEATH = TimeSpan.FromSeconds(180);
 
         #region Constructor
 
@@ -146,6 +146,7 @@ namespace Brain
             int playerIndex = 4 - (this.playerMissing--);
             Player newPlayer = new Player(p);
             newPlayer.Type = type;
+            newPlayer.PhotoUrl = p.PhotoUrl;
             this.Players[playerIndex] = newPlayer;
            
             // register all event of the player
@@ -763,12 +764,14 @@ namespace Brain
                                select p.oPlayer.Name).ToArray();
             var playerTypes = (from p in Players
                                select p.Type).ToArray();
+            var playerPhotoUrls = (from p in Players
+                                   select p.PhotoUrl).ToArray();
             for (int i = 0; i < 4; i++)
             {
                 this.GameStatus[i].PlayerNames = GetArrayFrom(playerNames, i);
                 this.GameStatus[i].Scores = new int[4] { 0, 0, 0, 0 };
                 this.GameStatus[i].PlayerTypes = GetArrayFrom(playerTypes, i);
-
+                this.GameStatus[i].PlayerPhotos = GetArrayFrom(playerPhotoUrls, i);
                 this.GameStatus[i].RoundNumber = 0;
             }
             UpdateGameStatusToPlayers();

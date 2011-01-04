@@ -63,15 +63,12 @@ namespace TestClient
 
         void client_RequestPlayReceived(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            MessageDialogClass dialog;
             if (cardToThrow != null)
             {
-                dialog = new MessageDialogClass("This action is ilegal, select a different card");
+                MessageDialogClass dialog;
+                dialog = new MessageDialogClass("We're sorry to bother you, but it seems the card you chose to play, you might think it's a great card, doesn't fit to the rules we set. It's nice that you express youself, but unfortionally we can't let you continue with this silliness. Sorry...");
+                dialog.Show(DialogStyle.Modal);
             }
-            else
-                dialog = new MessageDialogClass("Select a card to play");
-
-            dialog.Show(DialogStyle.Modal);
             TestClient.App.UIThread.Run(SwitchCardSelectionToSingle);
         }
 
@@ -164,10 +161,10 @@ namespace TestClient
 
             InitCardDisplay();
 
-        //    img_player_self.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[0], game_status.PlayerNamesk__BackingField[0]), UriKind.Relative));
-            img_player_west.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[1], game_status.PlayerNamesk__BackingField[1]), UriKind.Absolute));
-            img_player_north.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[2], game_status.PlayerNamesk__BackingField[2]), UriKind.Absolute));
-            img_player_east.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[3], game_status.PlayerNamesk__BackingField[3]), UriKind.Absolute));
+            img_player_self.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[0], game_status.PlayerNamesk__BackingField[0], MainApp.photoUrl), UriKind.Absolute));
+            img_player_west.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[1], game_status.PlayerNamesk__BackingField[1], game_status.PlayerPhotosk__BackingField[1]), UriKind.Absolute));
+            img_player_north.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[2], game_status.PlayerNamesk__BackingField[2], game_status.PlayerPhotosk__BackingField[2]), UriKind.Absolute));
+            img_player_east.Source = new BitmapImage(new Uri(GetImageForPlayer(game_status.PlayerTypesk__BackingField[3], game_status.PlayerNamesk__BackingField[3], game_status.PlayerPhotosk__BackingField[3]), UriKind.Absolute));
 
             scrl_chat.Visibility = game_status.PlayerTypesk__BackingField.Count(t => t.Equals("_human")) > 1 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             txt_chat_input.Visibility = scrl_chat.Visibility;
@@ -219,14 +216,18 @@ namespace TestClient
             return "Images/" + name + ".png";
         }
 */
-        private string GetImageForPlayer(string type, string name)
+        private string GetImageForPlayer(string type, string name, string photoUrl)
         {
-        //    string picName = "";
-//            if (type == "_human")
-  //              picName = "_human_" + name.Replace(" ", "_");
-    //        else
-      //          picName = type;
-            return "http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/Players/" + type + ".png";
+    //        string picName = "";
+            if (type == "_human")
+            {
+                if(String.IsNullOrEmpty(photoUrl))
+                    return "http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/Players/human.png";
+                else
+                    return photoUrl;
+            }
+            else
+                return "http://" + MainApp.SERVICE_ADDRESS.Host + ":" + MainApp.SERVICE_ADDRESS.Port + "/Wist/Images/Players/" + type + ".png";
         }
 
         public void UpdateRoundStatus(RoundStatus status)
@@ -472,7 +473,11 @@ namespace TestClient
             if ((string)btn_ThrowCard.Content == "Pass")
             {
                 if (lst_MyCards.SelectedItems.Count != 3)
-                    MessageBox.Show("3 cards, idiot!", "Frishing", MessageBoxButton.OK);
+                {
+                    MessageDialogClass dialog;
+                    dialog = new MessageDialogClass("3 cards, idiot!");
+                    dialog.Show(DialogStyle.Modal);
+                }
                 else
                 {
                     System.Collections.ObjectModel.ObservableCollection<Card> lst = new System.Collections.ObjectModel.ObservableCollection<Card>();

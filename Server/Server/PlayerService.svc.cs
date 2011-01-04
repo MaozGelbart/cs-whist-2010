@@ -8,6 +8,7 @@ using WCFServer.Clients;
 using Brain;
 using Server.Clients;
 using Server.API;
+using AccountCenter;
 
 namespace WCFServer
 {
@@ -27,12 +28,12 @@ namespace WCFServer
 
         #region IPlayerService Members
 
-        public void Register(string name, string game_name)
+        public void Register(string name, string photoUrl, string game_name)
         {
             if (!Adaptors.ContainsKey(OperationContext.Current.SessionId))
             {
                 PlayerSLAdaptor adaptor = new PlayerSLAdaptor(name,
-                    OperationContext.Current.SessionId,
+                    OperationContext.Current.SessionId, photoUrl,
                     OperationContext.Current.GetCallbackChannel<IPlayerClient>());
                 PlayerService.Adaptors.Add(adaptor.SessionID, adaptor);
                 if (!Brain.GameFactory.AddPlayer(adaptor, game_name))
@@ -40,7 +41,7 @@ namespace WCFServer
             }
         }
 
-        public void StartGame(string name, int numberOfAIPlayers, string[] player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name)
+        public void StartGame(string name, string photoUrl, int numberOfAIPlayers, string[] player_AI, int num_of_rounds, int milliseconds_between_turns, string game_name)
         {
             if (Adaptors.ContainsKey(OperationContext.Current.SessionId))
             {
@@ -48,7 +49,7 @@ namespace WCFServer
                 Adaptors.Remove(OperationContext.Current.SessionId);
             }
             PlayerSLAdaptor adaptor = new PlayerSLAdaptor(name,
-                OperationContext.Current.SessionId,
+                OperationContext.Current.SessionId, photoUrl,
                 OperationContext.Current.GetCallbackChannel<IPlayerClient>());
             PlayerService.Adaptors.Add(adaptor.SessionID, adaptor);
             Brain.GameFactory.CreateGame(adaptor, numberOfAIPlayers, player_AI,  num_of_rounds,  milliseconds_between_turns, game_name);
@@ -132,5 +133,20 @@ namespace WCFServer
             // get rid of this player
             Adaptors.Remove(playerSLAdaptor.SessionID);
         }
+
+        #region Facebook interface Members
+
+
+        public AccountCenter.Account RegisterFacebookAccount(string id)
+        {
+            return AccountDataProvider.Login(id);
+        }
+
+        public void UpdateAccount(AccountCenter.Account account)
+        {
+            AccountDataProvider.UpdateAccount(account);
+        }
+
+        #endregion
     }
 }

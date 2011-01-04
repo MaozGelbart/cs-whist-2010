@@ -51,13 +51,14 @@
                 </Grid.ColumnDefinitions>
 
                 <dataInput:Label Style="{StaticResource Label}" Name="label1" Content="Name:" Margin="20,20,0,0" />
-                <TextBox Grid.Column="1" Height="25" HorizontalAlignment="Left" x:Name="PlayerName" VerticalAlignment="Center" Width="120" Text="Ishai" Margin="0,20,0,0" />
+                <TextBox Grid.Column="1" Height="25" HorizontalAlignment="Left" x:Name="PlayerName" VerticalAlignment="Center" Width="120" Text="" Margin="0,20,0,0" />
 
                 <dataInput:Label Grid.Row="1" Grid.ColumnSpan="2" Content="Join an existing game:" HorizontalAlignment="Center" FontWeight="Bold" />
                 <dataInput:Label Grid.Row="2" Style="{StaticResource Label}" Name="label8" Content="Game ID:" Margin="20,0,10,0"/>
                 <StackPanel Margin="0,5,0,10" Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
                     <TextBox Text="Any Game"  Height="23" HorizontalAlignment="Left" Name="txt_game_name" Width="120" Margin="0,0,10,0"/>
                     <Button Content="Join Game" Height="25" Name="button2" Click="button2_Click" HorizontalAlignment="Left" Width="98" />
+                    <Image Height="0" Name="img_background" Stretch="Fill" Width="0" />
                 </StackPanel>
 
                 <dataInput:Label Grid.Row="3" Grid.ColumnSpan="2" Content="Start a new game:" HorizontalAlignment="Center" FontWeight="Bold" />
@@ -81,6 +82,7 @@
                 <ComboBox Grid.Row="9" Grid.Column="1" Style="{StaticResource ComboBox}" Height="25" Name="lst_Speed" Width="120" />
 
                 <Button Grid.Row="11" Grid.ColumnSpan="2" Content="Start New Game" Height="25" x:Name="button1" Click="button1_Click" Margin="0,0,0,20" HorizontalAlignment="Center" Width="350" />
+                <dataInput:Label Grid.ColumnSpan="2" Height="22" HorizontalAlignment="Left" Margin="20,20,0,0" Name="lbl_facebook_login" VerticalAlignment="Top" Width="363" Content="Label fsafa" Background="#FFFAFAFA" Visibility="Collapsed" />
             </Grid>
         </Border>
     </Grid>

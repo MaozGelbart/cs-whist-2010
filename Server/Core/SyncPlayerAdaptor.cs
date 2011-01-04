@@ -97,6 +97,11 @@ namespace Brain
             get { return this.imp.Name; }
         }
 
+        public string PhotoUrl
+        {
+            get { return null; }
+        }
+
         public void RecieveErrorMessage(string msg)
         {
             // nothing to do
